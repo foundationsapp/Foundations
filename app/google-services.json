@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "31356800014",
+    "firebase_url": "https://foundations-158ea.firebaseio.com",
+    "project_id": "foundations-158ea",
+    "storage_bucket": "foundations-158ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:31356800014:android:9f27b8927594c21c14005f",
+        "android_client_info": {
+          "package_name": "com.example.foundations"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "31356800014-auf5a9rs8h32ajpjie48ubqarg4fi3bo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuURSL2VDHwZrV8im7fb8eXFajBpL7ohQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "31356800014-auf5a9rs8h32ajpjie48ubqarg4fi3bo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
