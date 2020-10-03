@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="_10">10sp</dimen>
+    <dimen name="_20">20sp</dimen>
+    <dimen name="_30">30sp</dimen>
+    <dimen name="_40">40sp</dimen>
+    <dimen name="_50">50sp</dimen>
+    <dimen name="_60">60sp</dimen>
+    <dimen name="_70">70sp</dimen>
+    <dimen name="_80">80sp</dimen>
+    <dimen name="_90">90sp</dimen>
+    <dimen name="_100">100sp</dimen>
+    <dimen name="_200">200sp</dimen>
+    <dimen name="_300">300sp</dimen>
+    <dimen name="_400">400sp</dimen>
+    <dimen name="_500">500sp</dimen>
+    <dimen name="_600">600sp</dimen>
+    <dimen name="_700">700sp</dimen>
+    <dimen name="_800">800sp</dimen>
+    <dimen name="_900">900sp</dimen>
+</resources>
