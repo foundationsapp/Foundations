@@ -3,4 +3,14 @@
     <string name="foundations">FOUNDATIONS</string>
     <string name="home_inspection_made_easy">HOME INSPECTION MADE EASY</string>
     <string name="get_started">GET STARTED</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="welcome">WELCOME</string>
+    <string name="license_number">License Number</string>
+    <string name="username">Username</string>
+    <string name="company_name">Company Name</string>
+    <string name="address">Address</string>
+    <string name="phone">Phone</string>
+    <string name="users">USERS</string>
+    <string name="new_user">New User?</string>
+    <string name="continue_as_guest">CONTINUE AS GUEST</string>
 </resources>
