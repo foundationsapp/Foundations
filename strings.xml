@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Inspector-Profile-Selection-Page</string>
+    <string name="foundations">FOUNDATIONS</string>
+    <string name="home_inspection_made_easy">HOME INSPECTION MADE EASY</string>
+    <string name="bob_smith">Bob Smith</string>
+    <string name="jill_thomas">Jill Thomas</string>
+    <string name="janet_james">Janet James</string>
+    <string name="get_started">PROFILE</string>
+    <string name="add_profile">ADD PROFILE</string>
+
+</resources>
