@@ -40,6 +40,16 @@ public class MainActivityTest {
         onView(withId(R.id.subtitle)).check(matches(withText(R.string.home_inspection_made_easy)));
     }
 
+    @Test
+    public void buttonHasText() {
+        onView(withId(R.id.get_started_button)).check(matches(withText(R.string.continue_as_guest)));
+    }
+
+    @Test
+    public void hasNewUserOption() {
+        onView(withId(R.id.newUser)).check(matches(withText(R.string.new_user)));
+    }
+
     @After
     public void tearDown() throws Exception {
         mActivity = null;

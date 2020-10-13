@@ -50,66 +50,11 @@
             android:textSize="@dimen/_20"
             android:textColor="@color/lettersColor"
             android:layout_gravity="center"/>
-        <TextView
-            android:width="@dimen/_200"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/_10"
-            android:background="@drawable/users_background"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Benjamin"
-            android:textStyle="bold"
-            android:textSize="@dimen/_20"
-            android:textColor="@color/black"
-            android:layout_gravity="center"/>
-        <TextView
-            android:width="@dimen/_200"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/_10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="Jin"
-            android:background="@color/lettersColor"
-            android:textStyle="bold"
-            android:textSize="@dimen/_20"
-            android:layout_gravity="center"/>
-        <TextView
-            android:width="@dimen/_200"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/_10"
-            android:background="@color/lettersColor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nate"
-            android:textStyle="bold"
-            android:textSize="@dimen/_20"
-            android:textColor="@color/black"
-            android:layout_gravity="center"/>
-        <TextView
-            android:width="@dimen/_200"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/_10"
-            android:background="@color/lettersColor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Kevin"
-            android:textStyle="bold"
-            android:textSize="@dimen/_20"
-            android:textColor="@color/black"
-            android:layout_gravity="center"/>
-        <TextView
-            android:width="@dimen/_200"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/_10"
-            android:background="@color/lettersColor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Joette"
-            android:textStyle="bold"
-            android:textSize="@dimen/_20"
-            android:textColor="@color/black"
-            android:layout_gravity="center"/>
+        <LinearLayout
+            android:layout_width="@dimen/_300"
+            android:layout_gravity="center"
+            android:layout_height="@dimen/_200">
+        </LinearLayout>
 
         <Button
             android:layout_marginTop="@dimen/_100"
@@ -122,6 +67,7 @@
             android:text="@string/continue_as_guest"
             android:textColor="@color/white" />
         <TextView
+            android:id="@+id/newUser"
             android:onClick="goToSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

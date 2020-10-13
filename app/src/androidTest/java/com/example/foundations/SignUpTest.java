@@ -34,8 +34,13 @@ public class SignUpTest {
     }
 
     @Test
-    public void hasUsername() {
-        onView(withId(R.id.username)).check(matches(withText(R.string.username)));
+    public void hasFirstName() {
+        onView(withId(R.id.first_name)).check(matches(withText(R.string.first_name)));
+    }
+
+    @Test
+    public void hasLastName() {
+        onView(withId(R.id.last_name)).check(matches(withText(R.string.last_name)));
     }
 
     @Test

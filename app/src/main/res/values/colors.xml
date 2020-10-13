@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#03A9F4</color>
-    <color name="white">#FFFF</color>
+    <color name="white">#E6FFFFFF</color>
     <color name="black">#B2000000</color>
     <color name="background">#303137</color>
     <color name="sloganColor">#C1344085</color>
