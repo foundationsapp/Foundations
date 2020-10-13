@@ -37,7 +37,7 @@ public class SignUpTest {
     public void hasUsername() {
         onView(withId(R.id.username)).check(matches(withText(R.string.username)));
     }
-    
+
     @Test
     public void hasLicenseNumber() {
         onView(withId(R.id.licenseNumber)).check(matches(withText(R.string.license_number)));
