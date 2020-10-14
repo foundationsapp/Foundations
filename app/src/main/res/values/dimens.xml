@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="negative10">-10sp</dimen>
     <dimen name="_10">10sp</dimen>
     <dimen name="_20">20sp</dimen>
+    <dimen name="_25">20sp</dimen>
     <dimen name="_30">30sp</dimen>
     <dimen name="_40">40sp</dimen>
     <dimen name="_50">50sp</dimen>
