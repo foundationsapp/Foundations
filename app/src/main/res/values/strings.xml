@@ -15,4 +15,5 @@
     <string name="continue_as_guest">CONTINUE AS GUEST</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
+    <string name="empty_field">Please check for empty fields</string>
 </resources>
