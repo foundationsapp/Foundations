@@ -78,7 +78,7 @@
                 android:textSize="@dimen/_20"
                 />
             <EditText
-                android:id="@+id/edit_licence_number"
+                android:id="@+id/edit_license_number"
                 android:layout_marginTop="-10sp"
                 android:width="@dimen/_300"
                 android:textColor="@color/lettersColor"

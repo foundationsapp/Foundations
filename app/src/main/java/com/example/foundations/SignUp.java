@@ -26,7 +26,7 @@ public class SignUp extends AppCompatActivity {
 
         editFirstName = findViewById(R.id.edit_first_name);
         editLastName = findViewById(R.id.edit_last_name);
-        editLicenseNumber =findViewById(R.id.edit_licence_number);
+        editLicenseNumber =findViewById(R.id.edit_license_number);
         editCompanyName = findViewById(R.id.edit_company_name);
         editAddress = findViewById(R.id.edit_address);
         editPhone = findViewById(R.id.edit_phone);
