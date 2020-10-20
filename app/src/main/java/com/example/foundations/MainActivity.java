@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements SetProfileHandler
 
     public void goToDash(View view) {
         Intent intent = new Intent(MainActivity.this, AppActivity.class);
-        intent.putExtra("userProfile", this.currentProfile);
+        intent.putExtra(String.valueOf(R.string.userProfile), this.currentProfile);
         startActivity(intent);
     }
 

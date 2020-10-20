@@ -24,7 +24,7 @@ public class AppActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.app_page);
         Intent intent = getIntent();
-        Profile currentProfile = intent.getParcelableExtra("userProfile");
+        Profile currentProfile = intent.getParcelableExtra(String.valueOf(R.string.userProfile));
         Log.d(TAG, "onCreate: " + currentProfile.getFullName());
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
         toggle = new ActionBarDrawerToggle( this,drawerLayout, R.string.open, R.string.close);
