@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Inspector-Profile-Selection-Page</string>
+
+
+
+
+
     <string name="foundations">FOUNDATIONS</string>
     <string name="home_inspection_made_easy">HOME INSPECTION MADE EASY</string>
     <string name="bob_smith">Bob Smith</string>
@@ -7,5 +12,23 @@
     <string name="janet_james">Janet James</string>
     <string name="get_started">PROFILE</string>
     <string name="add_profile">ADD PROFILE</string>
+    <string name="open_activity_2">SUBMIT</string>
+    <string name="enter_full_name">Enter Full Name</string>
+    <string name="enter_license_number">Enter License Number</string>
+    <string name="enter_company_name">Enter Company Name</string>
+    <string name="enter_address">Enter Address</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_phone_number">Enter Phone Number</string>
+    <string name="inspector_profile">INSPECTOR PROFILE</string>
+    <string name="inspector_profile_selection_page">Inspector Profile Selection Page</string>
+
+
+
+
+
+
+
+
+
 
 </resources>

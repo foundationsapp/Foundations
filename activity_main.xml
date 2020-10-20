@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
@@ -32,6 +33,15 @@ tools:context=".MainActivity">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/inspector_profile_selection_page"
+        android:textStyle="bold"
+        android:textSize="@dimen/_20"
+        android:textColor="@color/sloganColor"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/bob_smith"
         android:textStyle="bold"
         android:textSize="@dimen/_20"
@@ -56,17 +66,84 @@ tools:context=".MainActivity">
         android:textColor="@color/sloganColor"
         android:layout_gravity="center"/>
 
-    <Button
-        android:layout_marginTop="@dimen/_300"
-        android:layout_width="@dimen/_200"
-        android:textSize="@dimen/_20"
-        android:layout_height="@dimen/_40"
-        android:layout_gravity="center"
-        android:background="@drawable/get_started"
-        android:text="@string/add_profile"
-        android:textColor="@color/white" />
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_full_name"
+        android:inputType="text"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:autofillHints="yes" />
 
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/enter_license_number"
+        android:inputType="number"
+        android:autofillHints="yes" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/enter_company_name"
+        android:inputType="text"
+        android:lines="2"
+        android:autofillHints="yes" />
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/enter_address"
+        android:inputType="text"
+        android:lines="2"
+        android:autofillHints="yes" />
+
+    <EditText
+        android:id="@+id/editText5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:inputType="text"
+        android:hint="@string/enter_email"
+        android:autofillHints="yes" />
+
+    <EditText
+        android:id="@+id/editText6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/enter_phone_number"
+        android:inputType="text"
+        android:autofillHints="yes" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_profile" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+
+        android:text="@string/open_activity_2"
+        tools:ignore="OnClick" />
 
 </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
