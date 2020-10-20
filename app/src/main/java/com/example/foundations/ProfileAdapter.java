@@ -15,6 +15,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
 
     private List<Profile> profiles;
     private final LayoutInflater inflater;
+    private SetProfileHandler profileHandler;
 
     static class ProfileViewHolder extends RecyclerView.ViewHolder {
 
@@ -26,8 +27,9 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
         }
     }
 
-    ProfileAdapter(Context context) {
+    ProfileAdapter(Context context, SetProfileHandler profileHandler) {
         inflater = LayoutInflater.from(context);
+        this.profileHandler = profileHandler;
     }
 
     @NonNull
@@ -43,6 +45,9 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
         if (profiles != null) {
             Profile current = profiles.get(position);
             holder.profileItemView.setText(current.getFullName());
+            holder.profileItemView.setOnClickListener(view -> {
+                this.profileHandler.setCurrentProfile(current);
+            });
         }
     }
 

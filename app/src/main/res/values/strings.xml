@@ -8,11 +8,11 @@
     <string name="license_number">License Number</string>
     <string name="username">Username</string>
     <string name="company_name">Company Name</string>
-    <string name="address">Address</string>
+    <string name="email">Email</string>
     <string name="phone">Phone</string>
     <string name="users">USERS</string>
     <string name="new_user">New User?</string>
-    <string name="continue_as_guest">CONTINUE AS GUEST</string>
+    <string name="continue_as_guest">SELECT USER</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="empty_field">Please check for empty fields</string>

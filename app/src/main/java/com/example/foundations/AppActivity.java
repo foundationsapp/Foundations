@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -24,7 +25,7 @@ public class AppActivity extends AppCompatActivity {
         setContentView(R.layout.app_page);
         Intent intent = getIntent();
         Profile currentProfile = intent.getParcelableExtra("userProfile");
-
+        Log.d(TAG, "onCreate: " + currentProfile.getFullName());
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
         toggle = new ActionBarDrawerToggle( this,drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
