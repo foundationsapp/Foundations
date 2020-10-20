@@ -16,7 +16,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
     private List<Profile> profiles;
     private final LayoutInflater inflater;
 
-    class ProfileViewHolder extends RecyclerView.ViewHolder {
+    static class ProfileViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView profileItemView;
 

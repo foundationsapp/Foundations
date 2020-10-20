@@ -31,12 +31,7 @@ public class MainActivity extends AppCompatActivity {
         profileRecyclerView.setAdapter(profileAdapter);
         profileRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mainViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(MainViewModel.class);
-        mainViewModel.getAllProfiles().observe(this, new Observer<List<Profile>>() {
-            @Override
-            public void onChanged(List<Profile> profiles) {
-                profileAdapter.setProfiles(profiles);
-            }
-        });
+        mainViewModel.getAllProfiles().observe(this, profileAdapter::setProfiles);
 
     }
 
