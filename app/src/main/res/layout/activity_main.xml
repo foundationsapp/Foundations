@@ -52,6 +52,7 @@
             android:layout_gravity="center"/>
         <LinearLayout
             android:layout_width="@dimen/_300"
+
             android:layout_gravity="center"
             android:layout_height="@dimen/_200">
             <androidx.recyclerview.widget.RecyclerView
