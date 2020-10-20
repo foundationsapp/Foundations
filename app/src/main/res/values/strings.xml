@@ -16,4 +16,13 @@
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="empty_field">Please check for empty fields</string>
+    <string name="profile">Profile</string>
+    <string name="inspections">Inspections</string>
+    <string name="checklists">Checklists</string>
+    <string name="pdfs">PDFs</string>
+    <string name="settings">Settings</string>
+    <string name="logout">Logout</string>
+    <string name="user_email">user@foundations.com</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>
