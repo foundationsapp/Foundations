@@ -4,10 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
+    <Button
         android:id="@+id/profileItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_orange_light" />
+        android:background="@color/colorPrimary"
+        android:padding="@dimen/_10"/>
 
 </LinearLayout>

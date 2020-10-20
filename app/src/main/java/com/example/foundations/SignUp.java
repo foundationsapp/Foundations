@@ -18,7 +18,7 @@ public class SignUp extends AppCompatActivity {
     EditText editLastName;
     EditText editLicenseNumber;
     EditText editCompanyName;
-    EditText editAddress;
+    EditText editEmail;
     EditText editPhone;
     Button signUpButton;
     MainViewModel mainViewModel;
@@ -34,7 +34,7 @@ public class SignUp extends AppCompatActivity {
         editLastName = findViewById(R.id.edit_last_name);
         editLicenseNumber = findViewById(R.id.edit_license_number);
         editCompanyName = findViewById(R.id.edit_company_name);
-        editAddress = findViewById(R.id.edit_address);
+        editEmail = findViewById(R.id.edit_email);
         editPhone = findViewById(R.id.edit_phone);
         signUpButton = findViewById(R.id.get_started_button);
         signUpButton.setOnClickListener(new View.OnClickListener() {
@@ -44,13 +44,13 @@ public class SignUp extends AppCompatActivity {
                     String firstName = editFirstName.getText().toString();
                     String lastName = editLastName.getText().toString();
                     String license = editLicenseNumber.getText().toString();
-                    String address = editAddress.getText().toString();
+                    String email = editEmail.getText().toString();
                     String phone = editPhone.getText().toString();
                     String company = editCompanyName.getText().toString();
-                    Profile newProfile = new Profile(null, firstName, lastName, license, address, phone, company);
+                    Profile newProfile = new Profile(null, firstName, lastName, license, email, phone, company);
                     mainViewModel.insertProfile(newProfile);
                     Intent intent = new Intent(SignUp.this, AppActivity.class);
-                    intent.putExtra("userProfile", newProfile);
+                    intent.putExtra(String.valueOf(R.string.userProfile), newProfile);
                     startActivity(intent);
                 }else{
                     Toast.makeText(SignUp.this, R.string.empty_field, Toast.LENGTH_LONG).show();
@@ -63,7 +63,7 @@ public class SignUp extends AppCompatActivity {
         boolean f;
         if (editFirstName.getText().toString().isEmpty() || editLastName.getText().toString().isEmpty() ||
                 editLicenseNumber.getText().toString().isEmpty() || editCompanyName.getText().toString().isEmpty() ||
-                editAddress.getText().toString().isEmpty() || editPhone.getText().toString().isEmpty()) {
+                editEmail.getText().toString().isEmpty() || editPhone.getText().toString().isEmpty()) {
             f = false;
         } else {
             f = true;

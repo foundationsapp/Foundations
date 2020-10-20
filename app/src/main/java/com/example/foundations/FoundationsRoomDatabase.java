@@ -52,6 +52,7 @@ public abstract class FoundationsRoomDatabase extends RoomDatabase{
                 foundationsDao.insertProfile(profile);
                 profile = new Profile(null,"Jin", "Choi", "21k3dd", "jin@gmail.com", "4253490999", "Delta");
                 foundationsDao.insertProfile(profile);
+
             });
         }
     };

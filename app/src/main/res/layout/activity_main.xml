@@ -54,7 +54,7 @@
             android:layout_width="@dimen/_300"
 
             android:layout_gravity="center"
-            android:layout_height="@dimen/_200">
+            android:layout_height="@dimen/_300">
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/profile_recyclerview"
                 android:layout_width="match_parent"
@@ -63,7 +63,7 @@
         </LinearLayout>
 
         <Button
-            android:layout_marginTop="@dimen/_100"
+            android:layout_marginTop="@dimen/_10"
             android:id="@+id/get_started_button"
             android:layout_width="@dimen/_300"
             android:textSize="@dimen/_20"
@@ -71,6 +71,7 @@
             android:layout_gravity="center"
             android:background="@drawable/get_started"
             android:text="@string/continue_as_guest"
+            android:onClick="goToDash"
             android:textColor="@color/white" />
         <TextView
             android:id="@+id/newUser"
