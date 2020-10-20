@@ -28,7 +28,6 @@ public abstract class FoundationsRoomDatabase extends RoomDatabase{
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             FoundationsRoomDatabase.class, "foundation_database")
-                            .fallbackToDestructiveMigration() //
                             .addCallback(sRoomDatabaseCallback)
                             .build();
                 }

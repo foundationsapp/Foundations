@@ -66,6 +66,14 @@ public class Profile {
         this.companyName = companyName;
     }
 
+    public String getFullName() {
+        StringBuilder fullName = new StringBuilder();
+        fullName.append(firstName);
+        fullName.append(" ");
+        fullName.append(lastName);
+        return fullName.toString();
+    }
+
     public Profile(Integer id, @NonNull String firstName, @NonNull String lastName, @NonNull String licenseNumber, @NonNull String email, @NonNull String phone, String companyName) {
         this.id = id;
         this.firstName = firstName;

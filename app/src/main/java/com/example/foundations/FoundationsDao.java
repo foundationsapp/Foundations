@@ -1,5 +1,6 @@
 package com.example.foundations;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -16,5 +17,5 @@ public interface FoundationsDao {
     void deleteAllProfiles();
 
     @Query("SELECT * from profile_table ORDER BY id ASC")
-    List<Profile> getAllProfiles();
+    LiveData<List<Profile>> getAllProfiles();
 }
