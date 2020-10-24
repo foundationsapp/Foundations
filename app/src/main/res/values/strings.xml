@@ -15,7 +15,7 @@
     <string name="continue_as_guest">SELECT USER</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
-    <string name="empty_field">Please check for empty fields</string>
+    <string name="empty_field">Please check for empty or Error fields</string>
     <string name="profile">Profile</string>
     <string name="inspections">Inspections</string>
     <string name="checklists">Checklists</string>
