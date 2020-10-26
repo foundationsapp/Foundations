@@ -12,14 +12,14 @@ import androidx.room.PrimaryKey;
 public class Profile implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    private Integer id;
+    @ColumnInfo(name = "profileId")
+    private Integer profileId;
 
     protected Profile(Parcel in) {
         if (in.readByte() == 0) {
-            id = null;
+            profileId = null;
         } else {
-            id = in.readInt();
+            profileId = in.readInt();
         }
         firstName = in.readString();
         lastName = in.readString();
@@ -41,7 +41,7 @@ public class Profile implements Parcelable {
         }
     };
 
-    public Integer getId() { return id; }
+    public Integer getProfileId() { return profileId; }
 
     @NonNull
     @ColumnInfo(name = "firstName")
@@ -105,7 +105,7 @@ public class Profile implements Parcelable {
     }
 
     public Profile(Integer id, @NonNull String firstName, @NonNull String lastName, @NonNull String licenseNumber, @NonNull String email, @NonNull String phone, String companyName) {
-        this.id = id;
+        this.profileId = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.licenseNumber = licenseNumber;
@@ -121,11 +121,11 @@ public class Profile implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        if (id == null) {
+        if (profileId == null) {
             dest.writeByte((byte) 0);
         } else {
             dest.writeByte((byte) 1);
-            dest.writeInt(id);
+            dest.writeInt(profileId);
         }
         dest.writeString(firstName);
         dest.writeString(lastName);

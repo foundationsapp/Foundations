@@ -16,6 +16,35 @@ public interface FoundationsDao {
     @Query("DELETE FROM profile_table")
     void deleteAllProfiles();
 
-    @Query("SELECT * from profile_table ORDER BY id ASC")
+    @Query("SELECT * from profile_table ORDER BY profileId ASC")
     LiveData<List<Profile>> getAllProfiles();
+
+    @Insert
+    void insertBuyer(Buyer buyer);
+
+    @Insert
+    void insertSeller(Seller seller);
+
+    @Insert
+    void insertReport(Report report);
+
+    @Insert
+    void insertSiteDetails(SiteDetails siteDetails);
+
+    @Insert
+    void insertListItem(ListItem listItem);
+
+    @Insert
+    void insertCategory(Category category);
+
+    @Insert
+    void insertSubCategory(SubCategory subCategory);
+
+    @Insert
+    void insertPhoto(Photo photo);
+
+    @Insert
+    void insertNote(Note note);
+
+    
 }
