@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -55,8 +56,15 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
                 @Override
                 public void onClick(View v) {
                     Log.d(TAG, "onClick: clicked on: " + current.getFullName());
-                    Toast.makeText(mContext, "You Select "+current.getFullName(), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(mContext, "You Select "+current.getFullName(), Toast.LENGTH_LONG).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                    builder.setTitle("Your Profile");
+                    builder.setMessage(current.getFullName());
 
+                    builder.setPositiveButton("OK",null);
+                    builder.setNegativeButton("cancel", null);
+
+                    builder.show();
                 }
             });
         }
