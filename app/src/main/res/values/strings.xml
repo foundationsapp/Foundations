@@ -15,7 +15,7 @@
     <string name="continue_as_guest">SELECT USER</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
-    <string name="empty_field">Please check for empty fields</string>
+    <string name="empty_field">Please check for empty or Error fields</string>
     <string name="profile">Profile</string>
     <string name="inspections">Inspections</string>
     <string name="checklists">Checklists</string>
@@ -26,4 +26,6 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="userProfile">currentUserProfile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

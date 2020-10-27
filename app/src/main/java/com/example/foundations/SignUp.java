@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import static android.util.Patterns.EMAIL_ADDRESS;
+
 public class SignUp extends AppCompatActivity {
 
     EditText editFirstName;
@@ -22,6 +24,8 @@ public class SignUp extends AppCompatActivity {
     EditText editPhone;
     Button signUpButton;
     MainViewModel mainViewModel;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,10 +69,30 @@ public class SignUp extends AppCompatActivity {
                 editLicenseNumber.getText().toString().isEmpty() || editCompanyName.getText().toString().isEmpty() ||
                 editEmail.getText().toString().isEmpty() || editPhone.getText().toString().isEmpty()) {
             f = false;
-        } else {
+            // if any field empty boolean return false
+        }
+        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(editEmail.getText().toString()).matches()){
+            editEmail.setError("Please Enter Valid Mail");
+            f = false;
+        }
+        if (!editFirstName.getText().toString().matches("[a-zA-Z]+")){
+            editFirstName.setError("Please Enter only in text for first name");
+            f = false;
+        }
+        if(!editLastName.getText().toString().matches("[a-zA-Z]+")){
+            editLastName.setError("Please Enter only in text for first name");
+            f = false;
+        }
+
+        if (!editPhone.getText().toString().replaceAll(" ","").replaceAll("[-()]","").matches("[0-9]{10}")){
+            editPhone.setError("Please Enter Only 10 Digit phone number");
+            f = false;
+        }
+        else {
             f = true;
         }
         return f;
     }
+
 
 }

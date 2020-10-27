@@ -1,21 +1,32 @@
 package com.example.foundations;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+
+import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+
+import static android.content.ContentValues.TAG;
 
 public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileViewHolder> {
 
     private List<Profile> profiles;
     private final LayoutInflater inflater;
     private SetProfileHandler profileHandler;
+    private Context mContext;
 
     static class ProfileViewHolder extends RecyclerView.ViewHolder {
 
@@ -27,9 +38,10 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
         }
     }
 
-    ProfileAdapter(Context context, SetProfileHandler profileHandler) {
+    public ProfileAdapter(Context context, SetProfileHandler profileHandler) {
         inflater = LayoutInflater.from(context);
         this.profileHandler = profileHandler;
+        mContext = context;
     }
 
     @NonNull

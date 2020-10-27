@@ -4,6 +4,13 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/background</item>
         <item name="colorAccent">@color/lettersColor</item>
+        <item name="drawerArrowStyle">@style/DrawerIcon</item>
+        <item name="android:divider">@drawable/menu_item_padding</item>
+        <item name="android:listDivider">@android:color/transparent</item>
+
+    </style>
+    <style name="DrawerIcon" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@color/black</item>
     </style>
 
 </resources>
