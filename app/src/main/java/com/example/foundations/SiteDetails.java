@@ -29,7 +29,7 @@ public class SiteDetails {
     private int squareFeet;
 
     @ColumnInfo(name = "inspectionFee")
-    private int inspectionFee;
+    private float inspectionFee;
 
     @ColumnInfo(name = "yearBuilt")
     private int yearBuilt;
@@ -84,7 +84,7 @@ public class SiteDetails {
         this.squareFeet = squareFeet;
     }
 
-    public int getInspectionFee() {
+    public float getInspectionFee() {
         return inspectionFee;
     }
 
@@ -128,7 +128,7 @@ public class SiteDetails {
         return siteDetailsId;
     }
 
-    public SiteDetails(@NonNull Integer reportId, int bedrooms, float bathrooms, int stories, int squareFeet, int inspectionFee, int yearBuilt, String furnished, String presentAtInspection, String orientation) {
+    public SiteDetails(@NonNull Integer reportId, int bedrooms, float bathrooms, int stories, int squareFeet, float inspectionFee, int yearBuilt, String furnished, String presentAtInspection, String orientation) {
         this.reportId = reportId;
         this.bedrooms = bedrooms;
         this.bathrooms = bathrooms;
