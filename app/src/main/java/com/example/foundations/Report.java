@@ -106,6 +106,18 @@ public class Report {
         return reportId;
     }
 
+    public String getStreetAddress() {
+        StringBuilder addr = new StringBuilder();
+        addr.append(getStreet());
+        addr.append(", ");
+        addr.append(getCity());
+        addr.append(" ");
+        addr.append(getState());
+        addr.append(", ");
+        addr.append(getZip());
+        return addr.toString();
+    }
+
     public Report(@NonNull Integer profileId, Integer buyerId, Integer sellerId, @NonNull String street, @NonNull String city, @NonNull String state, @NonNull int zip) {
         this.reportId  = null;
         this.profileId = profileId;

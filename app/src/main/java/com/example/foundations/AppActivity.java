@@ -14,6 +14,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -22,6 +24,7 @@ public class AppActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
+    private MainViewModel mainViewModel;
 
     private final static String TAG = AppActivity.class.getSimpleName();
 
@@ -33,6 +36,7 @@ public class AppActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Profile currentProfile = intent.getParcelableExtra(String.valueOf(R.string.userProfile));
         Log.d(TAG, "onCreate: " + currentProfile.getFullName());
+        mainViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(MainViewModel.class);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
         toggle = new ActionBarDrawerToggle( this,drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);

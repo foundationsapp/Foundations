@@ -54,12 +54,12 @@ public abstract class FoundationsRoomDatabase extends RoomDatabase{
                 foundationsDao.deleteSubcategory();
                 Profile profile = new Profile("Kevin", "Pettinger", "ahd7sha", "kevin@gmail.com", "2063334455", null);
                 foundationsDao.insertProfile(profile);
-//                profile = new Profile(null,"Natnael", "Bekele", "dk8d9s", "nate@gmail.com", "2223331100", "Builders" );
-//                foundationsDao.insertProfile(profile);
-//                profile = new Profile(null,"Joette", "Damo", "dkd980s", "joette@gmail.com", "2034488999", null);
-//                foundationsDao.insertProfile(profile);
-//                profile = new Profile(null,"Jin", "Choi", "21k3dd", "jin@gmail.com", "4253490999", "Delta");
-//                foundationsDao.insertProfile(profile);
+                profile = new Profile("Natnael", "Bekele", "dk8d9s", "nate@gmail.com", "2223331100", "Builders" );
+                foundationsDao.insertProfile(profile);
+                profile = new Profile("Joette", "Damo", "dkd980s", "joette@gmail.com", "2034488999", null);
+                foundationsDao.insertProfile(profile);
+                profile = new Profile("Jin", "Choi", "21k3dd", "jin@gmail.com", "4253490999", "Delta");
+                foundationsDao.insertProfile(profile);
                 Buyer buyer  = new Buyer("Steve", "Buyer", "steve@buyer.com", "2061112233");
                 foundationsDao.insertBuyer(buyer);
                 Seller seller = new Seller("Ben", "Gold", "ben@seller.com", "2064438888");
