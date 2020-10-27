@@ -70,6 +70,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
                 @Override
                 public void onClick(View v) {
                     selectedProfile=position;
+                    profileHandler.setCurrentProfile(current);
                     notifyDataSetChanged();
                 }
             });
