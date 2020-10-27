@@ -131,6 +131,15 @@ public interface FoundationsDao {
     LiveData<List<Note>> getNotes(Integer listItemId);
 
     // GET LIST ITEM QUERY THAT RETURNS BOTH CATEGORY ID AND CATEGORY TITLE, SUBCAT TOO
-    // @Query("SELECT listItemId, categoryId, subCategoryId, notes, photos, category_table.title, subcategory_table.title from listitem_table, category_table, subcategory_table WHERE reportId = :reportId")
-
+    @Query("SELECT listItemId, categoryId, subCategoryId, notes, photos, category_table.title AS categoryTitle, subcategory_table.title AS subCategoryTitle from listitem_table, category_table, subcategory_table WHERE reportId = :reportId")
+    LiveData<List<ListItemDetails>> getListItems(Integer reportId);
+    static class ListItemDetails {
+        public Integer listItemId;
+        public Integer categoryId;
+        public Integer subCategoryId;
+        public Boolean notes;
+        public Boolean photos;
+        public String categoryTitle;
+        public String subCategoryTitle = null;
+    }
 }
