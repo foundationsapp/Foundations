@@ -21,4 +21,6 @@
     <dimen name="_800">800sp</dimen>
     <dimen name="_900">900sp</dimen>
     <dimen name="_160">160sp</dimen>
+    <dimen name="_dp10">10dp</dimen>
+    <dimen name="_dp05">5dp</dimen>
 </resources>

@@ -30,7 +30,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
 
     static class ProfileViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView profileItemView;
+        private final Button profileItemView;
 
         public ProfileViewHolder(@NonNull View itemView) {
             super(itemView);

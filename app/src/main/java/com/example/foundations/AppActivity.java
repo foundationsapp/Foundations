@@ -16,6 +16,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -36,7 +38,12 @@ public class AppActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Profile currentProfile = intent.getParcelableExtra(String.valueOf(R.string.userProfile));
         Log.d(TAG, "onCreate: " + currentProfile.getFullName());
-        mainViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(MainViewModel.class);
+//        RecyclerView reportRecyclerView = findViewById(R.id.report_recyclerview);
+//        final ReportAdapter reportAdapter = new ReportAdapter(this);
+//        reportRecyclerView.setAdapter(reportAdapter);
+//        reportRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        mainViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(MainViewModel.class);
+//        mainViewModel.getAllReports().observe(this, reportAdapter::setReports);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
         toggle = new ActionBarDrawerToggle( this,drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
@@ -75,8 +82,8 @@ public class AppActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-
+        Fragment dashFragment = new DashFragment();
+        loadFragment(dashFragment);
     }
 
     private void loadFragment(Fragment fragment) {
