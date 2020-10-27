@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
     private final LayoutInflater inflater;
     private SetProfileHandler profileHandler;
     private Context mContext;
+    int selectedProfile = -1;
 
     static class ProfileViewHolder extends RecyclerView.ViewHolder {
 
@@ -54,11 +56,23 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
 
     @Override
     public void onBindViewHolder(@NonNull ProfileViewHolder holder, int position) {
+        if (selectedProfile==position){
+            holder.profileItemView.setBackgroundColor(Color.parseColor("#ffff00"));
+        }
+        else{
+            holder.profileItemView.setBackgroundColor(Color.parseColor("#44bcda"));
+        }
+
         if (profiles != null) {
             Profile current = profiles.get(position);
             holder.profileItemView.setText(current.getFullName());
-            holder.profileItemView.setOnClickListener(view -> {
-                this.profileHandler.setCurrentProfile(current);
+            holder.profileItemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    selectedProfile=position;
+                    profileHandler.setCurrentProfile(current);
+                    notifyDataSetChanged();
+                }
             });
         }
     }
