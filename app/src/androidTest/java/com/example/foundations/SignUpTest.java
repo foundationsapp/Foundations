@@ -55,7 +55,7 @@ public class SignUpTest {
 
     @Test
     public void hasAddress() {
-        onView(withId(R.id.address)).check(matches(withText(R.string.address)));
+        onView(withId(R.id.email)).check(matches(withText(R.string.email)));
     }
 
     @Test
