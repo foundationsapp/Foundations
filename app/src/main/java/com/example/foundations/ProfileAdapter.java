@@ -1,15 +1,19 @@
 package com.example.foundations;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+
 import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -54,18 +58,18 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
             Profile current = profiles.get(position);
             holder.profileItemView.setText(current.getFullName());
             holder.profileItemView.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("ResourceAsColor")
                 @Override
                 public void onClick(View v) {
                     Log.d(TAG, "onClick: clicked on: " + current.getFullName());
-                    //Toast.makeText(mContext, "You Select "+current.getFullName(), Toast.LENGTH_LONG).show();
                     AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                    builder.setTitle("Your Profile");
+                    builder.setTitle("Your porfile");
                     builder.setMessage(current.getFullName());
 
-                    builder.setPositiveButton("OK",null);
-                    builder.setNegativeButton("cancel", null);
-
+                    builder.setPositiveButton("Ok",null);
+                    builder.setNegativeButton("Cancel", null);
                     builder.show();
+
 
 
                 }
