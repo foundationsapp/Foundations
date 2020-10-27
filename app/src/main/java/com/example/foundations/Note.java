@@ -20,6 +20,10 @@ public class Note {
     @ColumnInfo(name = "details")
     private String details;
 
+    @NonNull
+    @ColumnInfo(name = "reportId")
+    private Integer reportId;
+
     @ColumnInfo(name = "title")
     private String title;
 
@@ -37,6 +41,8 @@ public class Note {
         return details;
     }
 
+    public Integer getReportId() { return reportId; }
+
     public String getTitle() {
         return title;
     }
@@ -49,10 +55,11 @@ public class Note {
         this.title = title;
     }
 
-    public Note(@NonNull Integer listItemId, @NonNull String details, String title) {
+    public Note(@NonNull Integer listItemId, @NonNull String details, String title, @NonNull Integer reportId) {
         this.listItemId = listItemId;
         this.details = details;
         this.title = title;
         this.noteId = null;
+        this.reportId = reportId;
     }
 }

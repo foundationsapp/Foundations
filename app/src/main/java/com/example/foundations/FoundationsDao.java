@@ -65,10 +65,10 @@ public interface FoundationsDao {
     void updateListItem(Integer listItemId, Boolean notes, Boolean photos);
 
     @Query("UPDATE buyer_table SET firstName = :firstName, lastName  = :lastName, email = :email, phone = :phone WHERE buyerId = :buyerId")
-    void updateBuyerInfo(Integer buyerId, String firstName, String lastName, String email, int phone);
+    void updateBuyerInfo(Integer buyerId, String firstName, String lastName, String email, String phone);
 
     @Query("UPDATE seller_table SET firstName = :firstName, lastName  = :lastName, email = :email, phone = :phone WHERE sellerId = :sellerId")
-    void updateSellerInfo(Integer sellerId, String firstName, String lastName, String email, int phone);
+    void updateSellerInfo(Integer sellerId, String firstName, String lastName, String email, String phone);
 
     @Query("UPDATE profile_table SET firstName = :firstName, lastName  = :lastName, email = :email, phone = :phone, companyName = :companyName, licenseNumber = :licenseNumber WHERE profileId = :profileId")
     void updateProfileInfo(Integer profileId, String firstName, String lastName, String email, String phone, String companyName, String licenseNumber);
@@ -124,22 +124,14 @@ public interface FoundationsDao {
     @Query("SELECT * from sitedetails_table WHERE reportId = :reportId")
     LiveData<List<SiteDetails>> getSiteDetails(Integer reportId);
 
-    @Query("SELECT * from photo_table WHERE listItemId = :listItemId")
-    LiveData<List<Photo>> getPhotos(Integer listItemId);
+    @Query("SELECT * from photo_table WHERE reportId = :reportId")
+    LiveData<List<Photo>> getPhotos(Integer reportId);
 
-    @Query("SELECT * from note_table WHERE listItemId = :listItemId")
-    LiveData<List<Note>> getNotes(Integer listItemId);
+    @Query("SELECT * from note_table WHERE reportId = :reportId")
+    LiveData<List<Note>> getNotes(Integer reportId);
 
     // GET LIST ITEM QUERY THAT RETURNS BOTH CATEGORY ID AND CATEGORY TITLE, SUBCAT TOO
     @Query("SELECT listItemId, categoryId, subCategoryId, notes, photos, category_table.title AS categoryTitle, subcategory_table.title AS subCategoryTitle from listitem_table, category_table, subcategory_table WHERE reportId = :reportId")
     LiveData<List<ListItemDetails>> getListItems(Integer reportId);
-    static class ListItemDetails {
-        public Integer listItemId;
-        public Integer categoryId;
-        public Integer subCategoryId;
-        public Boolean notes;
-        public Boolean photos;
-        public String categoryTitle;
-        public String subCategoryTitle = null;
-    }
+
 }

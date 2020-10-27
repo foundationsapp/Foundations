@@ -22,6 +22,12 @@ public class Photo {
     @ColumnInfo(name = "photoBlob")
     private Blob photoBlob;
 
+    @NonNull
+    @ColumnInfo(name = "reportId")
+    private Integer reportId;
+
+    public Integer getReportId() { return reportId; }
+
     public Integer getPhotoId() {
         return photoId;
     }
@@ -36,9 +42,10 @@ public class Photo {
         return photoBlob;
     }
 
-    public Photo(@NonNull Integer listItemId, @NonNull Blob photoBlob) {
+    public Photo(@NonNull Integer listItemId, @NonNull Blob photoBlob, @NonNull Integer reportId) {
         this.listItemId = listItemId;
         this.photoBlob = photoBlob;
         this.photoId = null;
+        this.reportId = reportId;
     }
 }
