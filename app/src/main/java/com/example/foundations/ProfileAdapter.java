@@ -1,6 +1,7 @@
 package com.example.foundations;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,6 +66,8 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
                     builder.setNegativeButton("cancel", null);
 
                     builder.show();
+
+
                 }
             });
         }

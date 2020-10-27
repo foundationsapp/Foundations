@@ -83,7 +83,8 @@ public class SignUp extends AppCompatActivity {
             editLastName.setError("Please Enter only in text for first name");
             f = false;
         }
-        if (!editPhone.getText().toString().matches("[0-9]{10}")){
+
+        if (!editPhone.getText().toString().replaceAll(" ","").replaceAll("[-()]","").matches("[0-9]{10}")){
             editPhone.setError("Please Enter Only 10 Digit phone number");
             f = false;
         }
