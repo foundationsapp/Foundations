@@ -47,7 +47,7 @@ public class SignUp extends AppCompatActivity {
                     String email = editEmail.getText().toString();
                     String phone = editPhone.getText().toString();
                     String company = editCompanyName.getText().toString();
-                    Profile newProfile = new Profile(null, firstName, lastName, license, email, phone, company);
+                    Profile newProfile = new Profile(firstName, lastName, license, email, phone, company);
                     mainViewModel.insertProfile(newProfile);
                     Intent intent = new Intent(SignUp.this, AppActivity.class);
                     intent.putExtra(String.valueOf(R.string.userProfile), newProfile);

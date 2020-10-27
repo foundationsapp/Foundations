@@ -16,6 +16,10 @@ public class Category {
     @ColumnInfo(name = "title")
     private String title;
 
+    public void setCategoryId(Integer id) {
+        this.categoryId = id;
+    }
+
     public void setTitle(@NonNull String title) {
         this.title = title;
     }

@@ -15,6 +15,10 @@ public class Profile implements Parcelable {
     @ColumnInfo(name = "profileId")
     private Integer profileId;
 
+    public void setProfileId(Integer profileId) {
+        this.profileId = profileId;
+    }
+
     protected Profile(Parcel in) {
         if (in.readByte() == 0) {
             profileId = null;
@@ -104,8 +108,8 @@ public class Profile implements Parcelable {
         return fullName.toString();
     }
 
-    public Profile(Integer id, @NonNull String firstName, @NonNull String lastName, @NonNull String licenseNumber, @NonNull String email, @NonNull String phone, String companyName) {
-        this.profileId = id;
+    public Profile(@NonNull String firstName, @NonNull String lastName, @NonNull String licenseNumber, @NonNull String email, @NonNull String phone, String companyName) {
+        this.profileId = null;
         this.firstName = firstName;
         this.lastName = lastName;
         this.licenseNumber = licenseNumber;

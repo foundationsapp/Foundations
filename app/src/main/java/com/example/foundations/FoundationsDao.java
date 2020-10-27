@@ -15,6 +15,31 @@ public interface FoundationsDao {
     @Query("DELETE FROM profile_table")
     void deleteAllProfiles();
 
+    @Query("DELETE FROM buyer_table")
+    void deleteBuyers();
+
+    @Query("DELETE FROM seller_table")
+    void deleteSellers();
+
+    @Query("DELETE FROM sitedetails_table")
+    void deleteSiteDetails();
+
+    @Query("DELETE FROM report_table")
+    void deleteReports();
+
+    @Query("DELETE FROM listitem_table")
+    void deleteListItems();
+
+    @Query("DELETE FROM note_table")
+    void deleteNotes();
+
+    @Query("DELETE FROM category_table")
+    void deleteCategory();
+
+    @Query("DELETE FROM subcategory_table")
+    void deleteSubcategory();
+
+
 
     //INSERT CREATE QUERIES
     @Insert
@@ -131,7 +156,7 @@ public interface FoundationsDao {
     LiveData<List<Note>> getNotes(Integer reportId);
 
     // GET LIST ITEM QUERY THAT RETURNS BOTH CATEGORY ID AND CATEGORY TITLE, SUBCAT TOO
-    @Query("SELECT listItemId, categoryId, subCategoryId, notes, photos, category_table.title AS categoryTitle, subcategory_table.title AS subCategoryTitle from listitem_table, category_table, subcategory_table WHERE reportId = :reportId")
+    @Query("SELECT listitem_table.listItemId AS listItemId, listitem_table.categoryId AS categoryId, listitem_table.subCategoryId AS subCategoryId, listitem_table.notes AS notes, listitem_table.photos AS photos, category_table.title AS categoryTitle, subcategory_table.title AS subCategoryTitle from listitem_table, category_table, subcategory_table WHERE reportId = :reportId")
     LiveData<List<ListItemDetails>> getListItems(Integer reportId);
 
 }

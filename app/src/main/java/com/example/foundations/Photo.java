@@ -18,9 +18,13 @@ public class Photo {
     @ColumnInfo(name = "listItemId")
     private Integer listItemId;
 
+    public void setPhotoId(Integer photoId) {
+        this.photoId = photoId;
+    }
+
     @NonNull
-    @ColumnInfo(name = "photoBlob")
-    private Blob photoBlob;
+    @ColumnInfo(name = "photoPath")
+    private String photoPath;
 
     @NonNull
     @ColumnInfo(name = "reportId")
@@ -38,13 +42,13 @@ public class Photo {
     }
 
     @NonNull
-    public Blob getPhotoBlob() {
-        return photoBlob;
+    public String getPhotoPath() {
+        return photoPath;
     }
 
-    public Photo(@NonNull Integer listItemId, @NonNull Blob photoBlob, @NonNull Integer reportId) {
+    public Photo(@NonNull Integer listItemId, @NonNull String photoPath, @NonNull Integer reportId) {
         this.listItemId = listItemId;
-        this.photoBlob = photoBlob;
+        this.photoPath = photoPath;
         this.photoId = null;
         this.reportId = reportId;
     }

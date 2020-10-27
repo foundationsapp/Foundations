@@ -8,6 +8,10 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "sitedetails_table")
 public class SiteDetails {
 
+    public void setSiteDetailsId(Integer siteDetailsId) {
+        this.siteDetailsId = siteDetailsId;
+    }
+
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "siteDetailsId")
     private Integer siteDetailsId;
@@ -20,7 +24,7 @@ public class SiteDetails {
     private int bedrooms;
 
     @ColumnInfo(name = "bathrooms")
-    private float bathrooms;
+    private double bathrooms;
 
     @ColumnInfo(name = "stories")
     private int stories;
@@ -29,7 +33,7 @@ public class SiteDetails {
     private int squareFeet;
 
     @ColumnInfo(name = "inspectionFee")
-    private float inspectionFee;
+    private double inspectionFee;
 
     @ColumnInfo(name = "yearBuilt")
     private int yearBuilt;
@@ -60,11 +64,11 @@ public class SiteDetails {
         this.bedrooms = bedrooms;
     }
 
-    public float getBathrooms() {
+    public double getBathrooms() {
         return bathrooms;
     }
 
-    public void setBathrooms(float bathrooms) {
+    public void setBathrooms(double bathrooms) {
         this.bathrooms = bathrooms;
     }
 
@@ -84,7 +88,7 @@ public class SiteDetails {
         this.squareFeet = squareFeet;
     }
 
-    public float getInspectionFee() {
+    public double getInspectionFee() {
         return inspectionFee;
     }
 
@@ -128,7 +132,7 @@ public class SiteDetails {
         return siteDetailsId;
     }
 
-    public SiteDetails(@NonNull Integer reportId, int bedrooms, float bathrooms, int stories, int squareFeet, float inspectionFee, int yearBuilt, String furnished, String presentAtInspection, String orientation) {
+    public SiteDetails(@NonNull Integer reportId, int bedrooms, double bathrooms, int stories, int squareFeet, double inspectionFee, int yearBuilt, String furnished, String presentAtInspection, String orientation) {
         this.reportId = reportId;
         this.bedrooms = bedrooms;
         this.bathrooms = bathrooms;

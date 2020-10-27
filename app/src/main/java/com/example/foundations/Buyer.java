@@ -36,6 +36,10 @@ public class Buyer {
         return buyerId;
     }
 
+    public void setBuyerId(Integer id) {
+        this.buyerId = id;
+    }
+
     public void setFirstName(@NonNull String firstName) {
         this.firstName = firstName;
     }
@@ -60,8 +64,8 @@ public class Buyer {
         return fullName.toString();
     }
 
-    public Buyer(Integer id, @NonNull String firstName, @NonNull String lastName, @NonNull String email, @NonNull String phone) {
-        this.buyerId = id;
+    public Buyer(@NonNull String firstName, @NonNull String lastName, @NonNull String email, @NonNull String phone) {
+        this.buyerId = null;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

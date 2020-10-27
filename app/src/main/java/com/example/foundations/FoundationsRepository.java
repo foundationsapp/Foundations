@@ -24,6 +24,7 @@ public class FoundationsRepository {
         allBuyers = foundationsDao.getAllBuyers();
         allSellers = foundationsDao.getAllSellers();
         allReports = foundationsDao.getAllReports();
+        loadReportData(1);
     }
 
     // INSERT QUERIES

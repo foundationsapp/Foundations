@@ -35,6 +35,10 @@ public class Seller {
         return sellerId;
     }
 
+    public void setSellerId(Integer id) {
+        this.sellerId = id;
+    }
+
     public void setFirstName(@NonNull String firstName) {
         this.firstName = firstName;
     }
@@ -59,8 +63,8 @@ public class Seller {
         return fullName.toString();
     }
 
-    public Seller(Integer id, @NonNull String firstName, @NonNull String lastName, @NonNull String email, @NonNull String phone) {
-        this.sellerId = id;
+    public Seller(@NonNull String firstName, @NonNull String lastName, @NonNull String email, @NonNull String phone) {
+        this.sellerId = null;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

@@ -11,7 +11,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Profile.class}, version = 1, exportSchema = false)
+@Database(entities = {Profile.class, Buyer.class, Category.class, ListItem.class, Note.class, Photo.class, Report.class, Seller.class, SiteDetails.class, SubCategory.class}, version = 1, exportSchema = false)
 public abstract class FoundationsRoomDatabase extends RoomDatabase{
 
     public abstract FoundationsDao foundationsDao();
@@ -44,14 +44,47 @@ public abstract class FoundationsRoomDatabase extends RoomDatabase{
             databaseWriteExecutor.execute(() -> {
                 FoundationsDao foundationsDao = INSTANCE.foundationsDao();
                 foundationsDao.deleteAllProfiles();
-                Profile profile = new Profile(null,"Kevin", "Pettinger", "ahd7sha", "kevin@gmail.com", "2063334455", null);
+                foundationsDao.deleteBuyers();
+                foundationsDao.deleteSellers();
+                foundationsDao.deleteSiteDetails();
+                foundationsDao.deleteReports();
+                foundationsDao.deleteListItems();
+                foundationsDao.deleteNotes();
+                foundationsDao.deleteCategory();
+                foundationsDao.deleteSubcategory();
+                Profile profile = new Profile("Kevin", "Pettinger", "ahd7sha", "kevin@gmail.com", "2063334455", null);
                 foundationsDao.insertProfile(profile);
-                profile = new Profile(null,"Natnael", "Bekele", "dk8d9s", "nate@gmail.com", "2223331100", "Builders" );
-                foundationsDao.insertProfile(profile);
-                profile = new Profile(null,"Joette", "Damo", "dkd980s", "joette@gmail.com", "2034488999", null);
-                foundationsDao.insertProfile(profile);
-                profile = new Profile(null,"Jin", "Choi", "21k3dd", "jin@gmail.com", "4253490999", "Delta");
-                foundationsDao.insertProfile(profile);
+//                profile = new Profile(null,"Natnael", "Bekele", "dk8d9s", "nate@gmail.com", "2223331100", "Builders" );
+//                foundationsDao.insertProfile(profile);
+//                profile = new Profile(null,"Joette", "Damo", "dkd980s", "joette@gmail.com", "2034488999", null);
+//                foundationsDao.insertProfile(profile);
+//                profile = new Profile(null,"Jin", "Choi", "21k3dd", "jin@gmail.com", "4253490999", "Delta");
+//                foundationsDao.insertProfile(profile);
+                Buyer buyer  = new Buyer("Steve", "Buyer", "steve@buyer.com", "2061112233");
+                foundationsDao.insertBuyer(buyer);
+                Seller seller = new Seller("Ben", "Gold", "ben@seller.com", "2064438888");
+                foundationsDao.insertSeller(seller);
+                Report report = new Report(1, 1, 1, "123 Fake St.", "Seattle", "WA", 98011);
+                foundationsDao.insertReport(report);
+                SiteDetails siteDetails = new SiteDetails(1, 2, 2.5, 2, 2000, 100.4, 2000, "no", "buyer", "North");
+                foundationsDao.insertSiteDetails(siteDetails);
+                Category category = new Category("Exterior");
+                foundationsDao.insertCategory(category);
+                category = new Category("interior");
+                foundationsDao.insertCategory(category);
+                SubCategory subCategory = new SubCategory(1, "Porch");
+                foundationsDao.insertSubCategory(subCategory);
+                subCategory = new SubCategory(2, "Kitchen");
+                foundationsDao.insertSubCategory(subCategory);
+                ListItem listItem = new ListItem(1, 1, 1, true, false);
+                foundationsDao.insertListItem(listItem);
+                listItem = new ListItem(1, 2, 2, true, false);
+                foundationsDao.insertListItem(listItem);
+                Note note = new Note(1, "it's a great porch", "good porch", 1);
+                foundationsDao.insertNote(note);
+                note = new Note(2, "sweet kitchen", "The KITCHEN", 1);
+                foundationsDao.insertNote(note);
+
 
             });
         }

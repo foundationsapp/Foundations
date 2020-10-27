@@ -8,6 +8,10 @@ import androidx.room.PrimaryKey;
 @Entity(tableName  = "report_table")
 public class Report {
 
+    public void setReportId(Integer reportId) {
+        this.reportId = reportId;
+    }
+
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "reportId")
     private Integer reportId;

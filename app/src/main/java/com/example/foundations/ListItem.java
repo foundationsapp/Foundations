@@ -63,6 +63,10 @@ public class ListItem {
         this.photos = photos;
     }
 
+    public void setListItemId(Integer listItemId) {
+        this.listItemId = listItemId;
+    }
+
     public ListItem(@NonNull Integer reportId, @NonNull Integer categoryId, Integer subCategoryId, Boolean notes, Boolean photos) {
         this.reportId = reportId;
         this.categoryId = categoryId;

@@ -8,6 +8,10 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "subcategory_table")
 public class SubCategory {
 
+    public void setSubCategoryId(Integer subCategoryId) {
+        this.subCategoryId = subCategoryId;
+    }
+
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "subCategoryId")
     private Integer subCategoryId;

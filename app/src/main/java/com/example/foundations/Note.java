@@ -8,6 +8,10 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "note_table")
 public class Note {
 
+    public void setNoteId(Integer noteId) {
+        this.noteId = noteId;
+    }
+
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "noteId")
     private Integer noteId;
