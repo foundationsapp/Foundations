@@ -1,0 +1,34 @@
+<resources>
+
+    <string name="app_name">Inspection</string>
+
+
+    <string name="foundations">FOUNDATIONS</string>
+    <string name="home_inspection_made_easy">HOME INSPECTION MADE EASY</string>
+    <string name="bob_smith">Bob Smith</string>
+    <string name="jill_thomas">Jill Thomas</string>
+    <string name="janet_james">Janet James</string>
+    <string name="get_started">PROFILE</string>
+    <string name="add_profile">ADD PROFILE</string>
+    <string name="open_activity_2">START NEW INSPECTION</string>
+    <string name="enter_full_name">Enter Full Name</string>
+    <string name="enter_license_number">Enter License Number</string>
+    <string name="enter_company_name">Enter Company Name</string>
+    <string name="enter_address">Enter Address</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_phone_number">Enter Phone Number</string>
+    <string name="inspection">INSPECTION</string>
+    <string name="recent_inspections">Recent Inspections</string>
+    <string name="_123_fairy_tale_lane_seattle_wa_98111">123 Fairy Tale Lane, Seattle, WA 98111</string>
+    <string name="_321_fake_st_federal_wa_98888">321 Fake St., Federal WA, 98888</string>
+    <string name="_888_rocket_dr_cloud_tx_77665">888 Rocket Dr., Cloud, TX 77665</string>
+    <string name="_1_twothree_ave_portland_or_97035">1 Twothree Ave., Portland, OR 97035</string>
+
+
+
+
+
+
+
+
+</resources>
