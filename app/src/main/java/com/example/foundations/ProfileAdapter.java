@@ -57,22 +57,8 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
         if (profiles != null) {
             Profile current = profiles.get(position);
             holder.profileItemView.setText(current.getFullName());
-            holder.profileItemView.setOnClickListener(new View.OnClickListener() {
-                @SuppressLint("ResourceAsColor")
-                @Override
-                public void onClick(View v) {
-                    Log.d(TAG, "onClick: clicked on: " + current.getFullName());
-                    AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                    builder.setTitle("Your porfile");
-                    builder.setMessage(current.getFullName());
-
-                    builder.setPositiveButton("Ok",null);
-                    builder.setNegativeButton("Cancel", null);
-                    builder.show();
-
-
-
-                }
+            holder.profileItemView.setOnClickListener(view -> {
+                this.profileHandler.setCurrentProfile(current);
             });
         }
     }
