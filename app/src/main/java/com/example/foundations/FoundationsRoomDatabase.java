@@ -60,6 +60,8 @@ public abstract class FoundationsRoomDatabase extends RoomDatabase{
                 foundationsDao.insertProfile(profile);
                 profile = new Profile("Jin", "Choi", "21k3dd", "jin@gmail.com", "4253490999", "Delta");
                 foundationsDao.insertProfile(profile);
+                profile = new Profile("Jin", "Choi", "21k3dd", "jin@gmail.com", "4253490999", "Delta");
+                foundationsDao.insertProfile(profile);
                 Buyer buyer  = new Buyer("Steve", "Buyer", "steve@buyer.com", "2061112233");
                 foundationsDao.insertBuyer(buyer);
                 Seller seller = new Seller("Ben", "Gold", "ben@seller.com", "2064438888");
