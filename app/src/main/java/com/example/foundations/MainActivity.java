@@ -1,7 +1,6 @@
 package com.example.foundations;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,13 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements SetProfileHandler {
 
@@ -41,9 +36,14 @@ public class MainActivity extends AppCompatActivity implements SetProfileHandler
     }
 
     public void goToDash(View view) {
-        Intent intent = new Intent(MainActivity.this, AppActivity.class);
-        intent.putExtra(String.valueOf(R.string.userProfile), this.currentProfile);
-        startActivity(intent);
+        if (currentProfile != null) {
+            Intent intent = new Intent(MainActivity.this, AppActivity.class);
+            intent.putExtra(String.valueOf(R.string.userProfile), this.currentProfile);
+            startActivity(intent);
+        } else {
+            Toast.makeText(MainActivity.this, getString(R.string.please_select_insp), Toast.LENGTH_LONG).show();
+        }
+
     }
 
     @Override

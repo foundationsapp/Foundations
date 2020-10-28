@@ -66,6 +66,12 @@ public abstract class FoundationsRoomDatabase extends RoomDatabase{
                 foundationsDao.insertSeller(seller);
                 Report report = new Report(1, 1, 1, "123 Fake St.", "Seattle", "WA", 98011);
                 foundationsDao.insertReport(report);
+                report = new Report(1, 1, 1, "456 Fairy Tale Ln.", "Houston", "TX", 77066);
+                foundationsDao.insertReport(report);
+                report = new Report(1, 1, 1, "111 Airport Rd", "Renton", "WA", 99455);
+                foundationsDao.insertReport(report);
+                report = new Report(1, 1, 1, "777 Ocean Ave.", "Edmonds", "WA", 99887);
+                foundationsDao.insertReport(report);
                 SiteDetails siteDetails = new SiteDetails(1, 2, 2.5, 2, 2000, 100.4, 2000, "no", "buyer", "North");
                 foundationsDao.insertSiteDetails(siteDetails);
                 Category category = new Category("Exterior");
