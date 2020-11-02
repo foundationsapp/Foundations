@@ -115,8 +115,8 @@ public class SignUp extends AppCompatActivity {
     }
     public void startCamera(View view){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        String file_name = "/tmp_" + System.currentTimeMillis() +".jpg";
-        String pic_path = dir_path + file_name;
+        String file_name = System.currentTimeMillis() +".jpg";
+        String pic_path = "/storage/emulated/0/DCIM/Camera" + file_name;
 
         File file = new File(pic_path);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
