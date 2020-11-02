@@ -22,6 +22,19 @@
         </activity>
         <activity android:name=".SignUp"/>
         <activity android:name=".AppActivity"/>
+        <provider
+            android:authorities="com.example.Foundations.file_provider"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path"/>
+
+        </provider>
     </application>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
 </manifest>
