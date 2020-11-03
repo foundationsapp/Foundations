@@ -111,7 +111,7 @@ public class Report {
         addr.append(getStreet());
         addr.append(", ");
         addr.append(getCity());
-        addr.append(" ");
+        addr.append(", ");
         addr.append(getState());
         addr.append(", ");
         addr.append(getZip());
