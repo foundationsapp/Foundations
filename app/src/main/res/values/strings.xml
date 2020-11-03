@@ -31,4 +31,7 @@
     <string name="recent_inspections">Recent Inspections</string>
     <string name="dashboard">dashboard</string>
     <string name="please_select_insp">Please select an Inspector.</string>
+    <string name="all_inspections">Inspections</string>
+    <string name="select_inspection">SELECT INSPECTION</string>
+    <string name="start_new_inspection">START NEW INSPECTION</string>
 </resources>
