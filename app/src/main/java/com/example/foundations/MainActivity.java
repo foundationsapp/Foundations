@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity implements SetProfileHandler
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private Profile currentProfile;
-    //ProfileFragment profileFragment = new ProfileFragment();
-    String lName, fName, License, Company, email, phone;
+
+
 
 
 

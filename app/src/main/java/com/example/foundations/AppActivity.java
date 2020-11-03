@@ -25,6 +25,7 @@ public class AppActivity extends AppCompatActivity {
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
     private MainViewModel mainViewModel;
+    String lName, fName, License, Company, email, phone;
 
     private final static String TAG = AppActivity.class.getSimpleName();
 
@@ -52,6 +53,13 @@ public class AppActivity extends AppCompatActivity {
                     case R.id.profile:
                         fragment=new ProfileFragment();
                         loadFragment(fragment);
+                        Log.i("fragment","Click profile "+ currentProfile.getEmail());
+                        lName = currentProfile.getLastName();
+                        fName = currentProfile.getFirstName();
+                        License = currentProfile.getLicenseNumber();
+                        Company = currentProfile.getCompanyName();
+                        email = currentProfile.getEmail();
+                        phone = currentProfile.getPhone();
                         break;
                     case R.id.inspections:
                         fragment=new InspectionFragment();

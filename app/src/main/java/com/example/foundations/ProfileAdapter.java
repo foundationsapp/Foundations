@@ -79,26 +79,11 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
                 public void onClick(View view) {
 
                     selectedProfile = position;
-                    profileHandler.setCurrentProfile(current);
+
                     notifyDataSetChanged();
-                    //item = current.getProfileId();
-                    //System.out.println(item);
-                    MainActivity activity =(MainActivity) view.getContext();
-                    ProfileFragment profileFragment = new ProfileFragment();
 
-                    FragmentManager manager = activity.getSupportFragmentManager();
+                    profileHandler.setCurrentProfile(current);
 
-                    profileFragment.show(manager, "test");
-
-
-                    activity.lName = current.getLastName();
-                    activity.fName = current.getFirstName();
-                    activity.License = current.getLicenseNumber();
-                    activity.Company = current.getCompanyName();
-                    activity.email = current.getEmail();
-                    activity.phone = current.getPhone();
-
-                    manager.popBackStack();
 
                     //Toast.makeText(mContext,"selected"+ current.getFullName(),Toast.LENGTH_LONG).show();
                 }
