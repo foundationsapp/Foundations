@@ -8,15 +8,18 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class ProfileFragment extends DialogFragment{
     TextView fName,lName,lnumber, companyname, Email, phone;
+    Button btn_confirm, btn_edit;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -36,6 +39,8 @@ public class ProfileFragment extends DialogFragment{
         companyname = (TextView)view.findViewById(R.id.companyFrag);
         Email = (TextView)view.findViewById(R.id.emailFrag);
         phone = (TextView)view.findViewById(R.id.phoneFrag);
+        btn_confirm =(Button)view.findViewById(R.id.confirm);
+        btn_edit = (Button)view.findViewById(R.id.Profile_edit);
 
         MainActivity activity =(MainActivity)getActivity();
         fName.setText(activity.fName);
@@ -45,9 +50,22 @@ public class ProfileFragment extends DialogFragment{
         Email.setText(activity.email);
         phone.setText(activity.phone);
 
+        BtnListener listener = new BtnListener();
+        btn_confirm.setOnClickListener(listener);
+
 
         return view;
     }
+    class BtnListener implements View.OnClickListener{
+        @Override
+        public void onClick(View view) {
+            dismiss();
+
+        }
+    }
+
+
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
