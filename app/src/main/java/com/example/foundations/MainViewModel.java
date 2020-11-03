@@ -11,12 +11,14 @@ public class MainViewModel extends AndroidViewModel {
 
     private static final String TAG = MainViewModel.class.getSimpleName();
     LiveData<List<Profile>> allProfiles;
+    LiveData<List<Report>> allReports;
     private FoundationsRepository foundationsRepository;
 
     public MainViewModel(Application application) {
         super(application);
         foundationsRepository = new FoundationsRepository(application);
         allProfiles = foundationsRepository.getAllProfiles();
+        allReports  = foundationsRepository.getAllReports();
     }
 
 
@@ -46,5 +48,6 @@ public class MainViewModel extends AndroidViewModel {
     public LiveData<List<Profile>> getAllProfiles() {
         return allProfiles;
     }
+    public LiveData<List<Report>> getAllReports() { return allReports; }
 
 }
