@@ -6,4 +6,6 @@
     <color name="background">#303137</color>
     <color name="sloganColor">#C1344085</color>
     <color name="lettersColor">#8FFFFFFF</color>
+    <color name="profilefragbackfround">#cce7e8</color>
+    <color name="profilefragletter">#042f66</color>
 </resources>

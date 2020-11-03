@@ -16,6 +16,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -29,6 +32,9 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
     private SetProfileHandler profileHandler;
     private Context mContext;
     int selectedProfile = -1;
+    int item;
+
+
 
     static class ProfileViewHolder extends RecyclerView.ViewHolder {
 
@@ -56,6 +62,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
 
     @Override
     public void onBindViewHolder(@NonNull ProfileViewHolder holder, int position) {
+
         if (selectedProfile==position){
             holder.profileItemView.setBackgroundColor(Color.parseColor("#ffff00"));
         }
@@ -65,17 +72,42 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
 
         if (profiles != null) {
             Profile current = profiles.get(position);
+
             holder.profileItemView.setText(current.getFullName());
             holder.profileItemView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    selectedProfile=position;
+                public void onClick(View view) {
+
+                    selectedProfile = position;
                     profileHandler.setCurrentProfile(current);
                     notifyDataSetChanged();
+                    //item = current.getProfileId();
+                    //System.out.println(item);
+                    MainActivity activity =(MainActivity) view.getContext();
+                    ProfileFragment profileFragment = new ProfileFragment();
+
+                    FragmentManager manager = activity.getSupportFragmentManager();
+
+                    profileFragment.show(manager, "test");
+
+
+                    activity.lName = current.getLastName();
+                    activity.fName = current.getFirstName();
+                    activity.License = current.getLicenseNumber();
+                    activity.Company = current.getCompanyName();
+                    activity.email = current.getEmail();
+                    activity.phone = current.getPhone();
+
+                    manager.popBackStack();
+
+                    //Toast.makeText(mContext,"selected"+ current.getFullName(),Toast.LENGTH_LONG).show();
                 }
             });
         }
     }
+
+
+
 
     @Override
     public int getItemCount() {

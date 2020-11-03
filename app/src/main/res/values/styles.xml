@@ -9,6 +9,14 @@
         <item name="android:listDivider">@android:color/transparent</item>
 
     </style>
+    <style name="Fragmentstyle" parent="android:Theme.Dialog">
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowMinWidthMajor">100%</item>
+        <item name="android:windowMinWidthMinor">100%</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
     <style name="DrawerIcon" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="color">@color/black</item>
     </style>
