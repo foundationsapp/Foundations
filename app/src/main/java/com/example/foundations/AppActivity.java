@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class AppActivity extends AppCompatActivity {
+public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
@@ -61,7 +61,7 @@ public class AppActivity extends AppCompatActivity {
                         loadFragment(fragment);
                         break;
                     case R.id.inspections:
-                        fragment=new InspectionFragment();
+                        fragment=new InspectionFragment(AppActivity.this);
                         loadFragment(fragment);
                         break;
                     case R.id.checklists:
@@ -86,7 +86,7 @@ public class AppActivity extends AppCompatActivity {
         loadFragment(dashFragment);
     }
 
-    private void loadFragment(Fragment fragment) {
+    public void loadFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame, fragment).commit();
