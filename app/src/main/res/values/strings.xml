@@ -46,4 +46,11 @@
     <string name="michael">Michael</string>
     <string name="jobs">Jobs</string>
     <string name="save_and_continue">SAVE AND CONTINUE</string>
+    <string name="introduction">Introduction</string>
+    <string name="exterior">Exterior</string>
+    <string name="interior">Interior</string>
+    <string name="limitations">Limitations</string>
+    <string name="overview">Overview</string>
+    <string name="windows">Windows</string>
+    <string name="doors">Doors</string>
 </resources>
