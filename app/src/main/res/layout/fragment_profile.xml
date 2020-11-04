@@ -12,12 +12,12 @@
 
     <ImageView
         android:id="@+id/profile_pic"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:src="@drawable/ic_baseline_account_circle_24" />
+        android:layout_width="@dimen/_80"
+        android:layout_height="@dimen/_80"
+        tools:src="@drawable/ic_baseline_account_circle_24"/>
 
     <TextView
-        android:id="@+id/firstnameFrag"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/_10"
@@ -26,15 +26,16 @@
         android:textColor="@color/lettersColor" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/firstnameFrag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:textColor="#33FFD7"
         android:inputType="textPersonName"
         android:text="Edit First Name" />
 
     <TextView
-        android:id="@+id/lastnameFrag"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/_10"
@@ -43,15 +44,16 @@
         android:textColor="@color/lettersColor" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/lastnameFrag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#33FFD7"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Edit Last Name" />
 
     <TextView
-        android:id="@+id/licenseNumberFrag"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/_10"
@@ -60,15 +62,16 @@
         android:textColor="@color/lettersColor" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/licenseNumberFrag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#33FFD7"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Eidta License Number" />
 
     <TextView
-        android:id="@+id/companyFrag"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/_10"
@@ -77,15 +80,16 @@
         android:textColor="@color/lettersColor" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName5"
+        android:id="@+id/companyFrag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#33FFD7"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Edit Company Name" />
 
     <TextView
-        android:id="@+id/emailFrag"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/_10"
@@ -94,15 +98,16 @@
         android:textColor="@color/lettersColor" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName6"
+        android:id="@+id/emailFrag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#33FFD7"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Type new Email"/>
 
     <TextView
-        android:id="@+id/phoneFrag"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/_10"
@@ -111,9 +116,10 @@
         android:textColor="@color/lettersColor" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName7"
+        android:id="@+id/phoneFrag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#33FFD7"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Type new Phone number" />

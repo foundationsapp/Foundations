@@ -3,6 +3,7 @@ package com.example.foundations;
 import android.app.Dialog;
 import android.os.Bundle;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -43,7 +44,10 @@ public class ProfileFragment extends DialogFragment{
         phone = (TextView)view.findViewById(R.id.phoneFrag);
         btn_confirm =(Button)view.findViewById(R.id.confirm);
         btn_edit = (Button)view.findViewById(R.id.Profile_edit);
-        edit_Email =(TextView)view.findViewById(R.id.editTextTextPersonName6);
+
+        profile_pic =(ImageView)view.findViewById(R.id.profile_pic);
+
+        profile_pic.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_account_circle_24));
 
         AppActivity activity =(AppActivity) getActivity();
         fName.setText(activity.fName);
@@ -51,7 +55,6 @@ public class ProfileFragment extends DialogFragment{
         lnumber.setText(activity.License);
         companyname.setText(activity.Company);
         Email.setText(activity.email);
-        edit_Email.setText(activity.email);
         phone.setText(activity.phone);
 
 
