@@ -23,4 +23,6 @@
     <dimen name="_160">160sp</dimen>
     <dimen name="_75">75dp</dimen>
     <dimen name="_15">15sp</dimen>
+    <dimen name="_dp10">10dp</dimen>
+    <dimen name="_dp05">5dp</dimen>
 </resources>

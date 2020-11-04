@@ -5,10 +5,12 @@
     android:layout_height="wrap_content">
 
     <Button
-        android:id="@+id/profileItem"
+        android:id="@+id/reportItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        android:layout_margin="@dimen/_dp05"/>
+        android:padding="@dimen/_10"
+        android:layout_margin="@dimen/_dp05"
+        />
 
 </LinearLayout>
