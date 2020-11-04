@@ -20,7 +20,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/_10"
+        android:paddingLeft="15sp"
         android:text="@string/first_name"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/lettersColor" />
@@ -29,6 +29,7 @@
         android:id="@+id/firstnameFrag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="15sp"
         android:ems="10"
         android:textColor="#33FFD7"
         android:inputType="textPersonName"
@@ -47,6 +48,7 @@
         android:id="@+id/lastnameFrag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="15sp"
         android:textColor="#33FFD7"
         android:ems="10"
         android:inputType="textPersonName"
@@ -63,6 +65,7 @@
 
     <EditText
         android:id="@+id/licenseNumberFrag"
+        android:paddingLeft="15sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#33FFD7"
@@ -84,6 +87,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#33FFD7"
+        android:paddingLeft="15sp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Edit Company Name" />
@@ -102,6 +106,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#33FFD7"
+        android:paddingLeft="15sp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Type new Email"/>
@@ -119,6 +124,7 @@
         android:id="@+id/phoneFrag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="15sp"
         android:textColor="#33FFD7"
         android:ems="10"
         android:inputType="textPersonName"
