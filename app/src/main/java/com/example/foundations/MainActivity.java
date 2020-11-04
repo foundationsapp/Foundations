@@ -17,6 +17,10 @@ public class MainActivity extends AppCompatActivity implements SetProfileHandler
     private static final String TAG = MainActivity.class.getSimpleName();
     private Profile currentProfile;
 
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements SetProfileHandler
         profileRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         MainViewModel mainViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(MainViewModel.class);
         mainViewModel.getAllProfiles().observe(this, profileAdapter::setProfiles);
+
 
     }
 
