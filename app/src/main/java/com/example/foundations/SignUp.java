@@ -12,6 +12,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -115,8 +117,9 @@ public class SignUp extends AppCompatActivity {
     }
     public void startCamera(View view){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        String file_name = System.currentTimeMillis() +".jpg";
-        String pic_path = "/storage/emulated/0/DCIM/Camera" + file_name;
+        //String file_name = "foundations"+ System.currentTimeMillis()+ ".jpg";
+        String file_name = "kevin@gmail.com.jpg";
+        String pic_path = "/sdcard/DCIM/Camera/" + file_name;
 
         File file = new File(pic_path);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
@@ -134,8 +137,68 @@ public class SignUp extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK){
             Bitmap bitmap = BitmapFactory.decodeFile(contentUri.getPath());
-            profileimage.setImageBitmap(bitmap);
+
+            float degree = getDegree();
+
+            Bitmap bitmap2  = resizeBitmap(200,bitmap);
+
+            Bitmap bitmap3 = rotateBitmap(bitmap2, degree);
+            profileimage.setImageBitmap(bitmap3);
         }
+    }
+
+    public Bitmap rotateBitmap(Bitmap bitmap, float degree){
+        try{
+            int width = bitmap.getWidth();
+            int height = bitmap.getHeight();
+
+            Matrix matrix = new Matrix();
+
+            matrix.postRotate(degree);
+            Bitmap resizeBitmap = Bitmap.createBitmap(bitmap, 0, 0,width, height, matrix, true);
+
+            bitmap.recycle();
+            return resizeBitmap;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Bitmap resizeBitmap(int targetWidth, Bitmap source){
+        double ratio = (double)targetWidth/(double)source.getWidth();
+        int targetHeight = (int)(source.getHeight()*ratio);
+        Bitmap result = Bitmap.createScaledBitmap(source, targetWidth, targetHeight, false);
+
+        if (result != source){
+            source.recycle();
+        }
+        return result;
+    }
+
+    public float getDegree(){
+        try{
+            ExifInterface exif = new ExifInterface(contentUri.getPath());
+            int degree = 0;
+
+            int ori = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, -1);
+            switch (ori){
+                case ExifInterface.ORIENTATION_ROTATE_90:
+                    degree = 90;
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_180:
+                    degree = 180;
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_270:
+                    degree = 270;
+                    break;
+
+            }
+            return (float)degree;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     public boolean check() {

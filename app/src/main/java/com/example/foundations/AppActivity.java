@@ -1,9 +1,17 @@
 package com.example.foundations;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,6 +29,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.io.File;
+
 public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
 
     private DrawerLayout drawerLayout;
@@ -28,6 +38,9 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
     private NavigationView navigationView;
     private MainViewModel mainViewModel;
     String lName, fName, License, Company, email, phone;
+    int profileid;
+    Uri contentUri;
+
 
     private final static String TAG = AppActivity.class.getSimpleName();
 
@@ -50,7 +63,43 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        System.out.println(currentProfile.getEmail());
+        String profile_pic_path = "/sdcard/DCIM/Camera/" + currentProfile.getEmail()+ ".jpg";
+
+
+
         navigationView = findViewById(R.id.navigation_view);
+
+        View header_view = navigationView.getHeaderView(0);
+
+        File file = new File(profile_pic_path);
+
+        contentUri= Uri.fromFile(file);
+        Bitmap bitmap = BitmapFactory.decodeFile(contentUri.getPath());
+        float degree = getDegree();
+        System.out.println(degree);
+
+        Bitmap bitmap2 = rotateBitmap(bitmap, degree);
+
+
+        header_view.setBackgroundResource(R.drawable.logo);
+        ImageView header_image = (ImageView)header_view.findViewById(R.id.profile_picture);
+        header_image.setImageBitmap(bitmap2);
+
+        //user_name & user_email
+
+        TextView user_name = (TextView)header_view.findViewById(R.id.user_name);
+        TextView user_email = (TextView)header_view.findViewById(R.id.user_email);
+
+        String uName = currentProfile.getFullName();
+        String uEmail = currentProfile.getEmail();
+
+        user_name.setText(uName);
+        user_email.setText(uEmail);
+
+        user_name.setTextColor(Color.BLACK);
+        user_email.setTextColor(Color.BLACK);
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -61,12 +110,14 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
                         fragment=new ProfileFragment();
                         loadFragment(fragment);
                         Log.i("fragment","Click profile "+ currentProfile.getEmail());
+                        Log.d("test","profileid: (" + currentProfile.getProfileId()+")");
                         lName = currentProfile.getLastName();
                         fName = currentProfile.getFirstName();
                         License = currentProfile.getLicenseNumber();
                         Company = currentProfile.getCompanyName();
                         email = currentProfile.getEmail();
                         phone = currentProfile.getPhone();
+                        profileid = currentProfile.getProfileId();
                         break;
                     case R.id.inspections:
                         fragment=new InspectionFragment(AppActivity.this);
@@ -110,4 +161,47 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
         }
         return super.onOptionsItemSelected(item);
     }
+    public Bitmap rotateBitmap(Bitmap bitmap, float degree){
+        try{
+            int width = bitmap.getWidth();
+            int height = bitmap.getHeight();
+
+            Matrix matrix = new Matrix();
+
+            matrix.postRotate(degree);
+            Bitmap resizeBitmap = Bitmap.createBitmap(bitmap, 0, 0,width, height, matrix, true);
+
+            bitmap.recycle();
+            return resizeBitmap;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public float getDegree(){
+        try{
+            ExifInterface exif = new ExifInterface(contentUri.getPath());
+            int degree = 0;
+
+            int ori = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, -1);
+            switch (ori){
+                case ExifInterface.ORIENTATION_ROTATE_90:
+                    degree = 90;
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_180:
+                    degree = 180;
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_270:
+                    degree = 270;
+                    break;
+
+            }
+            return (float)degree;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
 }
