@@ -33,7 +33,7 @@ public class InspectionFragment extends Fragment {
         mainViewModel.getAllReports().observe(getViewLifecycleOwner(), reportAdapter::setReports);
         Button newInspection = view.findViewById(R.id.inspection_frag_new_inspection);
         newInspection.setOnClickListener(v -> {
-            Fragment fragment = new NewInspection();
+            Fragment fragment = new NewInspection(fragmentSwitcher);
             fragmentSwitcher.loadFragment(fragment);
         });
         return view;

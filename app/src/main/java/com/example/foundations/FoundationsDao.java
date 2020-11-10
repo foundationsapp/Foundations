@@ -74,11 +74,11 @@ public interface FoundationsDao {
 
 
     //UPDATE QUERIES
-    @Query("UPDATE report_table SET buyerId = :buyerId WHERE reportId = :reportId")
-    void updateReportBuyer(Integer buyerId, Integer reportId);
-
-    @Query("UPDATE report_table SET sellerId = :sellerId WHERE reportId  = :reportId")
-    void updateReportSeller(Integer sellerId, Integer reportId);
+//    @Query("UPDATE report_table SET buyerId = :buyerId WHERE reportId = :reportId")
+//    void updateReportBuyer(Integer buyerId, Integer reportId);
+//
+//    @Query("UPDATE report_table SET sellerId = :sellerId WHERE reportId  = :reportId")
+//    void updateReportSeller(Integer sellerId, Integer reportId);
 
     @Query("UPDATE report_table SET street = :street, city = :city, state = :state, zip = :zip WHERE reportId = :reportId")
     void updateReportAddress(Integer reportId, String street, String city, String state, int zip);
@@ -154,6 +154,9 @@ public interface FoundationsDao {
 
     @Query("SELECT * from note_table WHERE reportId = :reportId")
     LiveData<List<Note>> getNotes(Integer reportId);
+
+    @Query("SELECT * from report_table order by reportId DESC limit 1")
+    Report getNewReport();
 
     // GET LIST ITEM QUERY THAT RETURNS BOTH CATEGORY ID AND CATEGORY TITLE, SUBCAT TOO
     @Query("SELECT listitem_table.listItemId AS listItemId, listitem_table.categoryId AS categoryId, listitem_table.subCategoryId AS subCategoryId, listitem_table.notes AS notes, listitem_table.photos AS photos, category_table.title AS categoryTitle, subcategory_table.title AS subCategoryTitle from listitem_table, category_table, subcategory_table WHERE reportId = :reportId")

@@ -36,8 +36,8 @@ public class MainViewModel extends AndroidViewModel {
 
 
     // UPDATE
-    public void updateReportBuyer(Integer buyerId, Integer reportId) {foundationsRepository.updateReportBuyer(buyerId, reportId);}
-    public void updateReportSeller(Integer sellerId, Integer reportId) {foundationsRepository.updateReportSeller(sellerId, reportId);}
+//    public void updateReportBuyer(Integer buyerId, Integer reportId) {foundationsRepository.updateReportBuyer(buyerId, reportId);}
+//    public void updateReportSeller(Integer sellerId, Integer reportId) {foundationsRepository.updateReportSeller(sellerId, reportId);}
     public void updateReportAddress(Integer reportId, String street, String city, String state, int zip) {foundationsRepository.updateReportAddress(reportId, street, city, state, zip);}
     public void updateSiteDetails(Integer siteDetailsId, float bathrooms, int bedrooms, int stories, float inspectionFee, int yearBuilt, String furnished, String presentAtInspection, String orientation) {foundationsRepository.updateSiteDetails(siteDetailsId, bathrooms, bedrooms, stories, inspectionFee, yearBuilt, furnished, presentAtInspection, orientation);}
     public void updateListItem(Integer listItemId, Boolean notes, Boolean photos) {foundationsRepository.updateListItem(listItemId, notes, photos);}
@@ -49,5 +49,9 @@ public class MainViewModel extends AndroidViewModel {
         return allProfiles;
     }
     public LiveData<List<Report>> getAllReports() { return allReports; }
+
+    public Report getNewReport() {
+        return foundationsRepository.getNewReport();
+    }
 
 }

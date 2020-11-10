@@ -1,6 +1,7 @@
 package com.example.foundations;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import java.util.List;
 
 public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportViewHolder> {
 
+    private static final String TAG = ReportAdapter.class.getSimpleName();
     private List<Report> reports;
     private final LayoutInflater inflater;
     private Context mContext;
@@ -56,6 +58,9 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
 
     void setReports(List<Report> reports) {
         this.reports = reports;
+        reports.forEach(report -> {
+            Log.d(TAG, "setReports: " + report.getReportId());
+        });
         notifyDataSetChanged();
     }
 }

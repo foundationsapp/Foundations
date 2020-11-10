@@ -27,6 +27,7 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
     private MainViewModel mainViewModel;
+    private Profile currentProfile;
     String lName, fName, License, Company, email, phone;
 
     private final static String TAG = AppActivity.class.getSimpleName();
@@ -37,7 +38,7 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.app_page);
         Intent intent = getIntent();
-        Profile currentProfile = intent.getParcelableExtra(String.valueOf(R.string.userProfile));
+        currentProfile = intent.getParcelableExtra(String.valueOf(R.string.userProfile));
         Log.d(TAG, "onCreate: " + currentProfile.getFullName());
 //        RecyclerView reportRecyclerView = findViewById(R.id.report_recyclerview);
 //        final ReportAdapter reportAdapter = new ReportAdapter(this);
@@ -95,6 +96,9 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
     }
 
     public void loadFragment(Fragment fragment) {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(String.valueOf(R.string.userProfile), currentProfile);
+        fragment.setArguments(bundle);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame, fragment).commit();

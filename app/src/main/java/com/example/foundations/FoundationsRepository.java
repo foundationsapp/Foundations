@@ -1,6 +1,8 @@
 package com.example.foundations;
 
 import android.app.Application;
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import java.util.List;
 
@@ -90,17 +92,17 @@ public class FoundationsRepository {
 
 
     // UPDATE QUERIES
-    void updateReportBuyer(Integer buyerId, Integer reportId) {
-        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            foundationsDao.updateReportBuyer(buyerId, reportId);
-        });
-    }
-
-    void updateReportSeller(Integer sellerId, Integer reportId) {
-        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            foundationsDao.updateReportSeller(sellerId, reportId);
-        });
-    }
+//    void updateReportBuyer(Integer buyerId, Integer reportId) {
+//        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
+//            foundationsDao.updateReportBuyer(buyerId, reportId);
+//        });
+//    }
+//
+//    void updateReportSeller(Integer sellerId, Integer reportId) {
+//        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
+//            foundationsDao.updateReportSeller(sellerId, reportId);
+//        });
+//    }
 
     void updateReportAddress(Integer reportId, String street, String city, String state, int zip) {
         FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
@@ -227,6 +229,10 @@ public class FoundationsRepository {
         currentListItemDetails = foundationsDao.getListItems(reportId);
     }
 
+    Report getNewReport() {
+        return foundationsDao.getNewReport();
+
+    }
 
 
 }
