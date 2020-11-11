@@ -30,7 +30,7 @@ public class FoundationsRepository {
         FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
             allSiteDetails = foundationsDao.getAllSiteDetails();
         });
-       // loadReportData(1);
+        loadReportData(1);
     }
 
     // INSERT QUERIES
@@ -227,21 +227,19 @@ public class FoundationsRepository {
     LiveData<List<ListItemDetails>> getCurrentListItemDetails() { return currentListItemDetails; }
 
     // FETCH REPORT DATA QUERIES
-//    void loadReportData(Integer reportId) {
-//        currentSiteDetails = foundationsDao.getSiteDetails(reportId);
-//        currentReportNotes = foundationsDao.getNotes(reportId);
-//        currentReportPhotos = foundationsDao.getPhotos(reportId);
-//        currentListItemDetails = foundationsDao.getListItems(reportId);
-//    }
+    void loadReportData(Integer reportId) {
+       // currentSiteDetails = foundationsDao.getSiteDetails(reportId);
+        currentReportNotes = foundationsDao.getNotes(reportId);
+        currentReportPhotos = foundationsDao.getPhotos(reportId);
+        currentListItemDetails = foundationsDao.getListItems(reportId);
+    }
 
     Report getNewReport() {
         return foundationsDao.getNewReport();
     }
 
-    List<SiteDetails> getSiteDetails() {
-        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            currentSiteDetails = foundationsDao.getSiteDetails();
-        });
+    List<SiteDetails> getSiteDetails(int id) {
+        currentSiteDetails = foundationsDao.getSiteDetails(id);
         return currentSiteDetails;
     }
 

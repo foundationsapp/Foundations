@@ -9,15 +9,18 @@ import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 
-public class InspectionFragment extends Fragment {
+public class InspectionFragment extends Fragment implements SetReportHandler {
 
+    private static final String TAG = InspectionFragment.class.getSimpleName();
     FragmentSwitcher fragmentSwitcher;
+    Report currentReport;
 
     public InspectionFragment(FragmentSwitcher fragmentSwitcher) {
         this.fragmentSwitcher = fragmentSwitcher;
@@ -26,7 +29,7 @@ public class InspectionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_inspection, container, false);
         RecyclerView reportRecyclerView = view.findViewById(R.id.all_inspections_recyclerview);
-        final ReportAdapter reportAdapter = new ReportAdapter(reportRecyclerView.getContext());
+        final ReportAdapter reportAdapter = new ReportAdapter(reportRecyclerView.getContext(), this);
         reportRecyclerView.setAdapter(reportAdapter);
         reportRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         MainViewModel mainViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(MainViewModel.class);
@@ -36,7 +39,20 @@ public class InspectionFragment extends Fragment {
             Fragment fragment = new NewInspection(fragmentSwitcher);
             fragmentSwitcher.loadFragment(fragment);
         });
+        Button selectInspection = view.findViewById(R.id.select_inspection);
+        selectInspection.setOnClickListener(v -> {
+            Log.d(TAG, "onCreateView: " + currentReport.getBuyerFirstName());
+            Fragment fragment = new SiteDetailsFragment(fragmentSwitcher);
+            Bundle bundle = new Bundle();
+            bundle.putInt(getString(R.string.current_report_key), currentReport.getReportId());
+            fragment.setArguments(bundle);
+            fragmentSwitcher.loadFragment(fragment);
+        });
         return view;
     }
 
+    @Override
+    public void setCurrentReport(Report currentReport) {
+        this.currentReport = currentReport;
+    }
 }

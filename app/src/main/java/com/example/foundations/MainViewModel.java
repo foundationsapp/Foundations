@@ -58,8 +58,8 @@ public class MainViewModel extends AndroidViewModel {
         return foundationsRepository.getNewReport();
     }
 
-    public List<SiteDetails> getSiteDetails() {
-        return foundationsRepository.getSiteDetails();
+    public List<SiteDetails> getSiteDetails(int id) {
+        return foundationsRepository.getSiteDetails(id);
     }
 
 }

@@ -75,6 +75,12 @@ public abstract class FoundationsRoomDatabase extends RoomDatabase{
                 foundationsDao.insertReport(report);
                 SiteDetails siteDetails = new SiteDetails(1, 2, 2.5, 2, 2000, 100.4, 2000, "no", "buyer", "North");
                 foundationsDao.insertSiteDetails(siteDetails);
+                siteDetails = new SiteDetails(2, 4, 3, 2, 1111, 100.4, 2000, "no", "buyer", "North");
+                foundationsDao.insertSiteDetails(siteDetails);
+                siteDetails = new SiteDetails(3, 5, 7.5, 2, 2200, 100.4, 2000, "no", "buyer", "North");
+                foundationsDao.insertSiteDetails(siteDetails);
+                siteDetails = new SiteDetails(4, 6, 1.5, 2, 3000, 100.4, 2000, "no", "buyer", "North");
+                foundationsDao.insertSiteDetails(siteDetails);
                 Category category = new Category("Exterior");
                 foundationsDao.insertCategory(category);
                 category = new Category("interior");

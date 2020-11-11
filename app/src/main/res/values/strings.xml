@@ -83,4 +83,5 @@
     <string name="north">North</string>
     <string name="submit_and_continue">Submit and Continue</string>
     <string name="current_report_key">currentReport</string>
+    <string name="currentReportIdKey">currentReportId</string>
 </resources>

@@ -149,8 +149,8 @@ public interface FoundationsDao {
 
 
     // FETCH REPORT DATA QUERIES
-    @Query("SELECT * from sitedetails_table")
-    List<SiteDetails> getSiteDetails();
+    @Query("SELECT * from sitedetails_table where reportId = :reportId")
+    List<SiteDetails> getSiteDetails(Integer reportId);
 
     @Query("SELECT * from photo_table WHERE reportId = :reportId")
     LiveData<List<Photo>> getPhotos(Integer reportId);

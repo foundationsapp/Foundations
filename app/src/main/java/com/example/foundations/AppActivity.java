@@ -98,6 +98,10 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
     public void loadFragment(Fragment fragment) {
         Bundle bundle = new Bundle();
         bundle.putParcelable(String.valueOf(R.string.userProfile), currentProfile);
+        if (fragment.getArguments() != null) {
+            int currentReportId = fragment.getArguments().getInt(getString(R.string.current_report_key));
+            bundle.putInt(getString(R.string.current_report_key), currentReportId);
+        }
         fragment.setArguments(bundle);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
