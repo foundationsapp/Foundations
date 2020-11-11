@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/dashFragment">
+
+    <fragment
+        android:id="@+id/dashFragment"
+        android:name="com.example.foundations.DashFragment"
+        android:label="fragment_dash"
+        tools:layout="@layout/fragment_dash" >
+        <action
+            android:id="@+id/action_dashFragment_to_new_inspection_activity"
+            app:destination="@id/new_inspection_activity" />
+    </fragment>
+    <activity
+        android:id="@+id/new_inspection_activity"
+        android:name="com.example.foundations.new_inspection_activity"
+        android:label="new_inspection_activity"
+        tools:layout="@layout/new_inspection_activity" />
+</navigation>
