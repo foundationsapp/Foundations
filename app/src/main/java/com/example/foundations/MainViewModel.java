@@ -1,17 +1,20 @@
 package com.example.foundations;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class MainViewModel extends AndroidViewModel {
 
     private static final String TAG = MainViewModel.class.getSimpleName();
     LiveData<List<Profile>> allProfiles;
     LiveData<List<Report>> allReports;
+    List<SiteDetails> allSiteDetails;
     private FoundationsRepository foundationsRepository;
 
     public MainViewModel(Application application) {
@@ -19,6 +22,7 @@ public class MainViewModel extends AndroidViewModel {
         foundationsRepository = new FoundationsRepository(application);
         allProfiles = foundationsRepository.getAllProfiles();
         allReports  = foundationsRepository.getAllReports();
+
     }
 
 
@@ -52,6 +56,10 @@ public class MainViewModel extends AndroidViewModel {
 
     public Report getNewReport() {
         return foundationsRepository.getNewReport();
+    }
+
+    public List<SiteDetails> getSiteDetails() {
+        return foundationsRepository.getSiteDetails();
     }
 
 }

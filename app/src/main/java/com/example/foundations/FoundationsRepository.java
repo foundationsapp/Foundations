@@ -14,10 +14,11 @@ public class FoundationsRepository {
     private LiveData<List<Buyer>> allBuyers;
     private LiveData<List<Seller>> allSellers;
     private LiveData<List<Report>> allReports;
-    private LiveData<List<SiteDetails>> currentSiteDetails;
     private LiveData<List<Note>> currentReportNotes;
     private LiveData<List<Photo>> currentReportPhotos;
     private LiveData<List<ListItemDetails>> currentListItemDetails;
+    private List<SiteDetails> allSiteDetails;
+    private List<SiteDetails> currentSiteDetails;
 
     FoundationsRepository(Application application) {
         FoundationsRoomDatabase db = FoundationsRoomDatabase.getDatabase(application);
@@ -26,7 +27,10 @@ public class FoundationsRepository {
         allBuyers = foundationsDao.getAllBuyers();
         allSellers = foundationsDao.getAllSellers();
         allReports = foundationsDao.getAllReports();
-        loadReportData(1);
+        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
+            allSiteDetails = foundationsDao.getAllSiteDetails();
+        });
+       // loadReportData(1);
     }
 
     // INSERT QUERIES
@@ -216,22 +220,29 @@ public class FoundationsRepository {
     LiveData<List<Report>> getAllReports() {
         return allReports;
     }
-    LiveData<List<SiteDetails>> getCurrentSiteDetails() { return currentSiteDetails; }
+    List<SiteDetails> getAllSiteDetails() { return allSiteDetails; }
+    List<SiteDetails> getCurrentSiteDetails() { return currentSiteDetails; }
     LiveData<List<Photo>> getCurrentReportPhotos() { return currentReportPhotos; }
     LiveData<List<Note>> getCurrentReportNotes() { return currentReportNotes; }
     LiveData<List<ListItemDetails>> getCurrentListItemDetails() { return currentListItemDetails; }
 
     // FETCH REPORT DATA QUERIES
-    void loadReportData(Integer reportId) {
-        currentSiteDetails = foundationsDao.getSiteDetails(reportId);
-        currentReportNotes = foundationsDao.getNotes(reportId);
-        currentReportPhotos = foundationsDao.getPhotos(reportId);
-        currentListItemDetails = foundationsDao.getListItems(reportId);
-    }
+//    void loadReportData(Integer reportId) {
+//        currentSiteDetails = foundationsDao.getSiteDetails(reportId);
+//        currentReportNotes = foundationsDao.getNotes(reportId);
+//        currentReportPhotos = foundationsDao.getPhotos(reportId);
+//        currentListItemDetails = foundationsDao.getListItems(reportId);
+//    }
 
     Report getNewReport() {
         return foundationsDao.getNewReport();
+    }
 
+    List<SiteDetails> getSiteDetails() {
+        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
+            currentSiteDetails = foundationsDao.getSiteDetails();
+        });
+        return currentSiteDetails;
     }
 
 
