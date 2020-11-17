@@ -27,6 +27,7 @@ public class InspectionFragment extends Fragment implements SetReportHandler {
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        fragmentSwitcher.setCurrentReport(null);
         View view = inflater.inflate(R.layout.fragment_inspection, container, false);
         RecyclerView reportRecyclerView = view.findViewById(R.id.all_inspections_recyclerview);
         final ReportAdapter reportAdapter = new ReportAdapter(reportRecyclerView.getContext(), this);
@@ -41,11 +42,8 @@ public class InspectionFragment extends Fragment implements SetReportHandler {
         });
         Button selectInspection = view.findViewById(R.id.select_inspection);
         selectInspection.setOnClickListener(v -> {
-            Log.d(TAG, "onCreateView: " + currentReport.getBuyerFirstName());
-            Fragment fragment = new SiteDetailsFragment(fragmentSwitcher);
-            Bundle bundle = new Bundle();
-            bundle.putInt(getString(R.string.current_report_key), currentReport.getReportId());
-            fragment.setArguments(bundle);
+            Fragment fragment = new NewInspection(fragmentSwitcher);
+            fragmentSwitcher.setCurrentReport(currentReport);
             fragmentSwitcher.loadFragment(fragment);
         });
         return view;

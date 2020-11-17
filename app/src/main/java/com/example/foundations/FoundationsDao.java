@@ -1,5 +1,6 @@
 package com.example.foundations;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
@@ -80,8 +81,8 @@ public interface FoundationsDao {
 //    @Query("UPDATE report_table SET sellerId = :sellerId WHERE reportId  = :reportId")
 //    void updateReportSeller(Integer sellerId, Integer reportId);
 
-    @Query("UPDATE report_table SET street = :street, city = :city, state = :state, zip = :zip WHERE reportId = :reportId")
-    void updateReportAddress(Integer reportId, String street, String city, String state, int zip);
+    @Query("UPDATE report_table SET buyerFirstName = :buyerFirstName, buyerLastName = :buyerLastName, sellerFirstName = :sellerFirstName, sellerLastName = :sellerLastName, street = :street, city = :city, state = :state, zip = :zip WHERE reportId = :reportId")
+    void updateReport(Integer reportId, String buyerFirstName, String buyerLastName, String sellerFirstName, String sellerLastName, @NonNull String street, @NonNull String city, @NonNull String state, @NonNull String zip);
 
     @Query("UPDATE sitedetails_table SET bathrooms = :bathrooms, bedrooms = :bedrooms, stories = :stories, inspectionFee = :inspectionFee, yearBuilt = :yearBuilt, furnished = :furnished, presentAtInspection = :presentAtInspection, orientation = :orientation WHERE siteDetailsId =:siteDetailsId")
     void updateSiteDetails(Integer siteDetailsId, float bathrooms, int bedrooms, int stories, float inspectionFee, int yearBuilt, String furnished, String presentAtInspection, String orientation);

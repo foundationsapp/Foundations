@@ -67,6 +67,8 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
 
                     reportHandler.setCurrentReport(current);
 
+                    Log.d(TAG, "onClick: " + current.getBuyerFirstName() + " " + current.getSellerFirstName() + " " + current.getReportId());
+
 
                     //Toast.makeText(mContext,"selected"+ current.getFullName(),Toast.LENGTH_LONG).show();
                 }

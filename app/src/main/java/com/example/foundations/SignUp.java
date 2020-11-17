@@ -84,8 +84,7 @@ public class SignUp extends AppCompatActivity {
                     String company = editCompanyName.getText().toString();
                     Profile newProfile = new Profile(firstName, lastName, license, email, phone, company);
                     mainViewModel.insertProfile(newProfile);
-                    Intent intent = new Intent(SignUp.this, AppActivity.class);
-                    intent.putExtra(String.valueOf(R.string.userProfile), newProfile);
+                    Intent intent = new Intent(SignUp.this, MainActivity.class);
                     startActivity(intent);
                 }else{
                     Toast.makeText(SignUp.this, R.string.empty_field, Toast.LENGTH_LONG).show();

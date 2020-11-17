@@ -62,17 +62,9 @@ public class SiteDetailsFragment extends Fragment {
             orientation.setText(siteDetails.getOrientation(), TextView.BufferType.EDITABLE);
         } else {
             currentReportId = mainViewModel.getNewReport().getReportId();
-            siteDetails = mainViewModel.getSiteDetails(1).get(0);
+            siteDetails = new SiteDetails(currentReportId, 0, 0.0, 0, 0, 0.0, 0, "N/A", "N/A", "N/A");
+            mainViewModel.insertSiteDetails(siteDetails);
         }
-
-        currentReportId = mainViewModel.getNewReport().getReportId();
-        siteDetails = mainViewModel.getSiteDetails(1).get(0);
-
-        Log.d(TAG, "onCreateView: " + siteDetails.getBathrooms() + " " + siteDetails.getPresentAtInspection() + " " + currentReportId);
-
-
-
-
         return view;
     };
 };

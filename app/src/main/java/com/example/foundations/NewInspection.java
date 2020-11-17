@@ -25,21 +25,21 @@ public class NewInspection extends Fragment {
     private EditText niState;
     private EditText niZip;
     private Button createButton;
-    private Profile currentProfile;
     private MainViewModel mainViewModel;
+    private Report currentReport;
+    private boolean updateReport;
     private FragmentSwitcher fragmentSwitcher;
 
     public NewInspection(FragmentSwitcher fragmentSwitcher) { this.fragmentSwitcher = fragmentSwitcher; }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        updateReport = false;
 
         View view = inflater.inflate(R.layout.start_inspection, container, false);
 
         mainViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(MainViewModel.class);
 
-        assert getArguments() != null;
-        currentProfile = getArguments().getParcelable(String.valueOf(R.string.userProfile));
         niBuyerFirstName = view.findViewById(R.id.ni_buyer_first_name);
         niBuyerLastName = view.findViewById(R.id.ni_buyer_last_name);
         niSellerFirstName = view.findViewById(R.id.ni_seller_first_name);
@@ -52,6 +52,20 @@ public class NewInspection extends Fragment {
         createButton.setOnClickListener(v -> {
             createReport();
         });
+
+        if (fragmentSwitcher.getCurrentReport() != null) {
+            currentReport = fragmentSwitcher.getCurrentReport();
+            niBuyerFirstName.setText(currentReport.getBuyerFirstName());
+            niBuyerLastName.setText(currentReport.getBuyerLastName());
+            niSellerFirstName.setText(currentReport.getSellerFirstName());
+            niSellerLastName.setText(currentReport.getSellerLastName());
+            niAddress.setText(currentReport.getStreetAddress());
+            niState.setText(currentReport.getState());
+            niCity.setText(currentReport.getCity());
+            niZip.setText(currentReport.getZip());
+            updateReport = true;
+        }
+        
 
         return view;
     }
@@ -66,9 +80,13 @@ public class NewInspection extends Fragment {
         String state = niState.getText().toString();
         String zip = niZip.getText().toString();
 
-        Report report = new Report(currentProfile.getProfileId(), buyerFirstName, buyerLastName, sellerFirstName, sellerLastName, address, city, state, zip);
+        Report report = new Report(fragmentSwitcher.getProfile().getProfileId(), buyerFirstName, buyerLastName, sellerFirstName, sellerLastName, address, city, state, zip);
 
-        mainViewModel.insertReport(report);
+        if (updateReport) {
+            mainViewModel.updateReport(currentReport.getReportId(), buyerFirstName, buyerLastName, sellerFirstName, sellerLastName, address, city, state, zip);
+        } else {
+            mainViewModel.insertReport(report);
+        }
         Fragment fragment = new SiteDetailsFragment(fragmentSwitcher);
         fragmentSwitcher.loadFragment(fragment);
 

@@ -3,6 +3,7 @@ package com.example.foundations;
 import android.app.Application;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import java.util.List;
 
@@ -108,9 +109,9 @@ public class FoundationsRepository {
 //        });
 //    }
 
-    void updateReportAddress(Integer reportId, String street, String city, String state, int zip) {
+    void updateReport(Integer reportId, String buyerFirstName, String buyerLastName, String sellerFirstName, String sellerLastName, @NonNull String street, @NonNull String city, @NonNull String state, @NonNull String zip) {
         FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            foundationsDao.updateReportAddress(reportId, street, city, state, zip);
+            foundationsDao.updateReport(reportId, buyerFirstName, buyerLastName, sellerFirstName, sellerLastName, street, city, state, zip);
         });
     }
 
