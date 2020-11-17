@@ -39,7 +39,7 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
     private MainViewModel mainViewModel;
-    String lName, fName, License, Company, email, phone;
+    String lName, fName, License, Company, email, phone, photo;
     int profileid;
     Uri contentUri;
 
@@ -66,7 +66,8 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        String profile_pic_path = "/sdcard/DCIM/Camera/" + currentProfile.getEmail()+ ".jpg";
+        Log.d(TAG,"photo: "+ currentProfile.getPhoto());
+        String profile_pic_path = currentProfile.getPhoto();
         navigationView = findViewById(R.id.navigation_view);
 
         View header_view = navigationView.getHeaderView(0);
@@ -114,6 +115,7 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
                         Company = currentProfile.getCompanyName();
                         email = currentProfile.getEmail();
                         phone = currentProfile.getPhone();
+                        photo = currentProfile.getPhoto();
 
                         break;
                     case R.id.inspections:

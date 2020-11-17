@@ -43,6 +43,7 @@ public class SignUp extends AppCompatActivity {
     String firstName,lastName, license, email, phone, company;
     String photo = null;
     String dir_path;
+    String pic_path;
     Uri contentUri;
     ImageView profileimage;
 
@@ -73,6 +74,7 @@ public class SignUp extends AppCompatActivity {
                     email = editEmail.getText().toString();
                     phone = editPhone.getText().toString();
                     company = editCompanyName.getText().toString();
+                    photo = pic_path;
                     Profile newProfile = new Profile(firstName, lastName, license, email, phone, company, photo);
                     mainViewModel.insertProfile(newProfile);
                     Intent intent = new Intent(SignUp.this, AppActivity.class);
@@ -89,10 +91,10 @@ public class SignUp extends AppCompatActivity {
 
      Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-     String file_name = editEmail.getText().toString() +".jpg";
+     String file_name = System.currentTimeMillis() +".jpg";
 
 
-     String pic_path = "/storage/emulated/0/DCIM/Camera/" + file_name;
+     pic_path = "/sdcard/DCIM/Camera/" + file_name;
 
      File file = new File(pic_path);
      if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){

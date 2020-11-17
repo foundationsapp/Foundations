@@ -43,7 +43,7 @@ public class ProfileFragment extends DialogFragment{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         AppActivity activity =(AppActivity) getActivity();
-        String profile_pic_path = "/sdcard/DCIM/Camera/" + (activity.email)+ ".jpg";
+        String profile_pic_path = (activity.photo);
         System.out.println(profile_pic_path);
 
         File file = new File(profile_pic_path);
@@ -79,6 +79,12 @@ public class ProfileFragment extends DialogFragment{
             @Override
             public void onClick(View v) {
                 getActivity().onBackPressed();
+            }
+        });
+        btn_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 
@@ -139,6 +145,36 @@ public class ProfileFragment extends DialogFragment{
             e.printStackTrace();
         }
         return 0;
+    }
+    public boolean check() {
+        boolean f;
+        if (fName.getText().toString().isEmpty() || lName.getText().toString().isEmpty() ||
+                lnumber.getText().toString().isEmpty() || companyname.getText().toString().isEmpty() ||
+                Email.getText().toString().isEmpty() || phone.getText().toString().isEmpty()) {
+            f = false;
+            // if any field empty boolean return false
+        }
+        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(Email.getText().toString()).matches()){
+            Email.setError("Please Enter Valid Mail");
+            f = false;
+        }
+        if (!fName.getText().toString().matches("[a-zA-Z]+")){
+            fName.setError("Please Enter only in text for first name");
+            f = false;
+        }
+        if(!lName.getText().toString().matches("[a-zA-Z]+")){
+            lName.setError("Please Enter only in text for first name");
+            f = false;
+        }
+
+        if (!phone.getText().toString().replaceAll(" ","").replaceAll("[-()]","").matches("[0-9]{10}")){
+            phone.setError("Please Enter Only 10 Digit phone number");
+            f = false;
+        }
+        else {
+            f = true;
+        }
+        return f;
     }
 
 
