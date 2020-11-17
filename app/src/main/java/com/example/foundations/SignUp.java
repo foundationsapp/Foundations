@@ -41,7 +41,7 @@ public class SignUp extends AppCompatActivity {
     Button signUpButton;
     MainViewModel mainViewModel;
     String firstName,lastName, license, email, phone, company;
-
+    String photo = null;
     String dir_path;
     Uri contentUri;
     ImageView profileimage;
@@ -73,7 +73,7 @@ public class SignUp extends AppCompatActivity {
                     email = editEmail.getText().toString();
                     phone = editPhone.getText().toString();
                     company = editCompanyName.getText().toString();
-                    Profile newProfile = new Profile(firstName, lastName, license, email, phone, company);
+                    Profile newProfile = new Profile(firstName, lastName, license, email, phone, company, photo);
                     mainViewModel.insertProfile(newProfile);
                     Intent intent = new Intent(SignUp.this, AppActivity.class);
                     intent.putExtra(String.valueOf(R.string.userProfile), newProfile);
