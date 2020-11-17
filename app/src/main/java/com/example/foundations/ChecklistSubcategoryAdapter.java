@@ -1,6 +1,7 @@
 package com.example.foundations;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,15 +10,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChecklistSubcategoryAdapter extends RecyclerView.Adapter<ChecklistSubcategoryAdapter.ChecklistSubcategoryViewHolder> {
 
-    private int categoryId;
+    private static final String TAG = "ChecklistSubcategoryAda";
     private List<SubCategory> subcategories;
 
-    public ChecklistSubcategoryAdapter(List<SubCategory> subcategories, int categoryId) {
-        this.categoryId = categoryId;
+    public ChecklistSubcategoryAdapter(List<SubCategory> subcategories) {
         this.subcategories = subcategories;
     }
 
@@ -30,7 +31,7 @@ public class ChecklistSubcategoryAdapter extends RecyclerView.Adapter<ChecklistS
 
     @Override
     public void onBindViewHolder(@NonNull ChecklistSubcategoryViewHolder holder, int position) {
-        if (subcategories != null && subcategories.get(position).getCategoryId() == categoryId) {
+        if (subcategories != null) {
             holder.checklistSubcategoryItemView.setText(subcategories.get(position).getTitle());
         }
     }
@@ -40,11 +41,6 @@ public class ChecklistSubcategoryAdapter extends RecyclerView.Adapter<ChecklistS
         if (subcategories != null) {
             return subcategories.size();
         } else return 0;
-    }
-
-    void setSubcategories(List<SubCategory> subcategories) {
-        this.subcategories = subcategories;
-        notifyDataSetChanged();
     }
 
     static class ChecklistSubcategoryViewHolder extends RecyclerView.ViewHolder {

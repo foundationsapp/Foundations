@@ -1,6 +1,7 @@
 package com.example.foundations;
 
         import android.content.Context;
+        import android.util.Log;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
@@ -15,13 +16,16 @@ package com.example.foundations;
         import androidx.recyclerview.widget.LinearLayoutManager;
         import androidx.recyclerview.widget.RecyclerView;
 
+        import java.util.ArrayList;
         import java.util.List;
 
 public class ChecklistCategoryAdapter extends RecyclerView.Adapter<ChecklistCategoryAdapter.ChecklistCategoryViewHolder> {
 
+    private static final String TAG = "ChecklistCategoryAdapte";
     private final LayoutInflater inflater;
     private List<Category> categories;
     private List<SubCategory> subcategories;
+    private int categoryId;
     private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
 
 
@@ -39,9 +43,18 @@ public class ChecklistCategoryAdapter extends RecyclerView.Adapter<ChecklistCate
     public void onBindViewHolder(@NonNull ChecklistCategoryViewHolder holder, int position) {
         if (categories != null) {
             Category current = categories.get(position);
+            categoryId = current.getCategoryId();
+            Log.d(TAG, "onBindViewHolder: " + categoryId);
             holder.checklistCategoryItemView.setText(current.getTitle());
+            List<SubCategory> filteredList = new ArrayList<>();
+            for (int i = 0; i < subcategories.size(); i++) {
+                Log.d(TAG, "setSubcategories categoryid: " + subcategories.get(i).getCategoryId() + " " + categoryId);
+                if (subcategories.get(i).getCategoryId() == categoryId) {
+                    filteredList.add(subcategories.get(i));
+                }
+            }
             LinearLayoutManager layoutManager = new LinearLayoutManager(holder.subcategoryRecyclerView.getContext());
-            ChecklistSubcategoryAdapter checklistSubcategoryAdapter = new ChecklistSubcategoryAdapter(subcategories, current.getCategoryId());
+            ChecklistSubcategoryAdapter checklistSubcategoryAdapter = new ChecklistSubcategoryAdapter(filteredList);
             holder.subcategoryRecyclerView.setLayoutManager(layoutManager);
             holder.subcategoryRecyclerView.setAdapter(checklistSubcategoryAdapter);
             holder.subcategoryRecyclerView.setRecycledViewPool(viewPool);
