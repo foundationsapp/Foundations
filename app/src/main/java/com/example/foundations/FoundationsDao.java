@@ -84,8 +84,8 @@ public interface FoundationsDao {
     @Query("UPDATE report_table SET buyerFirstName = :buyerFirstName, buyerLastName = :buyerLastName, sellerFirstName = :sellerFirstName, sellerLastName = :sellerLastName, street = :street, city = :city, state = :state, zip = :zip WHERE reportId = :reportId")
     void updateReport(Integer reportId, String buyerFirstName, String buyerLastName, String sellerFirstName, String sellerLastName, @NonNull String street, @NonNull String city, @NonNull String state, @NonNull String zip);
 
-    @Query("UPDATE sitedetails_table SET bathrooms = :bathrooms, bedrooms = :bedrooms, stories = :stories, inspectionFee = :inspectionFee, yearBuilt = :yearBuilt, furnished = :furnished, presentAtInspection = :presentAtInspection, orientation = :orientation WHERE siteDetailsId =:siteDetailsId")
-    void updateSiteDetails(Integer siteDetailsId, float bathrooms, int bedrooms, int stories, float inspectionFee, int yearBuilt, String furnished, String presentAtInspection, String orientation);
+    @Query("UPDATE sitedetails_table SET bathrooms = :bathrooms, bedrooms = :bedrooms, stories = :stories, inspectionFee = :inspectionFee, yearBuilt = :yearBuilt, furnished = :furnished, presentAtInspection = :presentAtInspection, orientation = :orientation WHERE reportId =:reportId")
+    void updateSiteDetails(Integer reportId, double bathrooms, int bedrooms, int stories, double inspectionFee, int yearBuilt, String furnished, String presentAtInspection, String orientation);
 
     @Query("UPDATE listitem_table SET notes = :notes, photos = :photos WHERE listItemId = :listItemId")
     void updateListItem(Integer listItemId, Boolean notes, Boolean photos);

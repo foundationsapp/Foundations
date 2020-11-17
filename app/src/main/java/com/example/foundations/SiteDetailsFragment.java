@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -27,6 +28,7 @@ public class SiteDetailsFragment extends Fragment {
     private EditText present;
     private EditText orientation;
     private SiteDetails siteDetails;
+    private Button submit;
 
 
     private static final String TAG = SiteDetailsFragment.class.getSimpleName();
@@ -37,7 +39,7 @@ public class SiteDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sitedetails, container, false);
-
+        MainViewModel mainViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(MainViewModel.class);
         bedrooms = (EditText) view.findViewById(R.id.sd_bedrooms_amt);
         bathrooms = (EditText) view.findViewById(R.id.sd_bathrooms_amt);
         stories = (EditText) view.findViewById(R.id.sd_stories_amt);
@@ -47,9 +49,23 @@ public class SiteDetailsFragment extends Fragment {
         furnished =(EditText)  view.findViewById(R.id.sd_furnished_amt);
         present = (EditText)  view.findViewById(R.id.sd_present_amt);
         orientation = (EditText) view.findViewById(R.id.sd_orientation_amt);
-        MainViewModel mainViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(MainViewModel.class);
-        if (getArguments() != null) {
-            currentReportId = getArguments().getInt(getString(R.string.current_report_key));
+        submit = (Button) view.findViewById(R.id.sd_submit);
+        submit.setOnClickListener(v -> {
+            mainViewModel.updateSiteDetails(currentReportId,
+                    Double.parseDouble(bathrooms.getText().toString()),
+                    Integer.parseInt(bedrooms.getText().toString()),
+                    Integer.parseInt(stories.getText().toString()),
+                    Double.parseDouble(inspectionFee.getText().toString()),
+                    Integer.parseInt(yearBuilt.getText().toString()),
+                    furnished.getText().toString(),
+                    present.getText().toString(),
+                    orientation.getText().toString()
+                    );
+        });
+
+        if (fragmentSwitcher.getCurrentReport() != null) {
+            Log.d(TAG, "onCreateView: loading siteDetails");
+            currentReportId = fragmentSwitcher.getCurrentReport().getReportId();
             siteDetails = mainViewModel.getSiteDetails(currentReportId).get(0);
             bedrooms.setText(Integer.toString(siteDetails.getBedrooms()), TextView.BufferType.EDITABLE);
             bathrooms.setText(Double.toString(siteDetails.getBathrooms()), TextView.BufferType.EDITABLE);
@@ -67,4 +83,8 @@ public class SiteDetailsFragment extends Fragment {
         }
         return view;
     };
+
+    void goToMainInspection() {
+
+    }
 };

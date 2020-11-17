@@ -59,7 +59,7 @@ public class NewInspection extends Fragment {
             niBuyerLastName.setText(currentReport.getBuyerLastName());
             niSellerFirstName.setText(currentReport.getSellerFirstName());
             niSellerLastName.setText(currentReport.getSellerLastName());
-            niAddress.setText(currentReport.getStreetAddress());
+            niAddress.setText(currentReport.getStreet());
             niState.setText(currentReport.getState());
             niCity.setText(currentReport.getCity());
             niZip.setText(currentReport.getZip());

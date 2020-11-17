@@ -115,9 +115,9 @@ public class FoundationsRepository {
         });
     }
 
-    void updateSiteDetails(Integer siteDetailsId, float bathrooms, int bedrooms, int stories, float inspectionFee, int yearBuilt, String furnished, String presentAtInspection, String orientation) {
+    void updateSiteDetails(Integer reportId, double bathrooms, int bedrooms, int stories, double inspectionFee, int yearBuilt, String furnished, String presentAtInspection, String orientation) {
         FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            foundationsDao.updateSiteDetails(siteDetailsId, bathrooms, bedrooms, stories, inspectionFee, yearBuilt, furnished, presentAtInspection, orientation);
+            foundationsDao.updateSiteDetails(reportId, bathrooms, bedrooms, stories, inspectionFee, yearBuilt, furnished, presentAtInspection, orientation);
         });
     }
 
