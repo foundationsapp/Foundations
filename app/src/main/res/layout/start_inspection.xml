@@ -53,6 +53,7 @@
                 android:textSize="@dimen/_20"
                />
             <EditText
+                android:id="@+id/ni_buyer_first_name"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40"
                 android:background="@drawable/form"
@@ -64,6 +65,7 @@
                 android:textStyle="bold"
                 android:textSize="@dimen/_20" />
             <EditText
+                android:id="@+id/ni_buyer_last_name"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40"
                 android:background="@drawable/form"
@@ -86,6 +88,7 @@
                 android:textSize="@dimen/_20"
                 />
             <EditText
+                android:id="@+id/ni_seller_first_name"
                 android:hint="@string/michael"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40"
@@ -97,6 +100,7 @@
                 android:textStyle="bold"
                 android:textSize="@dimen/_20" />
             <EditText
+                android:id="@+id/ni_seller_last_name"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40"
                 android:background="@drawable/form"
@@ -119,6 +123,7 @@
                 android:textSize="@dimen/_20"
                 />
             <EditText
+                android:id="@+id/ni_address"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40"
                 android:background="@drawable/form"
@@ -130,6 +135,7 @@
                 android:textStyle="bold"
                 android:textSize="@dimen/_20" />
             <EditText
+                android:id="@+id/ni_city"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40"
                 android:background="@drawable/form"
@@ -141,6 +147,7 @@
                 android:textStyle="bold"
                 android:textSize="@dimen/_20" />
             <EditText
+                android:id="@+id/ni_state"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40"
                 android:background="@drawable/form"
@@ -152,6 +159,7 @@
                 android:textStyle="bold"
                 android:textSize="@dimen/_20" />
             <EditText
+                android:id="@+id/ni_zip"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40"
                 android:background="@drawable/form"
@@ -159,6 +167,7 @@
 
 
             <Button
+                android:id="@+id/ni_create_report"
                 android:background="@drawable/save_shape"
                 android:layout_marginTop="@dimen/_25"
                 android:layout_gravity="center"
@@ -169,6 +178,7 @@
                 android:text="@string/save_and_continue"
                 android:textStyle="bold"
                 android:layout_marginBottom="@dimen/_25"
+
                 android:textSize="@dimen/_20" />
 
 

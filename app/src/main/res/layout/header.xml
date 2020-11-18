@@ -8,9 +8,10 @@
     android:padding="@dimen/_20">
 
     <ImageView
+        android:id="@+id/profile_picture"
         android:layout_width="@dimen/_80"
         android:layout_height="@dimen/_80"
-        android:src="@drawable/ic_baseline_account_circle_24"/>
+        android:src="@drawable/ic_baseline_account_circle_24" />
     <TextView
         android:id="@+id/user_name"
         android:layout_width="wrap_content"

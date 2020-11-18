@@ -1,6 +1,8 @@
 package com.example.foundations;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +15,12 @@ import java.util.List;
 
 public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportViewHolder> {
 
+    private static final String TAG = ReportAdapter.class.getSimpleName();
     private List<Report> reports;
     private final LayoutInflater inflater;
     private Context mContext;
+    private SetReportHandler reportHandler;
+    int selectedReport = -1;
 
     static class ReportViewHolder extends RecyclerView.ViewHolder {
 
@@ -27,7 +32,8 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
         }
     }
 
-    public ReportAdapter(Context context) {
+    public ReportAdapter(Context context, SetReportHandler reportHandler) {
+        this.reportHandler = reportHandler;
         inflater = LayoutInflater.from(context);
         mContext = context;
     }
@@ -41,9 +47,32 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
 
     @Override
     public void onBindViewHolder(@NonNull ReportViewHolder holder, int position) {
+
+        if (selectedReport==position){
+            holder.reportItemView.setBackgroundColor(Color.parseColor("#ffff00"));
+        }
+        else{
+            holder.reportItemView.setBackgroundColor(Color.parseColor("#44bcda"));
+        }
         if (reports != null) {
             Report current = reports.get(position);
             holder.reportItemView.setText(current.getStreetAddress());
+            holder.reportItemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    selectedReport = position;
+
+                    notifyDataSetChanged();
+
+                    reportHandler.setCurrentReport(current);
+
+                    Log.d(TAG, "onClick: " + current.getBuyerFirstName() + " " + current.getSellerFirstName() + " " + current.getReportId());
+
+
+                    //Toast.makeText(mContext,"selected"+ current.getFullName(),Toast.LENGTH_LONG).show();
+                }
+            });
         }
     }
 
@@ -56,6 +85,9 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
 
     void setReports(List<Report> reports) {
         this.reports = reports;
+        reports.forEach(report -> {
+            Log.d(TAG, "setReports: " + report.getReportId());
+        });
         notifyDataSetChanged();
     }
 }
