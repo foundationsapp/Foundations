@@ -95,8 +95,8 @@ public interface FoundationsDao {
     @Query("UPDATE seller_table SET firstName = :firstName, lastName  = :lastName, email = :email, phone = :phone WHERE sellerId = :sellerId")
     void updateSellerInfo(Integer sellerId, String firstName, String lastName, String email, String phone);
 
-    @Query("UPDATE profile_table SET firstName = :firstName, lastName  = :lastName, email = :email, phone = :phone, companyName = :companyName, licenseNumber = :licenseNumber WHERE profileId = :profileId")
-    void updateProfileInfo(Integer profileId, String firstName, String lastName, String email, String phone, String companyName, String licenseNumber);
+    @Query("UPDATE profile_table SET firstName = :firstName, lastName  = :lastName, email = :email, phone = :phone, companyName = :companyName, licenseNumber = :licenseNumber, photo = :photo WHERE profileId = :profileId")
+    void updateProfileInfo(Integer profileId, String firstName, String lastName, String email, String phone, String companyName, String licenseNumber, String photo);
 
 
     // DELETE QUERIES

@@ -43,7 +43,7 @@ public class MainViewModel extends AndroidViewModel {
     public void updateListItem(Integer listItemId, Boolean notes, Boolean photos) {foundationsRepository.updateListItem(listItemId, notes, photos);}
     public void updateBuyerInfo(Integer buyerId, String firstName, String lastName, String email, String phone) {foundationsRepository.updateBuyerInfo(buyerId, firstName, lastName, email, phone);}
     public void updateSellerInfo(Integer sellerId, String firstName, String lastName, String email, String phone) {foundationsRepository.updateSellerInfo(sellerId, firstName, lastName, email, phone);}
-    public void updateProfileInfo(Integer profileId, String firstName, String lastName, String email, String phone, String companyName, String licenseNumber) {foundationsRepository.updateProfileInfo(profileId, firstName, lastName, email, phone, companyName, licenseNumber);}
+    public void updateProfileInfo(Integer profileId, String firstName, String lastName, String email, String phone, String companyName, String licenseNumber, String photo) {foundationsRepository.updateProfileInfo(profileId, firstName, lastName, email, phone, companyName, licenseNumber, photo);}
 
     public LiveData<List<Profile>> getAllProfiles() {
         return allProfiles;
