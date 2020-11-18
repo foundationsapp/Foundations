@@ -148,7 +148,7 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
                 return true;
             }
         });
-        Fragment dashFragment = new DashFragment();
+        Fragment dashFragment = new DashFragment(this);
         loadFragment(dashFragment);
     }
 

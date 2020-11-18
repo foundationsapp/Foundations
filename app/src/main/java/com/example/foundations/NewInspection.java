@@ -34,6 +34,7 @@ public class NewInspection extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         updateReport = false;
 
         View view = inflater.inflate(R.layout.start_inspection, container, false);
@@ -89,6 +90,7 @@ public class NewInspection extends Fragment {
         }
         Fragment fragment = new SiteDetailsFragment(fragmentSwitcher);
         fragmentSwitcher.loadFragment(fragment);
+
 
     }
 }

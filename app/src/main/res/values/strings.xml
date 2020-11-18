@@ -58,6 +58,10 @@
     <string name="select_inspection">Select Inspection</string>
     <string name="start_new_inspection">Start New Inspection</string>
     <string name="please_select_insp">Please select a profile</string>
+
+    <string name="new_inspection">NEW INSPECTION</string>
+    <string name="inspection">INSPECTION</string>
+
     <string name="site_details_title">Site Details</string>
     <string name="sd_bedrooms">Bedrooms</string>
     <string name="_2">2</string>
@@ -84,4 +88,5 @@
     <string name="submit_and_continue">Submit and Continue</string>
     <string name="current_report_key">currentReport</string>
     <string name="currentReportIdKey">currentReportId</string>
+
 </resources>

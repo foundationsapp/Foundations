@@ -31,10 +31,6 @@ public class MainActivity extends AppCompatActivity implements SetProfileHandler
     };
     String dir_path;
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
