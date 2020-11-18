@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewInspection">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/basic_information"
+            android:textStyle="bold"
+            android:textSize="@dimen/_40"
+            android:layout_gravity="center"/>
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/_25"
+            android:layout_gravity="center"
+
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/buyer_information"
+
+                android:textStyle="bold"
+                android:textSize="@dimen/_20"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_marginTop="@dimen/_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/first_name"
+                android:textStyle="bold"
+                android:textSize="@dimen/_20"
+               />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40"
+                android:background="@drawable/form"
+                android:hint="@string/michael"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/last_name"
+                android:textStyle="bold"
+                android:textSize="@dimen/_20" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40"
+                android:background="@drawable/form"
+                android:hint="@string/jobs"/>
+
+            <TextView
+                android:layout_marginTop="@dimen/_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/seller_information"
+                android:textStyle="bold"
+                android:textSize="@dimen/_20"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_marginTop="@dimen/_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/first_name"
+                android:textStyle="bold"
+                android:textSize="@dimen/_20"
+                />
+            <EditText
+                android:hint="@string/michael"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40"
+                android:background="@drawable/form"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/last_name"
+                android:textStyle="bold"
+                android:textSize="@dimen/_20" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40"
+                android:background="@drawable/form"
+                android:hint="@string/jobs"/>
+
+            <TextView
+                android:layout_marginTop="@dimen/_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/site_information"
+                android:textStyle="bold"
+                android:textSize="@dimen/_20"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_marginTop="@dimen/_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/address"
+                android:textStyle="bold"
+                android:textSize="@dimen/_20"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40"
+                android:background="@drawable/form"
+                android:hint="1256 Marline CT"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/city"
+                android:textStyle="bold"
+                android:textSize="@dimen/_20" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40"
+                android:background="@drawable/form"
+                android:hint="@string/seattle"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/state"
+                android:textStyle="bold"
+                android:textSize="@dimen/_20" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40"
+                android:background="@drawable/form"
+                android:hint="@string/wa"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/zip_code"
+                android:textStyle="bold"
+                android:textSize="@dimen/_20" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40"
+                android:background="@drawable/form"
+                android:hint="@string/_98133" />
+
+
+            <Button
+                android:background="@drawable/save_shape"
+                android:layout_marginTop="@dimen/_25"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:text="@string/save_and_continue"
+                android:textStyle="bold"
+                android:layout_marginBottom="@dimen/_25"
+                android:textSize="@dimen/_20" />
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+    </ScrollView>
+</FrameLayout>
