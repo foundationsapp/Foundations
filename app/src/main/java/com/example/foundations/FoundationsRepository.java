@@ -139,9 +139,9 @@ public class FoundationsRepository {
         });
     }
 
-    void updateProfileInfo(Integer profileId, String firstName, String lastName, String email, String phone, String companyName, String licenseNumber) {
+    void updateProfileInfo(Integer profileId, String firstName, String lastName, String email, String phone, String companyName, String licenseNumber, String photo) {
         FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            foundationsDao.updateProfileInfo(profileId, firstName, lastName, email, phone, companyName, licenseNumber);
+            foundationsDao.updateProfileInfo(profileId, firstName, lastName, email, phone, companyName, licenseNumber, photo);
         });
     }
 

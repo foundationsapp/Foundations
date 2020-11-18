@@ -31,6 +31,7 @@ public class Profile implements Parcelable {
         email = in.readString();
         phone = in.readString();
         companyName = in.readString();
+        photo = in.readString();
     }
 
     public static final Creator<Profile> CREATOR = new Creator<Profile>() {
@@ -76,6 +77,12 @@ public class Profile implements Parcelable {
     private String companyName;
     public String getCompanyName() { return companyName; }
 
+    @ColumnInfo(name = "photo")
+    private String photo;
+
+    public String getPhoto() { return photo; }
+    public void setPhoto(String photo) { this.photo = photo; }
+
     public void setFirstName(@NonNull String firstName) {
         this.firstName = firstName;
     }
@@ -108,7 +115,7 @@ public class Profile implements Parcelable {
         return fullName.toString();
     }
 
-    public Profile(@NonNull String firstName, @NonNull String lastName, @NonNull String licenseNumber, @NonNull String email, @NonNull String phone, String companyName) {
+    public Profile(@NonNull String firstName, @NonNull String lastName, @NonNull String licenseNumber, @NonNull String email, @NonNull String phone, String companyName, String photo) {
         this.profileId = null;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -116,6 +123,7 @@ public class Profile implements Parcelable {
         this.email = email;
         this.phone = phone;
         this.companyName = companyName;
+        this.photo = photo;
     }
 
     @Override
@@ -137,5 +145,6 @@ public class Profile implements Parcelable {
         dest.writeString(email);
         dest.writeString(phone);
         dest.writeString(companyName);
+        dest.writeString(photo);
     }
 }
