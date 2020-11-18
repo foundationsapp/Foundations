@@ -20,11 +20,17 @@ public class Report {
     @ColumnInfo(name = "profileId")
     private Integer profileId;
 
-    @ColumnInfo(name ="buyerId")
-    private Integer buyerId;
+    @ColumnInfo(name ="buyerFirstName")
+    private String buyerFirstName;
 
-    @ColumnInfo(name = "sellerId")
-    private Integer sellerId;
+    @ColumnInfo(name = "buyerLastName")
+    private String buyerLastName;
+
+    @ColumnInfo(name = "sellerFirstName")
+    private String sellerFirstName;
+
+    @ColumnInfo(name = "sellerLastName")
+    private String sellerLastName;
 
     @NonNull
     @ColumnInfo(name = "street")
@@ -40,7 +46,7 @@ public class Report {
 
     @NonNull
     @ColumnInfo(name = "zip")
-    private int zip;
+    private String zip;
 
     @NonNull
     public Integer getProfileId() {
@@ -51,20 +57,36 @@ public class Report {
         this.profileId = profileId;
     }
 
-    public Integer getBuyerId() {
-        return buyerId;
+    public String getBuyerFirstName() {
+        return buyerFirstName;
     }
 
-    public void setBuyerId(Integer buyerId) {
-        this.buyerId = buyerId;
+    public void setBuyerFirstName(String buyerFirstName) {
+        this.buyerFirstName = buyerFirstName;
     }
 
-    public Integer getSellerId() {
-        return sellerId;
+    public String getBuyerLastName() {
+        return buyerLastName;
     }
 
-    public void setSellerId(Integer sellerId) {
-        this.sellerId = sellerId;
+    public void setBuyerLastName(String buyerLastName) {
+        this.buyerLastName = buyerLastName;
+    }
+
+    public String getSellerFirstName() {
+        return sellerFirstName;
+    }
+
+    public void setSellerFirstName(String sellerFirstName) {
+        this.sellerFirstName = sellerFirstName;
+    }
+
+    public String getSellerLastName() {
+        return sellerLastName;
+    }
+
+    public void setSellerLastName(String sellerLastName) {
+        this.sellerLastName = sellerLastName;
     }
 
     @NonNull
@@ -94,11 +116,11 @@ public class Report {
         this.state = state;
     }
 
-    public int getZip() {
+    public String getZip() {
         return zip;
     }
 
-    public void setZip(int zip) {
+    public void setZip(String zip) {
         this.zip = zip;
     }
 
@@ -118,11 +140,13 @@ public class Report {
         return addr.toString();
     }
 
-    public Report(@NonNull Integer profileId, Integer buyerId, Integer sellerId, @NonNull String street, @NonNull String city, @NonNull String state, @NonNull int zip) {
+    public Report(@NonNull Integer profileId, String buyerFirstName, String buyerLastName, String sellerFirstName, String sellerLastName, @NonNull String street, @NonNull String city, @NonNull String state, @NonNull String zip) {
         this.reportId  = null;
         this.profileId = profileId;
-        this.buyerId = buyerId;
-        this.sellerId = sellerId;
+        this.buyerFirstName = buyerFirstName;
+        this.buyerLastName = buyerLastName;
+        this.sellerFirstName = sellerFirstName;
+        this.sellerLastName = sellerLastName;
         this.street = street;
         this.city = city;
         this.state = state;

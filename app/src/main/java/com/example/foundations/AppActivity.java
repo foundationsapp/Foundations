@@ -44,6 +44,9 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
     private MainViewModel mainViewModel;
+    private Profile currentProfile;
+    private Report currentReport;
+    private Integer profileId;
     String lName, fName, License, Company, email, phone, photo;
     int profileid;
     Uri contentUri;
@@ -56,7 +59,7 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.app_page);
         Intent intent = getIntent();
-        Profile currentProfile = intent.getParcelableExtra(String.valueOf(R.string.userProfile));
+        currentProfile = intent.getParcelableExtra(String.valueOf(R.string.userProfile));
         Log.d(TAG, "onCreate: " + currentProfile.getFullName());
         MainViewModel mainViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(MainViewModel.class);
 
@@ -151,6 +154,12 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
         fragmentTransaction.addToBackStack(null);
 
     }
+
+    public Profile getProfile() {
+        return currentProfile;
+    }
+    public Report getCurrentReport() { return currentReport; }
+    public void setCurrentReport(Report report) { this.currentReport = report; }
 
     @Override
     public boolean onOptionsItemSelected( MenuItem item) {
