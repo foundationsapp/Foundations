@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,7 +47,7 @@ public class SignUp extends AppCompatActivity {
     String pic_path;
     Uri contentUri;
     ImageView profileimage;
-
+    private static final String TAG = "SignUp";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,10 +76,10 @@ public class SignUp extends AppCompatActivity {
                     phone = editPhone.getText().toString();
                     company = editCompanyName.getText().toString();
                     photo = pic_path;
+                    Log.d(TAG, "onClick: " + photo);
                     Profile newProfile = new Profile(firstName, lastName, license, email, phone, company, photo);
                     mainViewModel.insertProfile(newProfile);
-                    Intent intent = new Intent(SignUp.this, AppActivity.class);
-                    intent.putExtra(String.valueOf(R.string.userProfile), newProfile);
+                    Intent intent = new Intent(SignUp.this, MainActivity.class);
                     startActivity(intent);
                 }else{
                     Toast.makeText(SignUp.this, R.string.empty_field, Toast.LENGTH_LONG).show();
@@ -94,7 +95,7 @@ public class SignUp extends AppCompatActivity {
      String file_name = System.currentTimeMillis() +".jpg";
 
 
-     pic_path = "/sdcard/DCIM/Camera/" + file_name;
+     pic_path = "/storage/emulated/0/DCIM/Camera/" + file_name;
 
      File file = new File(pic_path);
      if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){

@@ -8,6 +8,7 @@ import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -29,9 +31,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.util.List;
+
+import static java.security.AccessController.getContext;
 
 public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
 
@@ -72,19 +77,11 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
 
         View header_view = navigationView.getHeaderView(0);
 
-        File file = new File(profile_pic_path);
-
-        contentUri= Uri.fromFile(file);
-        Bitmap bitmap = BitmapFactory.decodeFile(contentUri.getPath());
-        float degree = getDegree();
-        System.out.println(degree);
-
-        Bitmap bitmap2 = rotateBitmap(bitmap, degree);
-
 
         header_view.setBackgroundResource(R.drawable.logo);
         ImageView header_image = (ImageView)header_view.findViewById(R.id.profile_picture);
-        header_image.setImageBitmap(bitmap2);
+        File file = new File(profile_pic_path);
+        Picasso.get().load(file).into(header_image);
 
         //user_name & user_email
 
