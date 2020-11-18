@@ -142,7 +142,7 @@ public class ProfileFragment extends DialogFragment{
         return 0;
     }
     public boolean check() {
-        boolean f;
+        boolean f = true;
         if (fName.getText().toString().isEmpty() || lName.getText().toString().isEmpty() ||
                 lnumber.getText().toString().isEmpty() || companyname.getText().toString().isEmpty() ||
                 Email.getText().toString().isEmpty() || phone.getText().toString().isEmpty()) {
@@ -165,9 +165,6 @@ public class ProfileFragment extends DialogFragment{
         if (!phone.getText().toString().replaceAll(" ","").replaceAll("[-()]","").matches("[0-9]{10}")){
             phone.setError("Please Enter Only 10 Digit phone number");
             f = false;
-        }
-        else {
-            f = true;
         }
         return f;
     }
