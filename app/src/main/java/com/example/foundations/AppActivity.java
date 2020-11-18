@@ -48,7 +48,6 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
     private Report currentReport;
     private Integer profileId;
     String lName, fName, License, Company, email, phone, photo;
-    int profileid;
     Uri contentUri;
 
     private final static String TAG = AppActivity.class.getSimpleName();
@@ -60,7 +59,7 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
         setContentView(R.layout.app_page);
         Intent intent = getIntent();
         currentProfile = intent.getParcelableExtra(String.valueOf(R.string.userProfile));
-        Log.d(TAG, "onCreate: " + currentProfile.getFullName());
+        profileId = currentProfile.getProfileId();
         MainViewModel mainViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(MainViewModel.class);
 
 //        RecyclerView reportRecyclerView = findViewById(R.id.report_recyclerview);
@@ -74,17 +73,21 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Log.d(TAG,"photo: "+ currentProfile.getPhoto());
-        String profile_pic_path = currentProfile.getPhoto();
+
         navigationView = findViewById(R.id.navigation_view);
 
         View header_view = navigationView.getHeaderView(0);
 
 
         header_view.setBackgroundResource(R.drawable.logo);
-        ImageView header_image = (ImageView)header_view.findViewById(R.id.profile_picture);
-        File file = new File(profile_pic_path);
-        Picasso.get().load(file).into(header_image);
+        String profile_pic_path;
+        if (currentProfile.getPhoto() != null) {
+            profile_pic_path = currentProfile.getPhoto();
+            ImageView header_image = (ImageView)header_view.findViewById(R.id.profile_picture);
+            File file = new File(profile_pic_path);
+            Picasso.get().load(file).into(header_image);
+        }
+
 
         //user_name & user_email
 
@@ -115,7 +118,10 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
                         Company = currentProfile.getCompanyName();
                         email = currentProfile.getEmail();
                         phone = currentProfile.getPhone();
-                        photo = currentProfile.getPhoto();
+                        if (currentProfile != null) {
+                            photo = currentProfile.getPhoto();
+                        } else photo = null;
+
 
                         break;
                     case R.id.inspections:

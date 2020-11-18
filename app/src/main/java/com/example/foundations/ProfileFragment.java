@@ -24,6 +24,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.File;
 
 public class ProfileFragment extends DialogFragment{
@@ -43,13 +45,7 @@ public class ProfileFragment extends DialogFragment{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         AppActivity activity =(AppActivity) getActivity();
-        String profile_pic_path = (activity.photo);
-        System.out.println(profile_pic_path);
 
-        File file = new File(profile_pic_path);
-
-        contentUri = Uri.fromFile(file);
-        Bitmap bitmap = BitmapFactory.decodeFile(contentUri.getPath());
 
         fName = (TextView)view.findViewById(R.id.firstnameFrag);
         lName = (TextView)view.findViewById(R.id.lastnameFrag);
@@ -61,12 +57,7 @@ public class ProfileFragment extends DialogFragment{
         btn_edit = (Button)view.findViewById(R.id.Profile_edit);
 
         profile_pic =(ImageView)view.findViewById(R.id.profile_pic);
-        float degree = getDegree();
 
-        Bitmap bitmap2 = rotateBitmap(bitmap, degree);
-
-        //profile_pic.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_account_circle_24));
-        profile_pic.setImageBitmap(bitmap2);
 
         fName.setText(activity.fName);
         lName.setText(activity.lName);
@@ -74,7 +65,11 @@ public class ProfileFragment extends DialogFragment{
         companyname.setText(activity.Company);
         Email.setText(activity.email);
         phone.setText(activity.phone);
-
+        String profile_pic_path = (activity.photo);
+        if (profile_pic_path != null) {
+            File file = new File(profile_pic_path);
+            Picasso.get().load(file).into(profile_pic);
+        }
         btn_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
