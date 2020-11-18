@@ -43,7 +43,7 @@ public class DashFragment extends Fragment implements SetReportHandler{
             @Override
             public void onClick(View view) {
 
-               Fragment fragment=new NewInspection();
+               Fragment fragment=new NewInspection(fragmentSwitcher);
                fragmentSwitcher.loadFragment(fragment);
 
 
