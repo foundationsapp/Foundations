@@ -17,10 +17,6 @@ public class MainActivity extends AppCompatActivity implements SetProfileHandler
     private static final String TAG = MainActivity.class.getSimpleName();
     private Profile currentProfile;
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

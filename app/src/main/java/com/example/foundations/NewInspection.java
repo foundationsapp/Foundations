@@ -14,6 +14,11 @@ public class NewInspection extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.start_inspection, container, false);
+
+
+        View view= inflater.inflate(R.layout.start_inspection, container, false);
+        return view;
+
+
     }
 }

@@ -30,6 +30,25 @@
             android:id="@+id/report_recyclerview"
             tools:listitem="@layout/report_recyclerview_item"/>
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/inspection_frag_new_inspection"
+            android:text="@string/new_inspection"
+            android:textSize="@dimen/_20"
+            android:layout_marginBottom="@dimen/_dp05"
+            android:textAlignment="center"
+            android:background="@drawable/get_started"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
+            tools:ignore="onClick" />
+
+
+
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
