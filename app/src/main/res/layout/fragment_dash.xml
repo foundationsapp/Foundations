@@ -33,7 +33,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/select_inspection"
+            android:id="@+id/dash_frag_select_inspection"
             android:text="@string/select_inspection"
             android:textSize="@dimen/_20"
             android:layout_marginBottom="@dimen/_10"
@@ -41,13 +41,13 @@
             android:background="@drawable/get_started"
             android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/inspection_frag_new_inspection"/>
+            app:layout_constraintBottom_toTopOf="@id/dash_frag_new_inspection"/>
 
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/inspection_frag_new_inspection"
+            android:id="@+id/dash_frag_new_inspection"
             android:text="@string/new_inspection"
             android:textSize="@dimen/_20"
             android:layout_marginBottom="@dimen/_dp05"
