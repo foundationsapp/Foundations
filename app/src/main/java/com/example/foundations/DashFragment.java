@@ -37,37 +37,29 @@ public class DashFragment extends Fragment implements SetReportHandler{
         View view = inflater.inflate(R.layout.fragment_dash, container, false);
 
 
-
-        Button inspection_frag_new_inspection=(Button) view.findViewById(R.id.inspection_frag_new_inspection);
-        inspection_frag_new_inspection.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-               Fragment fragment=new NewInspection(fragmentSwitcher);
-               fragmentSwitcher.loadFragment(fragment);
-
-
-            }
-        });
-
-
-
-      
         RecyclerView reportRecyclerView = view.findViewById(R.id.report_recyclerview);
         final ReportAdapter reportAdapter = new ReportAdapter(reportRecyclerView.getContext(), this);
-
         reportRecyclerView.setAdapter(reportAdapter);
-       reportRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        reportRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         MainViewModel mainViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(MainViewModel.class);
         mainViewModel.getAllReports().observe(getViewLifecycleOwner(), reportAdapter::setReports);
-       return view;
 
+        Button newInspection = view.findViewById(R.id.dash_frag_new_inspection);
+        newInspection.setOnClickListener(v -> {
+            Fragment fragment = new NewInspection(fragmentSwitcher);
+            fragmentSwitcher.loadFragment(fragment);
+        });
+        Button selectInspection = view.findViewById(R.id.dash_frag_select_inspection);
+        selectInspection.setOnClickListener(v -> {
+            Fragment fragment = new NewInspection(fragmentSwitcher);
+            fragmentSwitcher.setCurrentReport(currentReport);
+            fragmentSwitcher.loadFragment(fragment);
+        });
+        return view;
     }
-
 
     @Override
     public void setCurrentReport(Report currentReport) {
         this.currentReport = currentReport;
     }
-
 }

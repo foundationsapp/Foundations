@@ -29,12 +29,17 @@ public class InspectionFragment extends Fragment implements SetReportHandler {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         fragmentSwitcher.setCurrentReport(null);
         View view = inflater.inflate(R.layout.fragment_inspection, container, false);
+
+
         RecyclerView reportRecyclerView = view.findViewById(R.id.all_inspections_recyclerview);
         final ReportAdapter reportAdapter = new ReportAdapter(reportRecyclerView.getContext(), this);
         reportRecyclerView.setAdapter(reportAdapter);
         reportRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         MainViewModel mainViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(MainViewModel.class);
         mainViewModel.getAllReports().observe(getViewLifecycleOwner(), reportAdapter::setReports);
+
+
+
         Button newInspection = view.findViewById(R.id.inspection_frag_new_inspection);
         newInspection.setOnClickListener(v -> {
             Fragment fragment = new NewInspection(fragmentSwitcher);
