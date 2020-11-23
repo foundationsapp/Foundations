@@ -34,6 +34,7 @@ public class DashFragment extends Fragment implements SetReportHandler{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        fragmentSwitcher.setCurrentReport(null);
         View view = inflater.inflate(R.layout.fragment_dash, container, false);
 
 
