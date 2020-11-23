@@ -56,7 +56,7 @@
                 android:id="@+id/ni_buyer_first_name"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40"
-                android:background="@drawable/form"
+                android:backgroundTint="@color/colorPrimary"
                 android:hint="@string/michael"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -68,7 +68,7 @@
                 android:id="@+id/ni_buyer_last_name"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40"
-                android:background="@drawable/form"
+                android:backgroundTint="@color/colorPrimary"
                 android:hint="@string/jobs"/>
 
             <TextView
@@ -87,12 +87,16 @@
                 android:textStyle="bold"
                 android:textSize="@dimen/_20"
                 />
+
             <EditText
                 android:id="@+id/ni_seller_first_name"
-                android:hint="@string/michael"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40"
-                android:background="@drawable/form"/>
+                android:backgroundTint="@color/colorPrimary"
+                android:hint="@string/michael" />
+
+
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -103,7 +107,7 @@
                 android:id="@+id/ni_seller_last_name"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40"
-                android:background="@drawable/form"
+                android:backgroundTint="@color/colorPrimary"
                 android:hint="@string/jobs"/>
 
             <TextView
@@ -126,7 +130,7 @@
                 android:id="@+id/ni_address"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40"
-                android:background="@drawable/form"
+                android:backgroundTint="@color/colorPrimary"
                 android:hint="1256 Marline CT"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -138,7 +142,7 @@
                 android:id="@+id/ni_city"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40"
-                android:background="@drawable/form"
+                android:backgroundTint="@color/colorPrimary"
                 android:hint="@string/seattle"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -150,7 +154,7 @@
                 android:id="@+id/ni_state"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40"
-                android:background="@drawable/form"
+                android:backgroundTint="@color/colorPrimary"
                 android:hint="@string/wa"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -162,7 +166,7 @@
                 android:id="@+id/ni_zip"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40"
-                android:background="@drawable/form"
+                android:backgroundTint="@color/colorPrimary"
                 android:hint="@string/_98133" />
 
 
@@ -177,6 +181,7 @@
                 android:textColor="@color/white"
                 android:text="@string/save_and_continue"
                 android:textStyle="bold"
+                android:backgroundTint="@color/colorPrimary"
                 android:layout_marginBottom="@dimen/_25"
 
                 android:textSize="@dimen/_20" />

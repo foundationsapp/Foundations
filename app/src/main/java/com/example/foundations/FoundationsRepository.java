@@ -1,9 +1,6 @@
 package com.example.foundations;
 
 import android.app.Application;
-import android.util.Log;
-
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import java.util.List;
 
@@ -15,11 +12,12 @@ public class FoundationsRepository {
     private LiveData<List<Buyer>> allBuyers;
     private LiveData<List<Seller>> allSellers;
     private LiveData<List<Report>> allReports;
+    private LiveData<List<Category>> allCategories;
+    private LiveData<List<SubCategory>> allSubCategories;
+    private LiveData<List<SiteDetails>> currentSiteDetails;
     private LiveData<List<Note>> currentReportNotes;
     private LiveData<List<Photo>> currentReportPhotos;
     private LiveData<List<ListItemDetails>> currentListItemDetails;
-    private List<SiteDetails> allSiteDetails;
-    private List<SiteDetails> currentSiteDetails;
 
     FoundationsRepository(Application application) {
         FoundationsRoomDatabase db = FoundationsRoomDatabase.getDatabase(application);
@@ -28,9 +26,8 @@ public class FoundationsRepository {
         allBuyers = foundationsDao.getAllBuyers();
         allSellers = foundationsDao.getAllSellers();
         allReports = foundationsDao.getAllReports();
-        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            allSiteDetails = foundationsDao.getAllSiteDetails();
-        });
+        allCategories = foundationsDao.getAllCategories();
+        allSubCategories = foundationsDao.getAllSubCategories();
         loadReportData(1);
     }
 
@@ -97,27 +94,27 @@ public class FoundationsRepository {
 
 
     // UPDATE QUERIES
-//    void updateReportBuyer(Integer buyerId, Integer reportId) {
-//        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-//            foundationsDao.updateReportBuyer(buyerId, reportId);
-//        });
-//    }
-//
-//    void updateReportSeller(Integer sellerId, Integer reportId) {
-//        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-//            foundationsDao.updateReportSeller(sellerId, reportId);
-//        });
-//    }
-
-    void updateReport(Integer reportId, String buyerFirstName, String buyerLastName, String sellerFirstName, String sellerLastName, @NonNull String street, @NonNull String city, @NonNull String state, @NonNull String zip) {
+    void updateReportBuyer(Integer buyerId, Integer reportId) {
         FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            foundationsDao.updateReport(reportId, buyerFirstName, buyerLastName, sellerFirstName, sellerLastName, street, city, state, zip);
+            foundationsDao.updateReportBuyer(buyerId, reportId);
         });
     }
 
-    void updateSiteDetails(Integer reportId, double bathrooms, int bedrooms, int stories, double inspectionFee, int yearBuilt, String furnished, String presentAtInspection, String orientation) {
+    void updateReportSeller(Integer sellerId, Integer reportId) {
         FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            foundationsDao.updateSiteDetails(reportId, bathrooms, bedrooms, stories, inspectionFee, yearBuilt, furnished, presentAtInspection, orientation);
+            foundationsDao.updateReportSeller(sellerId, reportId);
+        });
+    }
+
+    void updateReportAddress(Integer reportId, String street, String city, String state, int zip) {
+        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
+            foundationsDao.updateReportAddress(reportId, street, city, state, zip);
+        });
+    }
+
+    void updateSiteDetails(Integer siteDetailsId, float bathrooms, int bedrooms, int stories, float inspectionFee, int yearBuilt, String furnished, String presentAtInspection, String orientation) {
+        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
+            foundationsDao.updateSiteDetails(siteDetailsId, bathrooms, bedrooms, stories, inspectionFee, yearBuilt, furnished, presentAtInspection, orientation);
         });
     }
 
@@ -139,9 +136,9 @@ public class FoundationsRepository {
         });
     }
 
-    void updateProfileInfo(Integer profileId, String firstName, String lastName, String email, String phone, String companyName, String licenseNumber, String photo) {
+    void updateProfileInfo(Integer profileId, String firstName, String lastName, String email, String phone, String companyName, String licenseNumber) {
         FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            foundationsDao.updateProfileInfo(profileId, firstName, lastName, email, phone, companyName, licenseNumber, photo);
+            foundationsDao.updateProfileInfo(profileId, firstName, lastName, email, phone, companyName, licenseNumber);
         });
     }
 
@@ -221,28 +218,21 @@ public class FoundationsRepository {
     LiveData<List<Report>> getAllReports() {
         return allReports;
     }
-    List<SiteDetails> getAllSiteDetails() { return allSiteDetails; }
-    List<SiteDetails> getCurrentSiteDetails() { return currentSiteDetails; }
+    LiveData<List<Category>> getAllCategories() { return allCategories; }
+    LiveData<List<SubCategory>> getAllSubCategories() { return allSubCategories; }
+    LiveData<List<SiteDetails>> getCurrentSiteDetails() { return currentSiteDetails; }
     LiveData<List<Photo>> getCurrentReportPhotos() { return currentReportPhotos; }
     LiveData<List<Note>> getCurrentReportNotes() { return currentReportNotes; }
     LiveData<List<ListItemDetails>> getCurrentListItemDetails() { return currentListItemDetails; }
 
     // FETCH REPORT DATA QUERIES
     void loadReportData(Integer reportId) {
-       // currentSiteDetails = foundationsDao.getSiteDetails(reportId);
+        currentSiteDetails = foundationsDao.getSiteDetails(reportId);
         currentReportNotes = foundationsDao.getNotes(reportId);
         currentReportPhotos = foundationsDao.getPhotos(reportId);
         currentListItemDetails = foundationsDao.getListItems(reportId);
     }
 
-    Report getNewReport() {
-        return foundationsDao.getNewReport();
-    }
-
-    List<SiteDetails> getSiteDetails(int id) {
-        currentSiteDetails = foundationsDao.getSiteDetails(id);
-        return currentSiteDetails;
-    }
 
 
 }

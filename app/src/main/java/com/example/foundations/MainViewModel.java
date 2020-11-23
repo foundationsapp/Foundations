@@ -1,21 +1,19 @@
 package com.example.foundations;
 
 import android.app.Application;
-import android.util.Log;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class MainViewModel extends AndroidViewModel {
 
     private static final String TAG = MainViewModel.class.getSimpleName();
     LiveData<List<Profile>> allProfiles;
     LiveData<List<Report>> allReports;
-    List<SiteDetails> allSiteDetails;
+    private LiveData<List<Category>> allCategories;
+    private LiveData<List<SubCategory>> allSubCategories;
     private FoundationsRepository foundationsRepository;
 
     public MainViewModel(Application application) {
@@ -23,7 +21,8 @@ public class MainViewModel extends AndroidViewModel {
         foundationsRepository = new FoundationsRepository(application);
         allProfiles = foundationsRepository.getAllProfiles();
         allReports  = foundationsRepository.getAllReports();
-
+        allCategories = foundationsRepository.getAllCategories();
+        allSubCategories = foundationsRepository.getAllSubCategories();
     }
 
 
@@ -41,26 +40,20 @@ public class MainViewModel extends AndroidViewModel {
 
 
     // UPDATE
-//    public void updateReportBuyer(Integer buyerId, Integer reportId) {foundationsRepository.updateReportBuyer(buyerId, reportId);}
-//    public void updateReportSeller(Integer sellerId, Integer reportId) {foundationsRepository.updateReportSeller(sellerId, reportId);}
-    public void updateReport(Integer reportId, String buyerFirstName, String buyerLastName, String sellerFirstName, String sellerLastName, @NonNull String street, @NonNull String city, @NonNull String state, @NonNull String zip) {foundationsRepository.updateReport(reportId, buyerFirstName, buyerLastName, sellerFirstName, sellerLastName, street, city, state, zip);}
-    public void updateSiteDetails(Integer reportId, double bathrooms, int bedrooms, int stories, double inspectionFee, int yearBuilt, String furnished, String presentAtInspection, String orientation) {foundationsRepository.updateSiteDetails(reportId, bathrooms, bedrooms, stories, inspectionFee, yearBuilt, furnished, presentAtInspection, orientation);}
+    public void updateReportBuyer(Integer buyerId, Integer reportId) {foundationsRepository.updateReportBuyer(buyerId, reportId);}
+    public void updateReportSeller(Integer sellerId, Integer reportId) {foundationsRepository.updateReportSeller(sellerId, reportId);}
+    public void updateReportAddress(Integer reportId, String street, String city, String state, int zip) {foundationsRepository.updateReportAddress(reportId, street, city, state, zip);}
+    public void updateSiteDetails(Integer siteDetailsId, float bathrooms, int bedrooms, int stories, float inspectionFee, int yearBuilt, String furnished, String presentAtInspection, String orientation) {foundationsRepository.updateSiteDetails(siteDetailsId, bathrooms, bedrooms, stories, inspectionFee, yearBuilt, furnished, presentAtInspection, orientation);}
     public void updateListItem(Integer listItemId, Boolean notes, Boolean photos) {foundationsRepository.updateListItem(listItemId, notes, photos);}
     public void updateBuyerInfo(Integer buyerId, String firstName, String lastName, String email, String phone) {foundationsRepository.updateBuyerInfo(buyerId, firstName, lastName, email, phone);}
     public void updateSellerInfo(Integer sellerId, String firstName, String lastName, String email, String phone) {foundationsRepository.updateSellerInfo(sellerId, firstName, lastName, email, phone);}
-    public void updateProfileInfo(Integer profileId, String firstName, String lastName, String email, String phone, String companyName, String licenseNumber, String photo) {foundationsRepository.updateProfileInfo(profileId, firstName, lastName, email, phone, companyName, licenseNumber, photo);}
+    public void updateProfileInfo(Integer profileId, String firstName, String lastName, String email, String phone, String companyName, String licenseNumber) {foundationsRepository.updateProfileInfo(profileId, firstName, lastName, email, phone, companyName, licenseNumber);}
 
     public LiveData<List<Profile>> getAllProfiles() {
         return allProfiles;
     }
     public LiveData<List<Report>> getAllReports() { return allReports; }
-
-    public Report getNewReport() {
-        return foundationsRepository.getNewReport();
-    }
-
-    public List<SiteDetails> getSiteDetails(int id) {
-        return foundationsRepository.getSiteDetails(id);
-    }
+    LiveData<List<Category>> getAllCategories() { return allCategories; }
+    LiveData<List<SubCategory>> getAllSubCategories() { return allSubCategories; }
 
 }

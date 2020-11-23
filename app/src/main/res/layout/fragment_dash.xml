@@ -6,50 +6,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".DashFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id="@+id/appDash"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:orientation="vertical">
-        <TextView
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:text="@string/recent_inspections"
-            android:textSize="@dimen/_30"
-            android:layout_marginTop="@dimen/_10"
-            android:id="@+id/dash_frag_recent"
-            android:textColor="@color/colorPrimary"/>
-        <androidx.recyclerview.widget.RecyclerView
-            app:layout_constraintTop_toBottomOf="@id/dash_frag_recent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_300"
-            android:id="@+id/report_recyclerview"
-            tools:listitem="@layout/report_recyclerview_item"/>
-
+            <TextView
+                android:id="@+id/dash_frag_recent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10"
+                android:text="@string/recent_inspections"
+                android:textAlignment="center"
+                android:textColor="@color/background"
+                android:textSize="@dimen/_30"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/report_recyclerview"
+                android:layout_width="350dp"
+                android:layout_height="@dimen/_300"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dash_frag_recent"
+                tools:listitem="@layout/report_recyclerview_item" />
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/inspection_frag_new_inspection"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_100"
+            android:background="@drawable/save_shape"
+            android:backgroundTint="@color/colorPrimary"
             android:text="@string/new_inspection"
-            android:textSize="@dimen/_20"
-            android:layout_marginBottom="@dimen/_dp05"
-            android:textAlignment="center"
-            android:background="@drawable/get_started"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-
+            android:textSize="@dimen/_20"
             tools:ignore="onClick" />
 
 
-
-
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </FrameLayout>

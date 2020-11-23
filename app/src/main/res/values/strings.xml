@@ -88,5 +88,10 @@
     <string name="submit_and_continue">Submit and Continue</string>
     <string name="current_report_key">currentReport</string>
     <string name="currentReportIdKey">currentReportId</string>
+    <string name="save_pdf">SAVE AS PDF</string>
+    <string name="profile_picture">Profile picture</string>
+    <string name="subcategory_title">Subcategory Title</string>
+    <string name="categories">Categories</string>
+    <string name="category_name">Category Name</string>
 
 </resources>

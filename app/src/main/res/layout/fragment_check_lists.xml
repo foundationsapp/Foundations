@@ -9,162 +9,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/checklist_fragment"
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/checklists"
-            android:textStyle="bold"
-            android:textSize="@dimen/_40"
-            android:layout_gravity="center"/>
+            android:id="@+id/checklist_fragment_title"
+            android:text="@string/categories"
+            android:textSize="@dimen/_30"/>
 
-        <LinearLayout
-            android:layout_marginTop="@dimen/_25"
-            android:layout_gravity="center"
-            android:layout_width="350dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:id="@+id/cl_category_recyclerview"
+            tools:listitem="@layout/checklist_category_recyclerview_item"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/introduction"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/_20" />
-                <Button
-                    android:id="@+id/addIntro"
-                    android:layout_marginLeft="@dimen/_30"
-                    android:layout_width="@dimen/_30"
-                    android:layout_height="@dimen/_30"
-                    android:background="@drawable/ic_baseline_add_circle_24"
-                    android:backgroundTint="@color/black"
-                    android:clickable="true"
-                    android:focusable="true" />
-                <Button
-                    android:id="@+id/removeIntro"
-                    android:layout_width="@dimen/_30"
-                    android:layout_height="@dimen/_30"
-                    android:background="@drawable/ic_baseline_remove_circle_24"
-                    android:backgroundTint="@color/black"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginLeft="@dimen/_20"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/limitations"
-                    android:textSize="@dimen/_15"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/overview"
-                    android:textSize="@dimen/_15"/>
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_marginTop="@dimen/_25"
-            android:layout_gravity="center"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/exterior"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/_20" />
-                <Button
-                    android:id="@+id/addExterior"
-                    android:layout_marginLeft="@dimen/_70"
-                    android:layout_width="@dimen/_30"
-                    android:layout_height="@dimen/_30"
-                    android:background="@drawable/ic_baseline_add_circle_24"
-                    android:backgroundTint="@color/black"/>
-                <Button
-                    android:id="@+id/removeExterior"
-                    android:layout_width="@dimen/_30"
-                    android:layout_height="@dimen/_30"
-                    android:background="@drawable/ic_baseline_remove_circle_24"
-                    android:backgroundTint="@color/black"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginLeft="@dimen/_20"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/windows"
-                    android:textSize="@dimen/_15"/>
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="@dimen/_25"
-            android:layout_gravity="center"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/interior"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/_20" />
-                <Button
-                    android:id="@+id/addInterior"
-                    android:layout_marginLeft="@dimen/_75"
-                    android:layout_width="@dimen/_30"
-                    android:layout_height="@dimen/_30"
-                    android:background="@drawable/ic_baseline_add_circle_24"
-                    android:backgroundTint="@color/black"/>
-
-                <Button
-                    android:id="@+id/removeInterior"
-                    android:layout_width="@dimen/_30"
-                    android:layout_height="@dimen/_30"
-                    android:background="@drawable/ic_baseline_remove_circle_24"
-                    android:backgroundTint="@color/black"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginLeft="@dimen/_20"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/doors"
-                    android:textSize="@dimen/_15"/>
-            </LinearLayout>
-
-
-        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

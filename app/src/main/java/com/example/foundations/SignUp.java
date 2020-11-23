@@ -12,15 +12,12 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,13 +38,17 @@ public class SignUp extends AppCompatActivity {
     EditText editPhone;
     Button signUpButton;
     MainViewModel mainViewModel;
-    String firstName,lastName, license, email, phone, company;
-    String photo = null;
+
+    String [] permission_list = new String[]{
+            Manifest.permission.CAMERA,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+
     String dir_path;
-    String pic_path;
     Uri contentUri;
     ImageView profileimage;
-    private static final String TAG = "SignUp";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,12 @@ public class SignUp extends AppCompatActivity {
         mainViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(MainViewModel.class);
 
         profileimage = (ImageView)findViewById(R.id.signupimage);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            requestPermissions(permission_list,0);
+        } else {
+            init();
+        }
 
         editFirstName = findViewById(R.id.edit_first_name);
         editLastName = findViewById(R.id.edit_last_name);
@@ -69,17 +76,16 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (check()) {
-                    firstName = editFirstName.getText().toString();
-                    lastName = editLastName.getText().toString();
-                    license = editLicenseNumber.getText().toString();
-                    email = editEmail.getText().toString();
-                    phone = editPhone.getText().toString();
-                    company = editCompanyName.getText().toString();
-                    photo = pic_path;
-                    Log.d(TAG, "onClick: " + photo);
-                    Profile newProfile = new Profile(firstName, lastName, license, email, phone, company, photo);
+                    String firstName = editFirstName.getText().toString();
+                    String lastName = editLastName.getText().toString();
+                    String license = editLicenseNumber.getText().toString();
+                    String email = editEmail.getText().toString();
+                    String phone = editPhone.getText().toString();
+                    String company = editCompanyName.getText().toString();
+                    Profile newProfile = new Profile(firstName, lastName, license, email, phone, company);
                     mainViewModel.insertProfile(newProfile);
-                    Intent intent = new Intent(SignUp.this, MainActivity.class);
+                    Intent intent = new Intent(SignUp.this, AppActivity.class);
+                    intent.putExtra(String.valueOf(R.string.userProfile), newProfile);
                     startActivity(intent);
                 }else{
                     Toast.makeText(SignUp.this, R.string.empty_field, Toast.LENGTH_LONG).show();
@@ -88,24 +94,39 @@ public class SignUp extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        for(int a1 : grantResults){
+            if(a1 == PackageManager.PERMISSION_DENIED){
+                return;
+            }
+        }
+        init();
+    }
+
+    public void init(){
+        String temp_path = getExternalFilesDir(null).getAbsolutePath();
+        dir_path = temp_path + "/Android/data/" + getPackageName();
+        File file = new File(dir_path);
+        if(file.exists() == false){
+            file.mkdir();
+        }
+    }
     public void startCamera(View view){
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        String file_name = System.currentTimeMillis() +".jpg";
+        String pic_path = "/storage/emulated/0/DCIM/Camera" + file_name;
 
-     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        File file = new File(pic_path);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            contentUri = FileProvider.getUriForFile(this, "com.example.Foundations.file_provider",file);
+        } else {
+            contentUri = Uri.fromFile(file);
+        }
 
-     String file_name = System.currentTimeMillis() +".jpg";
-
-
-     pic_path = "/storage/emulated/0/DCIM/Camera/" + file_name;
-
-     File file = new File(pic_path);
-     if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-         contentUri = FileProvider.getUriForFile(this, "com.example.Foundations.file_provider",file);
-     } else {
-         contentUri = Uri.fromFile(file);
-     }
-
-     intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
-     startActivityForResult(intent,1);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
+        startActivityForResult(intent,1);
     }
 
     @Override
@@ -113,13 +134,7 @@ public class SignUp extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK){
             Bitmap bitmap = BitmapFactory.decodeFile(contentUri.getPath());
-            float degree = getDegree();
-
-            Bitmap bitmap2  = resizeBitmap(200,bitmap);
-
-            Bitmap bitmap3 = rotateBitmap(bitmap2, degree);
-            profileimage.setImageBitmap(bitmap3);
-
+            profileimage.setImageBitmap(bitmap);
         }
     }
 
@@ -152,60 +167,6 @@ public class SignUp extends AppCompatActivity {
             f = true;
         }
         return f;
-    }
-
-    public Bitmap rotateBitmap(Bitmap bitmap, float degree){
-        try{
-            int width = bitmap.getWidth();
-            int height = bitmap.getHeight();
-
-            Matrix matrix = new Matrix();
-
-            matrix.postRotate(degree);
-            Bitmap resizeBitmap = Bitmap.createBitmap(bitmap, 0, 0,width, height, matrix, true);
-
-            bitmap.recycle();
-            return resizeBitmap;
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public Bitmap resizeBitmap(int targetWidth, Bitmap source){
-        double ratio = (double)targetWidth/(double)source.getWidth();
-        int targetHeight = (int)(source.getHeight()*ratio);
-        Bitmap result = Bitmap.createScaledBitmap(source, targetWidth, targetHeight, false);
-
-        if (result != source){
-            source.recycle();
-        }
-        return result;
-    }
-
-    public float getDegree(){
-        try{
-            ExifInterface exif = new ExifInterface(contentUri.getPath());
-            int degree = 0;
-
-            int ori = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, -1);
-            switch (ori){
-                case ExifInterface.ORIENTATION_ROTATE_90:
-                    degree = 90;
-                    break;
-                case ExifInterface.ORIENTATION_ROTATE_180:
-                    degree = 180;
-                    break;
-                case ExifInterface.ORIENTATION_ROTATE_270:
-                    degree = 270;
-                    break;
-
-            }
-            return (float)degree;
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return 0;
     }
 
 
