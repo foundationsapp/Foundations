@@ -20,7 +20,8 @@ public class MICategoryAdapter extends RecyclerView.Adapter<MICategoryAdapter.MI
     private final LayoutInflater inflater;
     private List<Category> miCategories;
     private List<SubCategory> miSubcategories;
-    private Integer categoryId;
+    private int categoryId;
+    private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
 
     @NonNull
     @Override
@@ -29,15 +30,15 @@ public class MICategoryAdapter extends RecyclerView.Adapter<MICategoryAdapter.MI
         return new MICategoryAdapterViewHolder(miCategoryLayoutView);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull MICategoryAdapterViewHolder holder, int position) {
-        if (miCategories != null) {
-            Category currentCategory = miCategories.get(position);
-            Log.d(TAG, "onBindViewHolder: " + currentCategory.getTitle());
-
-            holder.miCategoryItemView.setText(currentCategory.getTitle());
-        }
-    }
+//    @Override
+//    public void onBindViewHolder(@NonNull MICategoryAdapterViewHolder holder, int position) {
+//        if (miCategories != null) {
+//            Category currentCategory = miCategories.get(position);
+//            Log.d(TAG, "onBindViewHolder: " + currentCategory.getTitle());
+//
+//            holder.miCategoryItemView.setText(currentCategory.getTitle());
+//        }
+//    }
 
     @Override
     public void onBindViewHolder(@NonNull MICategoryAdapterViewHolder holder, int position) {
@@ -56,7 +57,7 @@ public class MICategoryAdapter extends RecyclerView.Adapter<MICategoryAdapter.MI
             MISubcategoryAdapter miSubcategoryAdapter = new MISubcategoryAdapter(filteredList);
             holder.miSubcategoryRecyclerView.setLayoutManager(layoutManager);
             holder.miSubcategoryRecyclerView.setAdapter(miSubcategoryAdapter);
-         //   holder.miSubcategoryRecyclerView.setRecycledViewPool(viewPool);
+            holder.miSubcategoryRecyclerView.setRecycledViewPool(viewPool);
         }
     }
 
@@ -69,6 +70,11 @@ public class MICategoryAdapter extends RecyclerView.Adapter<MICategoryAdapter.MI
 
     void setMiCategories(List<Category> categories) {
         this.miCategories = categories;
+        notifyDataSetChanged();
+    }
+
+    void setMiSubcategories(List<SubCategory> subcategories) {
+        this.miSubcategories = subcategories;
         notifyDataSetChanged();
     }
 

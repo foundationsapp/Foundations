@@ -13,17 +13,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
 
 public class MISubcategoryAdapter extends RecyclerView.Adapter<MISubcategoryAdapter.MISubcategoryAdapterViewHolder> {
 
     private static final String TAG = "MISubcategoryAdapter";
-    private final LayoutInflater inflater;
     private List<SubCategory> miSubcategories;
 
     @NonNull
     @Override
     public MISubcategoryAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View MISubcategoryLayoutView = inflater.inflate(R.layout.mi_subcategory_item, parent, false);
+        View MISubcategoryLayoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.mi_subcategory_item, parent, false);
         return new MISubcategoryAdapterViewHolder(MISubcategoryLayoutView);
     }
 
@@ -58,8 +58,8 @@ public class MISubcategoryAdapter extends RecyclerView.Adapter<MISubcategoryAdap
         }
     }
 
-    public MISubcategoryAdapter(Context context) {
-        inflater = LayoutInflater.from(context);
+    public MISubcategoryAdapter(List<SubCategory> miSubcategories) {
+        this.miSubcategories = miSubcategories;
     }
 
 //    @Override

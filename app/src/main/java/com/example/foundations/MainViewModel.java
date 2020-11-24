@@ -17,6 +17,9 @@ public class MainViewModel extends AndroidViewModel {
     LiveData<List<Report>> allReports;
     private LiveData<List<Category>> allCategories;
     private LiveData<List<SubCategory>> allSubcategories;
+    private LiveData<List<ListItem>> allListItems;
+
+    private Integer currentReportId;
 
 
     List<SiteDetails> allSiteDetails;
@@ -28,8 +31,10 @@ public class MainViewModel extends AndroidViewModel {
         allProfiles = foundationsRepository.getAllProfiles();
         allReports  = foundationsRepository.getAllReports();
         allCategories = foundationsRepository.getAllCategories();
-
+        allSubcategories = foundationsRepository.getAllSubcategories();
+        allListItems = foundationsRepository.getAllListItems();
     }
+
 
 
     // INSERT

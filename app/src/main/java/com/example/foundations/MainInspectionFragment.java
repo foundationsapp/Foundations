@@ -35,6 +35,7 @@ public class MainInspectionFragment extends Fragment {
         miCategoryRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mainViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(MainViewModel.class);
         mainViewModel.getAllCategories().observe(getViewLifecycleOwner(), mCategoryAdapter::setMiCategories);
+        mainViewModel.getAllSubcategories().observe(getViewLifecycleOwner(), mCategoryAdapter::setMiSubcategories);
         return view;
     }
 }
