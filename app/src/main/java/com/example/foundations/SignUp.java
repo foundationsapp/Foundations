@@ -95,7 +95,7 @@ public class SignUp extends AppCompatActivity {
      String file_name = System.currentTimeMillis() +".jpg";
 
 
-     pic_path = "/storage/emulated/0/DCIM/Camera/" + file_name;
+     pic_path = "/sdcard/DCIM/Camera" + file_name;
 
      File file = new File(pic_path);
      if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){

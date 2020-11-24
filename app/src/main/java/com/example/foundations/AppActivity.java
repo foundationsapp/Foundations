@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
+import androidx.core.content.IntentCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -45,7 +46,6 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
     private NavigationView navigationView;
     private MainViewModel mainViewModel;
     String lName, fName, License, Company, email, phone, photo;
-    int profileid;
     Uri contentUri;
 
     private final static String TAG = AppActivity.class.getSimpleName();
@@ -78,7 +78,7 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
         View header_view = navigationView.getHeaderView(0);
 
 
-        header_view.setBackgroundResource(R.drawable.logo);
+        header_view.setBackgroundColor(Color.WHITE);
         ImageView header_image = (ImageView)header_view.findViewById(R.id.profile_picture);
         File file = new File(profile_pic_path);
         Picasso.get().load(file).into(header_image);
@@ -132,7 +132,9 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
                         loadFragment(fragment);
                         break;
                     case R.id.logout:
-                        startActivity(new Intent(AppActivity.this, MainActivity.class));
+                        //startActivity(new Intent(AppActivity.this, MainActivity.class));
+                        Intent intent = new Intent(AppActivity.this, MainActivity.class);
+                        startActivity(intent);
                     default:
                         return true;
                 }
@@ -159,6 +161,7 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
         }
         return super.onOptionsItemSelected(item);
     }
+
 
     public Bitmap rotateBitmap(Bitmap bitmap, float degree){
         try{

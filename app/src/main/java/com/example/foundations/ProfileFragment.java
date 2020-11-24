@@ -1,6 +1,7 @@
 package com.example.foundations;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -15,19 +16,30 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 
+import android.util.Log;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.File;
 
+import static android.content.ContentValues.TAG;
+import static android.content.Intent.getIntent;
+
 public class ProfileFragment extends DialogFragment{
-    TextView fName,lName,lnumber, companyname, Email, phone;
+    EditText fName,lName,lnumber, companyname, Email, phone;
+    String firstName,lastName, license, email, phoneN, company;
     Button btn_confirm, btn_edit;
     ImageView profile_pic;
     Uri contentUri;
@@ -40,9 +52,20 @@ public class ProfileFragment extends DialogFragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        //Profile currentProfile = intent.getParcelableExtra(String.valueOf(R.string.userProfile));
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         AppActivity activity =(AppActivity) getActivity();
+        activity.getResources();
+
+        Profile currentProfile = activity.getIntent().getParcelableExtra(String.valueOf(R.string.userProfile));
+        Log.d(TAG, "onCreate: " + currentProfile.getFullName());
+
+
+
+        MainViewModel mainViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(MainViewModel.class);
         String profile_pic_path = (activity.photo);
         System.out.println(profile_pic_path);
 
@@ -51,22 +74,22 @@ public class ProfileFragment extends DialogFragment{
         contentUri = Uri.fromFile(file);
         Bitmap bitmap = BitmapFactory.decodeFile(contentUri.getPath());
 
-        fName = (TextView)view.findViewById(R.id.firstnameFrag);
-        lName = (TextView)view.findViewById(R.id.lastnameFrag);
-        lnumber = (TextView)view.findViewById(R.id.licenseNumberFrag);
-        companyname = (TextView)view.findViewById(R.id.companyFrag);
-        Email = (TextView)view.findViewById(R.id.emailFrag);
-        phone = (TextView)view.findViewById(R.id.phoneFrag);
+        fName = (EditText) view.findViewById(R.id.firstnameFrag);
+        lName = (EditText) view.findViewById(R.id.lastnameFrag);
+        lnumber = (EditText) view.findViewById(R.id.licenseNumberFrag);
+        companyname = (EditText) view.findViewById(R.id.companyFrag);
+        Email = (EditText) view.findViewById(R.id.emailFrag);
+        phone = (EditText) view.findViewById(R.id.phoneFrag);
         btn_confirm =(Button)view.findViewById(R.id.confirm);
         btn_edit = (Button)view.findViewById(R.id.Profile_edit);
 
         profile_pic =(ImageView)view.findViewById(R.id.profile_pic);
         float degree = getDegree();
 
-        Bitmap bitmap2 = rotateBitmap(bitmap, degree);
+        //Bitmap bitmap2 = rotateBitmap(bitmap, degree);
 
         //profile_pic.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_account_circle_24));
-        profile_pic.setImageBitmap(bitmap2);
+        Picasso.get().load(file).into(profile_pic);
 
         fName.setText(activity.fName);
         lName.setText(activity.lName);
@@ -84,6 +107,36 @@ public class ProfileFragment extends DialogFragment{
         btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (check()){
+                    firstName = fName.getText().toString();
+                    lastName = lName.getText().toString();
+                    license = lnumber.getText().toString();
+                    email = Email.getText().toString();
+                    phoneN = phone.getText().toString();
+                    company = companyname.getText().toString();
+                    if (lastName != currentProfile.getLastName()){
+                        //System.out.println(activity.lName);
+                        //System.out.println("new last name :" + lastName);
+                        currentProfile.setLastName(lastName);
+                    }
+                    if(firstName != currentProfile.getFirstName()){
+                        currentProfile.setFirstName(firstName);
+                    }
+                    if(license != currentProfile.getLicenseNumber()){
+                        currentProfile.setLicenseNumber(license);
+                    }
+                    if(email != currentProfile.getEmail()){
+                        currentProfile.setEmail(email);
+                    }
+                    if(company != currentProfile.getCompanyName()){
+                        currentProfile.setCompanyName(company);
+                    }
+                    if(phoneN != currentProfile.getPhone()){
+                        currentProfile.setPhone(phoneN);
+                    }
+
+                }
+                startActivity(activity.getIntent());
 
             }
         });
@@ -154,7 +207,7 @@ public class ProfileFragment extends DialogFragment{
             f = false;
             // if any field empty boolean return false
         }
-        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(Email.getText().toString()).matches()){
+        if(!Patterns.EMAIL_ADDRESS.matcher(Email.getText().toString()).matches()){
             Email.setError("Please Enter Valid Mail");
             f = false;
         }
@@ -187,4 +240,5 @@ public class ProfileFragment extends DialogFragment{
         super.onCreate(savedInstanceState);
         setStyle(DialogFragment.STYLE_NO_FRAME, R.style.Fragmentstyle);
     }
+
 }
