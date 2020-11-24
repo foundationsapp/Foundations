@@ -20,7 +20,7 @@
             android:background="@drawable/logo" />
 
         <TextView
-            android:layout_marginTop="-20sp"
+            android:layout_marginTop="@dimen/negative20"
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/home_inspection_made_easy"
-            android:textStyle="bold"
+            android:layout_marginTop="@dimen/negative10"
             android:textSize="@dimen/_20"
             android:textColor="@color/white"
             android:layout_gravity="center"/>
