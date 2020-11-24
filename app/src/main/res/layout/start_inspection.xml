@@ -168,18 +168,18 @@
 
             <Button
                 android:id="@+id/ni_create_report"
-                android:background="@drawable/save_shape"
-                android:layout_marginTop="@dimen/_25"
-                android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:text="@string/save_and_continue"
-                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_25"
                 android:layout_marginBottom="@dimen/_25"
+                android:background="@drawable/save_shape"
+                android:gravity="center"
+                android:text="@string/save_and_continue"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20"
 
-                android:textSize="@dimen/_20" />
+                android:textStyle="bold" />
 
 
 

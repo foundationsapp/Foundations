@@ -88,5 +88,8 @@
     <string name="submit_and_continue">Submit and Continue</string>
     <string name="current_report_key">currentReport</string>
     <string name="currentReportIdKey">currentReportId</string>
+    <string name="category_title">Category Title</string>
+    <string name="subcategory_title">Subcategory Title</string>
+    <string name="list_item_info">list item info</string>
 
 </resources>

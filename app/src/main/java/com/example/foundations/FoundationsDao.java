@@ -145,6 +145,12 @@ public interface FoundationsDao {
     @Query("SELECT * from report_table ORDER BY reportId ASC")
     LiveData<List<Report>> getAllReports();
 
+    @Query("SELECT * from category_table ORDER BY title ASC")
+    LiveData<List<Category>> getAllCategories();
+
+    @Query("SELECT * from subcategory_tablecategory_table ORDER BY title ASC")
+    LiveData<List<SubCategory>> getAllSubcategories();
+
     @Query("SELECT * from sitedetails_table ORDER BY siteDetailsId ASC")
     List<SiteDetails> getAllSiteDetails();
 

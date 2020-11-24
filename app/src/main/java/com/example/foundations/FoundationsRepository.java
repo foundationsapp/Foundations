@@ -17,6 +17,8 @@ public class FoundationsRepository {
     private LiveData<List<Report>> allReports;
     private LiveData<List<Note>> currentReportNotes;
     private LiveData<List<Photo>> currentReportPhotos;
+    private LiveData<List<Category>> allCategories;
+    private LiveData<List<SubCategory>> allSubcategories;
     private LiveData<List<ListItemDetails>> currentListItemDetails;
     private List<SiteDetails> allSiteDetails;
     private List<SiteDetails> currentSiteDetails;
@@ -28,6 +30,8 @@ public class FoundationsRepository {
         allBuyers = foundationsDao.getAllBuyers();
         allSellers = foundationsDao.getAllSellers();
         allReports = foundationsDao.getAllReports();
+        allCategories = foundationsDao.getAllCategories();
+        allSubcategories = foundationsDao.getAllSubcategories();
         FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
             allSiteDetails = foundationsDao.getAllSiteDetails();
         });
@@ -226,6 +230,9 @@ public class FoundationsRepository {
     LiveData<List<Photo>> getCurrentReportPhotos() { return currentReportPhotos; }
     LiveData<List<Note>> getCurrentReportNotes() { return currentReportNotes; }
     LiveData<List<ListItemDetails>> getCurrentListItemDetails() { return currentListItemDetails; }
+    LiveData<List<Category>> getAllCategories() { return allCategories; }
+    LiveData<List<SubCategory>> getAllSubcategories() { return allSubcategories; }
+
 
     // FETCH REPORT DATA QUERIES
     void loadReportData(Integer reportId) {
