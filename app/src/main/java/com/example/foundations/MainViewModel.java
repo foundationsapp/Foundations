@@ -15,6 +15,13 @@ public class MainViewModel extends AndroidViewModel {
     private static final String TAG = MainViewModel.class.getSimpleName();
     LiveData<List<Profile>> allProfiles;
     LiveData<List<Report>> allReports;
+    private LiveData<List<Category>> allCategories;
+    private LiveData<List<SubCategory>> allSubcategories;
+    private LiveData<List<ListItem>> allListItems;
+
+    private Integer currentReportId;
+
+
     List<SiteDetails> allSiteDetails;
     private FoundationsRepository foundationsRepository;
 
@@ -23,8 +30,11 @@ public class MainViewModel extends AndroidViewModel {
         foundationsRepository = new FoundationsRepository(application);
         allProfiles = foundationsRepository.getAllProfiles();
         allReports  = foundationsRepository.getAllReports();
-
+        allCategories = foundationsRepository.getAllCategories();
+        allSubcategories = foundationsRepository.getAllSubcategories();
+        allListItems = foundationsRepository.getAllListItems();
     }
+
 
 
     // INSERT
@@ -54,6 +64,9 @@ public class MainViewModel extends AndroidViewModel {
         return allProfiles;
     }
     public LiveData<List<Report>> getAllReports() { return allReports; }
+    public LiveData<List<Category>> getAllCategories() { return allCategories; }
+    public LiveData<List<SubCategory>> getAllSubcategories() { return allSubcategories; }
+    public LiveData<List<ListItem>> getAllListItems() { return allListItems; }
 
     public Report getNewReport() {
         return foundationsRepository.getNewReport();

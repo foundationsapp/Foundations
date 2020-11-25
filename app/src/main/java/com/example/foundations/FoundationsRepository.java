@@ -17,7 +17,10 @@ public class FoundationsRepository {
     private LiveData<List<Report>> allReports;
     private LiveData<List<Note>> currentReportNotes;
     private LiveData<List<Photo>> currentReportPhotos;
-    private LiveData<List<ListItemDetails>> currentListItemDetails;
+    private LiveData<List<Category>> allCategories;
+    private LiveData<List<SubCategory>> allSubcategories;
+    private LiveData<List<ListItemDetails>> allListItemDetails;
+    private LiveData<List<ListItem>> allListItems;
     private List<SiteDetails> allSiteDetails;
     private List<SiteDetails> currentSiteDetails;
 
@@ -28,6 +31,9 @@ public class FoundationsRepository {
         allBuyers = foundationsDao.getAllBuyers();
         allSellers = foundationsDao.getAllSellers();
         allReports = foundationsDao.getAllReports();
+        allCategories = foundationsDao.getAllCategories();
+        allSubcategories = foundationsDao.getAllSubcategories();
+        allListItems = foundationsDao.getAllListItems();
         FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
             allSiteDetails = foundationsDao.getAllSiteDetails();
         });
@@ -225,14 +231,18 @@ public class FoundationsRepository {
     List<SiteDetails> getCurrentSiteDetails() { return currentSiteDetails; }
     LiveData<List<Photo>> getCurrentReportPhotos() { return currentReportPhotos; }
     LiveData<List<Note>> getCurrentReportNotes() { return currentReportNotes; }
-    LiveData<List<ListItemDetails>> getCurrentListItemDetails() { return currentListItemDetails; }
+    LiveData<List<ListItemDetails>> getCurrentListItemDetails() { return allListItemDetails; }
+    LiveData<List<Category>> getAllCategories() { return allCategories; }
+    LiveData<List<SubCategory>> getAllSubcategories() { return allSubcategories; }
+    LiveData<List<ListItem>> getAllListItems() { return allListItems; }
+
 
     // FETCH REPORT DATA QUERIES
     void loadReportData(Integer reportId) {
        // currentSiteDetails = foundationsDao.getSiteDetails(reportId);
         currentReportNotes = foundationsDao.getNotes(reportId);
         currentReportPhotos = foundationsDao.getPhotos(reportId);
-        currentListItemDetails = foundationsDao.getListItems(reportId);
+        allListItemDetails = foundationsDao.getListItems(reportId);
     }
 
     Report getNewReport() {
@@ -243,6 +253,8 @@ public class FoundationsRepository {
         currentSiteDetails = foundationsDao.getSiteDetails(id);
         return currentSiteDetails;
     }
+
+
 
 
 }
