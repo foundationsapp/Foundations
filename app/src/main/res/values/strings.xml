@@ -91,5 +91,6 @@
     <string name="category_title">Category Title</string>
     <string name="subcategory_title">Subcategory Title</string>
     <string name="list_item_info">list item info</string>
+    <string name="save_pdf">SAVE PDF</string>
 
 </resources>

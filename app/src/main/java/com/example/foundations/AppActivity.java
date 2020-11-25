@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
+import androidx.core.content.IntentCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -60,7 +61,7 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
         Intent intent = getIntent();
         currentProfile = intent.getParcelableExtra(String.valueOf(R.string.userProfile));
         profileId = currentProfile.getProfileId();
-        MainViewModel mainViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(MainViewModel.class);
+        mainViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(MainViewModel.class);
 
 //        RecyclerView reportRecyclerView = findViewById(R.id.report_recyclerview);
 //        final ReportAdapter reportAdapter = new ReportAdapter(this);
@@ -108,9 +109,8 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
                 Fragment fragment = null;
                 switch (id){
                     case R.id.profile:
-                        fragment=new ProfileFragment();
+                        fragment=new ProfileFragment(AppActivity.this);
                         loadFragment(fragment);
-                        Log.i("fragment","Click profile "+ currentProfile.getEmail());
                         lName = currentProfile.getLastName();
                         fName = currentProfile.getFirstName();
                         License = currentProfile.getLicenseNumber();
@@ -140,7 +140,9 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
                         loadFragment(fragment);
                         break;
                     case R.id.logout:
-                        startActivity(new Intent(AppActivity.this, MainActivity.class));
+                        //startActivity(new Intent(AppActivity.this, MainActivity.class));
+                        Intent intent = new Intent(AppActivity.this, MainActivity.class);
+                        startActivity(intent);
                     default:
                         return true;
                 }
@@ -162,6 +164,10 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
 
     public Profile getProfile() {
         return currentProfile;
+    }
+    public void updateCurrentProfile(Profile profile) {
+        this.currentProfile = profile;
+        mainViewModel.updateProfileInfo(profile.getProfileId(), profile.getFirstName(), profile.getLastName(), profile.getEmail(), profile.getPhone(), profile.getCompanyName(), profile.getLicenseNumber(), profile.getPhoto());
     }
     public Report getCurrentReport() { return currentReport; }
     public void setCurrentReport(Report report) { this.currentReport = report; }

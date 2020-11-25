@@ -14,140 +14,134 @@
         android:id="@+id/profile_pic"
         android:layout_width="@dimen/_80"
         android:layout_height="@dimen/_80"
-        tools:src="@drawable/ic_baseline_account_circle_24"/>
-
-    <TextView
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="15sp"
-        android:text="@string/first_name"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/lettersColor" />
-
-    <EditText
-        android:id="@+id/firstnameFrag"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="15sp"
-        android:ems="10"
-        android:textColor="#33FFD7"
-        android:inputType="textPersonName"
-        android:text="Edit First Name" />
-
-    <TextView
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/_10"
-        android:text="@string/last_name"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/lettersColor" />
-
-    <EditText
-        android:id="@+id/lastnameFrag"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="15sp"
-        android:textColor="#33FFD7"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Edit Last Name" />
-
-    <TextView
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/_10"
-        android:text="@string/license_number"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/lettersColor" />
-
-    <EditText
-        android:id="@+id/licenseNumberFrag"
-        android:paddingLeft="15sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#33FFD7"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Eidta License Number" />
-
-    <TextView
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/_10"
-        android:text="@string/company_name"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/lettersColor" />
-
-    <EditText
-        android:id="@+id/companyFrag"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#33FFD7"
-        android:paddingLeft="15sp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Edit Company Name" />
-
-    <TextView
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/_10"
-        android:text="@string/email"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/lettersColor" />
-
-    <EditText
-        android:id="@+id/emailFrag"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#33FFD7"
-        android:paddingLeft="15sp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Type new Email"/>
-
-    <TextView
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/_10"
-        android:text="@string/phone"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/lettersColor" />
-
-    <EditText
-        android:id="@+id/phoneFrag"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="15sp"
-        android:textColor="#33FFD7"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Type new Phone number" />
+        android:layout_gravity="center"
+        tools:src="@drawable/ic_baseline_account_circle_24" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_width="@dimen/_400"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/confirm"
-            android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Confirm" />
+            android:text="@string/first_name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/lettersColor" />
 
-        <Button
-            android:id="@+id/Profile_edit"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/firstnameFrag"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Edit" />
+            android:textColor="@color/white"
+            android:inputType="textPersonName"/>
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/last_name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/lettersColor" />
+
+        <EditText
+            android:id="@+id/lastnameFrag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:inputType="textPersonName" />
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/license_number"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/lettersColor" />
+
+        <EditText
+            android:id="@+id/licenseNumberFrag"
+            android:paddingLeft="15sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:inputType="textPersonName" />
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/company_name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/lettersColor" />
+
+        <EditText
+            android:id="@+id/companyFrag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:paddingLeft="15sp"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/email"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/lettersColor" />
+
+        <EditText
+            android:id="@+id/emailFrag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/phone"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/lettersColor" />
+
+        <EditText
+            android:id="@+id/phoneFrag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:inputType="textPersonName" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_15">
+
+            <Button
+                android:id="@+id/confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="Confirm" />
+
+            <Button
+                android:id="@+id/Profile_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Edit" />
+        </LinearLayout>
+
     </LinearLayout>
+
+
+
 
 </LinearLayout>
