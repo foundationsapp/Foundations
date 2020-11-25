@@ -4,7 +4,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/_160"
-    android:background="#83181819"
     android:padding="@dimen/_20">
 
     <ImageView
@@ -14,14 +13,15 @@
         android:src="@drawable/ic_baseline_account_circle_24" />
     <TextView
         android:id="@+id/user_name"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:text="@string/app_name"/>
     <TextView
         android:id="@+id/user_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:text="@string/user_email"/>
 </LinearLayout>
