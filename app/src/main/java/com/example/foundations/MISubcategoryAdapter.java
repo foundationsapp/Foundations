@@ -19,6 +19,9 @@ public class MISubcategoryAdapter extends RecyclerView.Adapter<MISubcategoryAdap
 
     private static final String TAG = "MISubcategoryAdapter";
     private List<SubCategory> miSubcategories;
+    private List<ListItem> miListItems;
+    private int subcategoryId;
+    private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
 
     @NonNull
     @Override
@@ -30,9 +33,20 @@ public class MISubcategoryAdapter extends RecyclerView.Adapter<MISubcategoryAdap
     @Override
     public void onBindViewHolder(@NonNull MISubcategoryAdapterViewHolder holder, int position) {
         if (miSubcategories != null) {
-            SubCategory currentCategory = miSubcategories.get(position);
-
-            holder.MISubcategoryItemView.setText(currentCategory.getTitle());
+            SubCategory currentSubcategory = miSubcategories.get(position);
+            subcategoryId = currentSubcategory.getSubCategoryId();
+            holder.MISubcategoryItemView.setText(currentSubcategory.getTitle());
+            List<ListItem> filteredListItemList = new ArrayList<>();
+            for (int i = 0; i < miListItems.size(); i++) {
+                if (miListItems.get(i).getSubCategoryId() == subcategoryId) {
+                    filteredListItemList.add(miListItems.get(i));
+                }
+            }
+            LinearLayoutManager layoutManager = new LinearLayoutManager(holder.miListItemRecyclerView.getContext());
+            MIListItemAdapter miListItemAdapter = new MIListItemAdapter(filteredListItemList);
+            holder.miListItemRecyclerView.setLayoutManager(layoutManager);
+            holder.miListItemRecyclerView.setAdapter(miListItemAdapter);
+            holder.miListItemRecyclerView.setRecycledViewPool(viewPool);
         }
     }
 
@@ -51,15 +65,19 @@ public class MISubcategoryAdapter extends RecyclerView.Adapter<MISubcategoryAdap
     static class MISubcategoryAdapterViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView MISubcategoryItemView;
+        private final RecyclerView miListItemRecyclerView;
 
         public MISubcategoryAdapterViewHolder(View itemView) {
             super(itemView);
             MISubcategoryItemView = itemView.findViewById(R.id.mi_subcategory_item_title);
+            miListItemRecyclerView = itemView.findViewById(R.id.mi_listitem_recyclerview);
         }
     }
 
-    public MISubcategoryAdapter(List<SubCategory> miSubcategories) {
+    public MISubcategoryAdapter(List<SubCategory> miSubcategories, List<ListItem> miListItems
+    ) {
         this.miSubcategories = miSubcategories;
+        this.miListItems = miListItems;
     }
 
 //    @Override

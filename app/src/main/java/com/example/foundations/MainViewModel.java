@@ -66,6 +66,7 @@ public class MainViewModel extends AndroidViewModel {
     public LiveData<List<Report>> getAllReports() { return allReports; }
     public LiveData<List<Category>> getAllCategories() { return allCategories; }
     public LiveData<List<SubCategory>> getAllSubcategories() { return allSubcategories; }
+    public LiveData<List<ListItem>> getAllListItems() { return allListItems; }
 
     public Report getNewReport() {
         return foundationsRepository.getNewReport();

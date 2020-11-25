@@ -36,6 +36,7 @@ public class MainInspectionFragment extends Fragment {
         mainViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(MainViewModel.class);
         mainViewModel.getAllCategories().observe(getViewLifecycleOwner(), mCategoryAdapter::setMiCategories);
         mainViewModel.getAllSubcategories().observe(getViewLifecycleOwner(), mCategoryAdapter::setMiSubcategories);
+        mainViewModel.getAllListItems().observe(getViewLifecycleOwner(), mCategoryAdapter::setMiListItems);
         return view;
     }
 }
