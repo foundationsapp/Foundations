@@ -52,12 +52,13 @@ public class MICategoryAdapter extends RecyclerView.Adapter<MICategoryAdapter.MI
             for (int i = 0; i < miSubcategories.size(); i++) {
                 if (miSubcategories.get(i).getCategoryId() == categoryId) {
                     filteredSubcatList.add(miSubcategories.get(i));
-                }
-                for (int y = 0; y < miListItems.size(); y++) {
-                    if (miListItems.get(y).getCategoryId() == categoryId) {
-                        filteredListItemList.add(miListItems.get(y));
+                    for (int y = 0; y < miListItems.size(); y++) {
+                        if (miListItems.get(y).getCategoryId() == categoryId) {
+                            filteredListItemList.add(miListItems.remove(y));
+                        }
                     }
                 }
+
             }
             LinearLayoutManager layoutManager = new LinearLayoutManager(holder.miSubcategoryRecyclerView.getContext());
             MISubcategoryAdapter miSubcategoryAdapter = new MISubcategoryAdapter(filteredSubcatList, filteredListItemList);
