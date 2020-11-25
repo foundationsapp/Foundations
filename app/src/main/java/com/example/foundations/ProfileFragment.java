@@ -96,29 +96,30 @@ public class ProfileFragment extends DialogFragment{
                     email = Email.getText().toString();
                     phoneN = phone.getText().toString();
                     company = companyname.getText().toString();
-                    if (lastName != currentProfile.getLastName()){
+                    if (!lastName.equals(currentProfile.getLastName())){
                         //System.out.println(activity.lName);
                         //System.out.println("new last name :" + lastName);
                         currentProfile.setLastName(lastName);
                     }
-                    if(firstName != currentProfile.getFirstName()){
+                    if(!firstName.equals(currentProfile.getFirstName())){
                         currentProfile.setFirstName(firstName);
                     }
-                    if(license != currentProfile.getLicenseNumber()){
+                    if(!license.equals(currentProfile.getLicenseNumber())){
                         currentProfile.setLicenseNumber(license);
                     }
-                    if(email != currentProfile.getEmail()){
+                    if(!email.equals(currentProfile.getEmail())){
                         currentProfile.setEmail(email);
                     }
-                    if(company != currentProfile.getCompanyName()){
+                    if(!company.equals(currentProfile.getCompanyName())){
                         currentProfile.setCompanyName(company);
                     }
-                    if(phoneN != currentProfile.getPhone()){
+                    if(!phoneN.equals(currentProfile.getPhone())){
                         currentProfile.setPhone(phoneN);
                     }
                     fragmentSwitcher.updateCurrentProfile(currentProfile);
+                    startActivity(activity.getIntent());
                 }
-                startActivity(activity.getIntent());
+
 
             }
         });
