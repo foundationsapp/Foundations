@@ -35,8 +35,8 @@
                 android:src="@drawable/ic_baseline_account_circle_24"
                 android:layout_width="150sp"
                 android:layout_height="100sp"
-                android:layout_gravity="center"
-                app:tint="@color/white" />
+                android:layout_gravity="center" />
+
 
             <ImageView
                 android:layout_width="wrap_content"
