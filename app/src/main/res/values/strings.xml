@@ -92,5 +92,15 @@
     <string name="subcategory_title">Subcategory Title</string>
     <string name="list_item_info">list item info</string>
     <string name="save_pdf">SAVE PDF</string>
+    <string name="cl_category_name">cl category name</string>
+    <string name="cl_categories">Checklist Categories</string>
+    <string name="add_category">Add Category</string>
+    <string name="add_category_dialog_btn">Add Category</string>
+    <string name="cancel_addcat_dialog">Cancel</string>
+    <string name="category_name">Category Name</string>
+    <string name="ac_cat_hint">enter category name</string>
+    <string name="add_subcategory">Add Subcategory</string>
+    <string name="asc_sc_name">Add subcategory name</string>
+    <string name="enter_subcategory_name">enter subcategory name</string>
 
 </resources>
