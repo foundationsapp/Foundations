@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/profileFragment"
@@ -10,133 +10,135 @@
     android:orientation="vertical"
     tools:context=".ProfileFragment">
 
-    <ImageView
-        android:id="@+id/profile_pic"
-        android:layout_width="@dimen/_80"
-        android:layout_height="@dimen/_80"
-        android:layout_gravity="center"
-        tools:src="@drawable/ic_baseline_account_circle_24" />
-
     <LinearLayout
-        android:layout_width="@dimen/_400"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/profile_pic"
+            android:layout_width="@dimen/_80"
+            android:layout_height="@dimen/_80"
+            android:layout_gravity="center"
+            tools:src="@drawable/ic_baseline_account_circle_24" />
+
+        <ImageView
+            android:id="@+id/ecamera"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/first_name"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/lettersColor" />
-
-        <EditText
-            android:id="@+id/firstnameFrag"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:inputType="textPersonName"/>
-
-        <TextView
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/last_name"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/lettersColor" />
-
-        <EditText
-            android:id="@+id/lastnameFrag"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:inputType="textPersonName" />
-
-        <TextView
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/license_number"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/lettersColor" />
-
-        <EditText
-            android:id="@+id/licenseNumberFrag"
-            android:paddingLeft="15sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:inputType="textPersonName" />
-
-        <TextView
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/company_name"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/lettersColor" />
-
-        <EditText
-            android:id="@+id/companyFrag"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:paddingLeft="15sp"
-            android:ems="10"
-            android:inputType="textPersonName" />
-
-        <TextView
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/email"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/lettersColor" />
-
-        <EditText
-            android:id="@+id/emailFrag"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:ems="10"
-            android:inputType="textPersonName" />
-
-        <TextView
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/phone"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/lettersColor" />
-
-        <EditText
-            android:id="@+id/phoneFrag"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:inputType="textPersonName" />
+            android:layout_marginTop="@dimen/negative20"
+            android:layout_marginLeft="@dimen/_200"
+            android:src="@drawable/ic_baseline_edit_24"
+            app:tint="@color/colorPrimary"/>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/_15">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/confirm"
-                android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/colorPrimary"
-                android:text="Confirm" />
+                android:text="@string/first_name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/lettersColor" />
+
+            <EditText
+                android:id="@+id/firstnameFrag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:textColor="@color/white" />
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/last_name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/lettersColor" />
+
+            <EditText
+                android:id="@+id/lastnameFrag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:textColor="@color/white" />
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/license_number"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/lettersColor" />
+
+            <EditText
+                android:id="@+id/licenseNumberFrag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:paddingLeft="15sp"
+                android:textColor="@color/white" />
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/company_name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/lettersColor" />
+
+            <EditText
+                android:id="@+id/companyFrag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:paddingLeft="15sp"
+                android:textColor="@color/white" />
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/email"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/lettersColor" />
+
+            <EditText
+                android:id="@+id/emailFrag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textColor="@color/white" />
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/phone"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/lettersColor" />
+
+            <EditText
+                android:id="@+id/phoneFrag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/Profile_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Edit" />
+                android:layout_gravity="center"
+                android:text="@string/save_and_continue" />
+
+
         </LinearLayout>
 
     </LinearLayout>
@@ -144,4 +146,4 @@
 
 
 
-</LinearLayout>
+</ScrollView>

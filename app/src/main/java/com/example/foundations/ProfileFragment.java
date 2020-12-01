@@ -7,18 +7,21 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 
+import android.provider.MediaStore;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -40,8 +43,9 @@ import static android.content.Intent.getIntent;
 public class ProfileFragment extends DialogFragment{
     EditText fName,lName,lnumber, companyname, Email, phone;
     String firstName,lastName, license, email, phoneN, company;
-    Button btn_confirm, btn_edit;
-    ImageView profile_pic;
+    Button btn_edit;
+    ImageView profile_pic, editcamera;
+    String pic_path;
     Uri contentUri;
     FragmentSwitcher fragmentSwitcher;
     public ProfileFragment(FragmentSwitcher fragmentSwitcher) {
@@ -64,10 +68,12 @@ public class ProfileFragment extends DialogFragment{
         companyname = (EditText) view.findViewById(R.id.companyFrag);
         Email = (EditText) view.findViewById(R.id.emailFrag);
         phone = (EditText) view.findViewById(R.id.phoneFrag);
-        btn_confirm =(Button)view.findViewById(R.id.confirm);
+
         btn_edit = (Button)view.findViewById(R.id.Profile_edit);
 
         profile_pic =(ImageView)view.findViewById(R.id.profile_pic);
+
+        editcamera = (ImageView)view.findViewById(R.id.ecamera);
 
         fName.setText(currentProfile.getFirstName());
         lName.setText(currentProfile.getLastName());
@@ -80,12 +86,28 @@ public class ProfileFragment extends DialogFragment{
             File file = new File(profile_pic_path);
             Picasso.get().load(file).into(profile_pic);
         }
-        btn_confirm.setOnClickListener(new View.OnClickListener() {
+
+        editcamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().onBackPressed();
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                String file_name = System.currentTimeMillis() +".jpg";
+
+
+                pic_path = "/sdcard/DCIM/Camera" + file_name;
+
+                File file = new File(pic_path);
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                    contentUri = FileProvider.getUriForFile(activity, "com.example.Foundations.file_provider",file);
+                } else {
+                    contentUri = Uri.fromFile(file);
+                }
+
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
+                startActivityForResult(intent,1);
             }
         });
+
         btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
