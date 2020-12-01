@@ -10,12 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        android:text="@string/category_name"
+        android:text="@string/cl_category_name"
         android:layout_margin="@dimen/_dp05"/>
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_marginStart="@dimen/_25"
@@ -23,6 +23,14 @@
             android:layout_height="wrap_content"
             android:id="@+id/cl_subcat_recyclerview"
             tools:listitem="@layout/checklist_subcategory_recyclerview_item"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cl_cat_rv_add_sub_cat_btn"
+            android:text="@string/add_subcategory"
+            android:layout_gravity="end"
+            />
 
     </LinearLayout>
 

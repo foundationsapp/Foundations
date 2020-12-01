@@ -1,23 +1,28 @@
 package com.example.foundations;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
-public class CheckListsFragment extends Fragment {
-
-
+public class CheckListsFragment extends Fragment implements SubcategoryHandler{
 
     public CheckListsFragment() {
-        // Required empty public constructor
+
     }
 
 
@@ -26,13 +31,27 @@ public class CheckListsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_check_lists, container, false);
         RecyclerView checklistCategoryRecyclerView = view.findViewById(R.id.cl_category_recyclerview);
-        final ChecklistCategoryAdapter checklistCategoryAdapter = new ChecklistCategoryAdapter(checklistCategoryRecyclerView.getContext());
+        MainViewModel mainViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(MainViewModel.class);
+        final ChecklistCategoryAdapter checklistCategoryAdapter = new ChecklistCategoryAdapter(checklistCategoryRecyclerView.getContext(), this, mainViewModel);
         checklistCategoryRecyclerView.setAdapter(checklistCategoryAdapter);
         checklistCategoryRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        MainViewModel mainViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(MainViewModel.class);
         mainViewModel.getAllCategories().observe(getViewLifecycleOwner(), checklistCategoryAdapter::setCategories);
-        mainViewModel.getAllSubCategories().observe(getViewLifecycleOwner(), checklistCategoryAdapter::setSubcategories);
+        mainViewModel.getAllSubcategories().observe(getViewLifecycleOwner(), checklistCategoryAdapter::setSubcategories);
+        Button addCategory = view.findViewById(R.id.cl_add_category);
+        addCategory.setOnClickListener(v -> {
+            showAddCategoryDialog(mainViewModel);
+        });
 
         return view;
+    }
+
+    private void showAddCategoryDialog(MainViewModel mainViewModel) {
+        DialogFragment dialog = new AddCategoryDialogFragment(mainViewModel);
+        dialog.show(getParentFragmentManager(), "addCategory");
+    }
+
+    public void showAddSubcategoryDialog(MainViewModel mainViewModel, int categoryId) {
+        DialogFragment dialog = new AddSubcategoryDialogFragment(mainViewModel, categoryId);
+        dialog.show(getParentFragmentManager(), "addSubcategory");
     }
 }

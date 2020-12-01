@@ -5,10 +5,12 @@ package com.example.foundations;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
+        import android.widget.Button;
         import android.widget.LinearLayout;
         import android.widget.TextView;
 
         import androidx.annotation.NonNull;
+        import androidx.fragment.app.DialogFragment;
         import androidx.fragment.app.Fragment;
         import androidx.lifecycle.LifecycleOwner;
         import androidx.lifecycle.ViewModelProvider;
@@ -21,16 +23,19 @@ package com.example.foundations;
 
 public class ChecklistCategoryAdapter extends RecyclerView.Adapter<ChecklistCategoryAdapter.ChecklistCategoryViewHolder> {
 
-    private static final String TAG = "ChecklistCategoryAdapte";
+    private static final String TAG = "ChecklistCategoryAdapter";
     private final LayoutInflater inflater;
     private List<Category> categories;
     private List<SubCategory> subcategories;
     private int categoryId;
     private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
+    SubcategoryHandler subcategoryHandler;
+    MainViewModel mainViewModel;
 
-
-    public ChecklistCategoryAdapter(Context context) {
+    public ChecklistCategoryAdapter(Context context, SubcategoryHandler subcategoryHandler, MainViewModel mainViewModel) {
         inflater = LayoutInflater.from(context);
+        this.subcategoryHandler = subcategoryHandler;
+        this.mainViewModel = mainViewModel;
     }
     @NonNull
     @Override
@@ -44,15 +49,16 @@ public class ChecklistCategoryAdapter extends RecyclerView.Adapter<ChecklistCate
         if (categories != null) {
             Category current = categories.get(position);
             categoryId = current.getCategoryId();
-            Log.d(TAG, "onBindViewHolder: " + categoryId);
             holder.checklistCategoryItemView.setText(current.getTitle());
             List<SubCategory> filteredList = new ArrayList<>();
             for (int i = 0; i < subcategories.size(); i++) {
-                Log.d(TAG, "setSubcategories categoryid: " + subcategories.get(i).getCategoryId() + " " + categoryId);
                 if (subcategories.get(i).getCategoryId() == categoryId) {
                     filteredList.add(subcategories.get(i));
                 }
             }
+            holder.addSubcategory.setOnClickListener(v -> {
+                subcategoryHandler.showAddSubcategoryDialog(mainViewModel, current.getCategoryId());
+            });
             LinearLayoutManager layoutManager = new LinearLayoutManager(holder.subcategoryRecyclerView.getContext());
             ChecklistSubcategoryAdapter checklistSubcategoryAdapter = new ChecklistSubcategoryAdapter(filteredList);
             holder.subcategoryRecyclerView.setLayoutManager(layoutManager);
@@ -83,11 +89,13 @@ public class ChecklistCategoryAdapter extends RecyclerView.Adapter<ChecklistCate
 
         private final TextView checklistCategoryItemView;
         private RecyclerView subcategoryRecyclerView;
+        private Button addSubcategory;
 
         public ChecklistCategoryViewHolder(View itemView) {
             super(itemView);
             checklistCategoryItemView = itemView.findViewById(R.id.cl_category_rv_item_title);
             subcategoryRecyclerView = itemView.findViewById(R.id.cl_subcat_recyclerview);
+            addSubcategory = itemView.findViewById(R.id.cl_cat_rv_add_sub_cat_btn);
         }
     }
 }
