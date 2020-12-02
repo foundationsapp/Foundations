@@ -24,14 +24,6 @@
             android:id="@+id/cl_subcat_recyclerview"
             tools:listitem="@layout/checklist_subcategory_recyclerview_item"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/cl_cat_rv_add_sub_cat_btn"
-            android:text="@string/add_subcategory"
-            android:layout_gravity="end"
-            />
-
     </LinearLayout>
 
 

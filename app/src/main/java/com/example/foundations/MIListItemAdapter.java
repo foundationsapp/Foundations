@@ -31,8 +31,7 @@ public class MIListItemAdapter extends RecyclerView.Adapter<MIListItemAdapter.MI
     public void onBindViewHolder(@NonNull MIListItemAdapterViewHolder holder, int position) {
         if (miListItems != null) {
             ListItem currentListITem = miListItems.get(position);
-            String testTitle = currentListITem.getListItemId() + " " +
-                    currentListITem.getCategoryId() + " " + currentListITem.getSubCategoryId();
+            String testTitle = currentListITem.getNotes();
             holder.MIListItemItemView.setText(testTitle);
         }
     }

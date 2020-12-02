@@ -88,7 +88,7 @@ public interface FoundationsDao {
     void updateSiteDetails(Integer reportId, double bathrooms, int bedrooms, int stories, double inspectionFee, int yearBuilt, String furnished, String presentAtInspection, String orientation);
 
     @Query("UPDATE listitem_table SET notes = :notes, photos = :photos WHERE listItemId = :listItemId")
-    void updateListItem(Integer listItemId, Boolean notes, Boolean photos);
+    void updateListItem(Integer listItemId, String notes, Boolean photos);
 
     @Query("UPDATE buyer_table SET firstName = :firstName, lastName  = :lastName, email = :email, phone = :phone WHERE buyerId = :buyerId")
     void updateBuyerInfo(Integer buyerId, String firstName, String lastName, String email, String phone);

@@ -61,7 +61,7 @@ public class SiteDetailsFragment extends Fragment {
                     present.getText().toString(),
                     orientation.getText().toString()
                     );
-            Fragment fragment = new MainInspectionFragment(fragmentSwitcher);
+            Fragment fragment = new MainInspectionFragment(fragmentSwitcher, currentReportId);
             fragmentSwitcher.loadFragment(fragment);
         });
 

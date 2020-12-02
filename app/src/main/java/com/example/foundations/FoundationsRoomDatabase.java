@@ -89,9 +89,9 @@ public abstract class FoundationsRoomDatabase extends RoomDatabase{
                 foundationsDao.insertSubCategory(subCategory);
                 subCategory = new SubCategory(2, "Kitchen");
                 foundationsDao.insertSubCategory(subCategory);
-                ListItem listItem = new ListItem(1, 1, 1, true, false);
+                ListItem listItem = new ListItem(1, 1, 1, "stuff about this item", false);
                 foundationsDao.insertListItem(listItem);
-                listItem = new ListItem(1, 2, 2, true, false);
+                listItem = new ListItem(1, 2, 2, "wow this thing is great", false);
                 foundationsDao.insertListItem(listItem);
                 Note note = new Note(1, "it's a great porch", "good porch", 1);
                 foundationsDao.insertNote(note);

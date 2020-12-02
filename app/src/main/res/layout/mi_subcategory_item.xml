@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/mi_subcategory_item_title"
+        android:textSize="@dimen/_20"
         android:text="@string/subcategory_title"
         />
 

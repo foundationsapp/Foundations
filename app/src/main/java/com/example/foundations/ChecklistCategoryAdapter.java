@@ -56,9 +56,6 @@ public class ChecklistCategoryAdapter extends RecyclerView.Adapter<ChecklistCate
                     filteredList.add(subcategories.get(i));
                 }
             }
-            holder.addSubcategory.setOnClickListener(v -> {
-                subcategoryHandler.showAddSubcategoryDialog(mainViewModel, current.getCategoryId());
-            });
             LinearLayoutManager layoutManager = new LinearLayoutManager(holder.subcategoryRecyclerView.getContext());
             ChecklistSubcategoryAdapter checklistSubcategoryAdapter = new ChecklistSubcategoryAdapter(filteredList);
             holder.subcategoryRecyclerView.setLayoutManager(layoutManager);
@@ -76,6 +73,7 @@ public class ChecklistCategoryAdapter extends RecyclerView.Adapter<ChecklistCate
 
     void setCategories(List<Category> categories) {
         this.categories = categories;
+        subcategoryHandler.setAllCategories(categories);
         notifyDataSetChanged();
     }
 
@@ -89,13 +87,11 @@ public class ChecklistCategoryAdapter extends RecyclerView.Adapter<ChecklistCate
 
         private final TextView checklistCategoryItemView;
         private RecyclerView subcategoryRecyclerView;
-        private Button addSubcategory;
 
         public ChecklistCategoryViewHolder(View itemView) {
             super(itemView);
             checklistCategoryItemView = itemView.findViewById(R.id.cl_category_rv_item_title);
             subcategoryRecyclerView = itemView.findViewById(R.id.cl_subcat_recyclerview);
-            addSubcategory = itemView.findViewById(R.id.cl_cat_rv_add_sub_cat_btn);
         }
     }
 }

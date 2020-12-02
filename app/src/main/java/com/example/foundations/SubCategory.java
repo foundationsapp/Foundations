@@ -38,6 +38,11 @@ public class SubCategory {
         return title;
     }
 
+    @NonNull
+    public String toString() {
+        return title;
+    }
+
     public SubCategory(@NonNull Integer categoryId, @NonNull String title) {
         this.categoryId = categoryId;
         this.title = title;
