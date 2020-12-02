@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60"
+        android:id="@+id/list_item_title"
+        android:text="@string/list_item"
+        android:textSize="35sp"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/list_item_subcat"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/list_item_title"
+        android:text="@string/select_subcategory_for_item" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/subcategory_spinner"
+        app:layout_constraintStart_toEndOf="@id/list_item_subcat"
+        app:layout_constraintTop_toBottomOf="@id/list_item_title"
+        />
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="200sp"
+        android:hint="@string/enter_notes"
+        android:textSize="25sp"
+        android:autofillHints="@string/enter_notes"
+        android:id="@+id/list_item_notes"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subcategory_spinner"
+        />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_photo"
+        android:text="@string/add_photo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/list_item_notes"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

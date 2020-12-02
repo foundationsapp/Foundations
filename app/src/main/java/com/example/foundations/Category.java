@@ -32,6 +32,8 @@ public class Category {
     public String getTitle() {
         return title;
     }
+    @NonNull
+    public String toString() { return title; }
 
     public Category(@NonNull String title) {
         this.title = title;

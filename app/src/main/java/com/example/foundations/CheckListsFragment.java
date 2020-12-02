@@ -19,7 +19,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class CheckListsFragment extends Fragment implements SubcategoryHandler{
+
+    private List<Category> allCategories;
 
     public CheckListsFragment() {
 
@@ -41,6 +45,10 @@ public class CheckListsFragment extends Fragment implements SubcategoryHandler{
         addCategory.setOnClickListener(v -> {
             showAddCategoryDialog(mainViewModel);
         });
+        Button addSubcategory = view.findViewById(R.id.cl_add_subcategory);
+        addSubcategory.setOnClickListener(v -> {
+            showAddSubcategoryDialog(mainViewModel);
+        });
 
         return view;
     }
@@ -50,8 +58,19 @@ public class CheckListsFragment extends Fragment implements SubcategoryHandler{
         dialog.show(getParentFragmentManager(), "addCategory");
     }
 
-    public void showAddSubcategoryDialog(MainViewModel mainViewModel, int categoryId) {
-        DialogFragment dialog = new AddSubcategoryDialogFragment(mainViewModel, categoryId);
+    public void showAddSubcategoryDialog(MainViewModel mainViewModel) {
+        DialogFragment dialog = new AddSubcategoryDialogFragment(mainViewModel, allCategories);
         dialog.show(getParentFragmentManager(), "addSubcategory");
     }
+
+    @Override
+    public void setAllCategories(List<Category> allCategories) {
+        this.allCategories = allCategories;
+    }
+
+    @Override
+    public void showListItemDialog(MainViewModel mainViewModel, List<SubCategory> allSubcategories) {
+
+    }
+
 }

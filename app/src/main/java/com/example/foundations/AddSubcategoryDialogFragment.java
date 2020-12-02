@@ -2,24 +2,33 @@ package com.example.foundations;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 import org.jetbrains.annotations.NotNull;
 
-public class AddSubcategoryDialogFragment extends DialogFragment {
+import java.lang.reflect.Array;
+import java.util.List;
 
+public class AddSubcategoryDialogFragment extends DialogFragment implements AdapterView.OnItemSelectedListener {
+
+    private static final String TAG = "AddSubcategoryDialogFra";
     private MainViewModel mainViewModel;
     private int categoryId;
+    List<Category> allCategories;
 
-    public AddSubcategoryDialogFragment(MainViewModel mainViewModel, int categoryId) {
+    public AddSubcategoryDialogFragment(MainViewModel mainViewModel, List<Category> allCategories) {
         this.mainViewModel = mainViewModel;
-        this.categoryId = categoryId;
+        this.allCategories = allCategories;
     }
 
     @NotNull
@@ -28,7 +37,10 @@ public class AddSubcategoryDialogFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.DialogTheme);
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_add_subcategory, null);
-
+        Spinner spinner = (Spinner) view.findViewById(R.id.category_spinner);
+        ArrayAdapter<Category> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_dropdown_item, allCategories);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
         builder.setView(view)
                 .setPositiveButton("Add Subcategory", new DialogInterface.OnClickListener() {
                     @Override
@@ -45,5 +57,16 @@ public class AddSubcategoryDialogFragment extends DialogFragment {
                     }
                 });
         return builder.create();
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        categoryId = allCategories.get(position).getCategoryId();
+        Log.d(TAG, "onItemSelected: " + categoryId);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

@@ -20,7 +20,6 @@ public class MISubcategoryAdapter extends RecyclerView.Adapter<MISubcategoryAdap
     private static final String TAG = "MISubcategoryAdapter";
     private List<SubCategory> miSubcategories;
     private List<ListItem> miListItems;
-    private int subcategoryId;
     private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
 
     @NonNull
@@ -34,7 +33,7 @@ public class MISubcategoryAdapter extends RecyclerView.Adapter<MISubcategoryAdap
     public void onBindViewHolder(@NonNull MISubcategoryAdapterViewHolder holder, int position) {
         if (miSubcategories != null) {
             SubCategory currentSubcategory = miSubcategories.get(position);
-            subcategoryId = currentSubcategory.getSubCategoryId();
+            int subcategoryId = currentSubcategory.getSubCategoryId();
             holder.MISubcategoryItemView.setText(currentSubcategory.getTitle());
             List<ListItem> filteredListItemList = new ArrayList<>();
             for (int i = 0; i < miListItems.size(); i++) {

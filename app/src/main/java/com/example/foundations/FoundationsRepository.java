@@ -127,7 +127,7 @@ public class FoundationsRepository {
         });
     }
 
-    void updateListItem(Integer listItemId, Boolean notes, Boolean photos) {
+    void updateListItem(Integer listItemId, String notes, Boolean photos) {
         FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
             foundationsDao.updateListItem(listItemId, notes, photos);
         });
