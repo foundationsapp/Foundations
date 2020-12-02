@@ -79,7 +79,7 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
 
         View header_view = navigationView.getHeaderView(0);
 
-        header_view.setBackgroundResource(R.drawable.logo);
+        //header_view.setBackgroundResource(R.drawable.logo);
         String profile_pic_path;
         if (currentProfile.getPhoto() != null) {
             profile_pic_path = currentProfile.getPhoto();
