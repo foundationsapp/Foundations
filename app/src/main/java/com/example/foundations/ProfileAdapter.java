@@ -103,6 +103,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
 
     void setProfiles(List<Profile> profiles) {
         this.profiles = profiles;
+        profileHandler.noProfileCheck(profiles == null || profiles.size() == 0);
         notifyDataSetChanged();
     }
 }
