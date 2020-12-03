@@ -37,6 +37,7 @@ import com.squareup.picasso.Picasso;
 
 import java.io.File;
 
+import static android.app.Activity.RESULT_OK;
 import static android.content.ContentValues.TAG;
 import static android.content.Intent.getIntent;
 
@@ -108,6 +109,7 @@ public class ProfileFragment extends DialogFragment{
             }
         });
 
+
         btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,6 +152,27 @@ public class ProfileFragment extends DialogFragment{
 
         return view;
     }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        AppActivity activity = (AppActivity) getActivity();
+        Profile currentProfile = fragmentSwitcher.getProfile();
+        if (resultCode == RESULT_OK) {
+            if (!pic_path.equals(currentProfile.getPhoto())) {
+                currentProfile.setPhoto(pic_path);
+                String profile_pic_path = (currentProfile.getPhoto());
+                if (profile_pic_path != null) {
+                    File file = new File(profile_pic_path);
+                    Picasso.get().load(file).into(profile_pic);
+                }
+            }
+            fragmentSwitcher.updateCurrentProfile(currentProfile);
+            startActivity(activity.getIntent());
+        }
+    }
+
+
+
     public Bitmap rotateBitmap(Bitmap bitmap, float degree){
         try{
             int width = bitmap.getWidth();
