@@ -1,5 +1,6 @@
 package com.example.foundations;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -50,8 +51,9 @@ public class NewInspection extends Fragment {
         niState = view.findViewById(R.id.ni_state);
         niZip = view.findViewById(R.id.ni_zip);
         createButton = view.findViewById(R.id.ni_create_report);
-        createButton.setOnClickListener(v -> {
+       createButton.setOnClickListener(v -> {
             createReport();
+
         });
 
         if (fragmentSwitcher.getCurrentReport() != null) {

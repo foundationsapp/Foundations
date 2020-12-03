@@ -41,8 +41,9 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/negative20"
-                android:layout_marginLeft="@dimen/_200"
+                android:layout_gravity="center"
+
+                android:layout_marginLeft="@dimen/_70"
                 android:src="@drawable/ic_baseline_edit_24"
                 android:id="@+id/signupcamera"
                 android:onClick="startCamera"

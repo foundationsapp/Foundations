@@ -5,73 +5,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewInspection">
+    tools:context=".NewInspection"
+    android:background="@color/background">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
             <TextView
                 android:layout_width="wrap_content"
+                android:textColor="@color/headerColor"
                 android:layout_height="wrap_content"
                 android:text="@string/basic_information"
                 android:textStyle="bold"
                 android:textSize="@dimen/_40"
                 android:layout_gravity="center"/>
-
             <LinearLayout
                 android:layout_marginTop="@dimen/_25"
                 android:layout_gravity="center"
-
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/buyer_information"
-
+                    android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="@dimen/_20"
                     android:layout_gravity="center"/>
-
                 <TextView
                     android:layout_marginTop="@dimen/_10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     android:text="@string/first_name"
                     android:textStyle="bold"
                     android:textSize="@dimen/_20"
                     />
                 <EditText
+                    android:textColor="@color/white"
                     android:id="@+id/ni_buyer_first_name"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40"
-                    android:backgroundTint="@color/colorPrimary"
+                    android:textColorHint="@color/lettersColor"
+                    android:backgroundTint="@color/white"
                     android:hint="@string/michael"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/last_name"
+                    android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="@dimen/_20" />
                 <EditText
+                    android:textColor="@color/white"
                     android:id="@+id/ni_buyer_last_name"
+                    android:textColorHint="@color/lettersColor"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40"
-                    android:backgroundTint="@color/colorPrimary"
+                    android:backgroundTint="@color/white"
                     android:hint="@string/jobs"/>
 
                 <TextView
+                    android:textColor="@color/white"
                     android:layout_marginTop="@dimen/_10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -80,6 +81,7 @@
                     android:textSize="@dimen/_20"
                     android:layout_gravity="center"/>
                 <TextView
+                    android:textColor="@color/white"
                     android:layout_marginTop="@dimen/_10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -89,28 +91,31 @@
                     />
 
                 <EditText
+                    android:textColor="@color/white"
                     android:id="@+id/ni_seller_first_name"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40"
-                    android:backgroundTint="@color/colorPrimary"
+                    android:textColorHint="@color/lettersColor"
+                    android:backgroundTint="@color/white"
                     android:hint="@string/michael" />
-
-
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/last_name"
                     android:textStyle="bold"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/_20" />
                 <EditText
+                    android:textColor="@color/white"
                     android:id="@+id/ni_seller_last_name"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:hint="@string/jobs"/>
+                    android:backgroundTint="@color/white"
+                    android:hint="@string/jobs"
+                    android:textColorHint="@color/lettersColor"/>
 
                 <TextView
+                    android:textColor="@color/white"
                     android:layout_marginTop="@dimen/_10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -119,6 +124,7 @@
                     android:textSize="@dimen/_20"
                     android:layout_gravity="center"/>
                 <TextView
+                    android:textColor="@color/white"
                     android:layout_marginTop="@dimen/_10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -127,49 +133,58 @@
                     android:textSize="@dimen/_20"
                     />
                 <EditText
+                    android:textColor="@color/white"
                     android:id="@+id/ni_address"
                     android:layout_width="match_parent"
+                    android:textColorHint="@color/lettersColor"
                     android:layout_height="@dimen/_40"
-                    android:backgroundTint="@color/colorPrimary"
+                    android:backgroundTint="@color/white"
                     android:hint="1256 Marline CT"/>
                 <TextView
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/city"
                     android:textStyle="bold"
                     android:textSize="@dimen/_20" />
                 <EditText
+                    android:textColor="@color/white"
                     android:id="@+id/ni_city"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40"
-                    android:backgroundTint="@color/colorPrimary"
+                    android:textColorHint="@color/lettersColor"
+                    android:backgroundTint="@color/white"
                     android:hint="@string/seattle"/>
                 <TextView
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/state"
                     android:textStyle="bold"
                     android:textSize="@dimen/_20" />
                 <EditText
+                    android:textColor="@color/white"
                     android:id="@+id/ni_state"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40"
-                    android:backgroundTint="@color/colorPrimary"
+                    android:textColorHint="@color/white"
+                    android:backgroundTint="@color/white"
                     android:hint="@string/wa"/>
                 <TextView
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/zip_code"
                     android:textStyle="bold"
                     android:textSize="@dimen/_20" />
                 <EditText
+                    android:textColor="@color/white"
                     android:id="@+id/ni_zip"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40"
-                    android:backgroundTint="@color/colorPrimary"
+                    android:textColorHint="@color/lettersColor"
+                    android:backgroundTint="@color/white"
                     android:hint="@string/_98133" />
-
-
                 <Button
                     android:id="@+id/ni_create_report"
                     android:background="@drawable/save_shape"
@@ -183,7 +198,6 @@
                     android:textStyle="bold"
                     android:backgroundTint="@color/colorPrimary"
                     android:layout_marginBottom="@dimen/_25"
-
                     android:textSize="@dimen/_20" />
 
 
