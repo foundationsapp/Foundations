@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 
 public class InspectionFragment extends Fragment implements SetReportHandler {
@@ -47,9 +48,13 @@ public class InspectionFragment extends Fragment implements SetReportHandler {
         });
         Button selectInspection = view.findViewById(R.id.select_inspection);
         selectInspection.setOnClickListener(v -> {
-            Fragment fragment = new NewInspection(fragmentSwitcher);
-            fragmentSwitcher.setCurrentReport(currentReport);
-            fragmentSwitcher.loadFragment(fragment);
+            if (currentReport != null) {
+                Fragment fragment = new NewInspection(fragmentSwitcher);
+                fragmentSwitcher.setCurrentReport(currentReport);
+                fragmentSwitcher.loadFragment(fragment);
+            } else {
+                Toast.makeText(getContext(), R.string.select_insp, Toast.LENGTH_SHORT).show();
+            }
         });
         return view;
     }

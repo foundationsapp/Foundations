@@ -52,9 +52,14 @@ public class DashFragment extends Fragment implements SetReportHandler{
         });
         Button selectInspection = view.findViewById(R.id.dash_frag_select_inspection);
         selectInspection.setOnClickListener(v -> {
-            Fragment fragment = new NewInspection(fragmentSwitcher);
-            fragmentSwitcher.setCurrentReport(currentReport);
-            fragmentSwitcher.loadFragment(fragment);
+            if (currentReport != null) {
+                Fragment fragment = new NewInspection(fragmentSwitcher);
+                fragmentSwitcher.setCurrentReport(currentReport);
+                fragmentSwitcher.loadFragment(fragment);
+            } else {
+                Toast.makeText(getContext(), R.string.select_insp, Toast.LENGTH_SHORT).show();
+            }
+
         });
         return view;
     }
