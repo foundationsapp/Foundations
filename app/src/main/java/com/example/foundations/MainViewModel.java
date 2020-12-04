@@ -19,10 +19,6 @@ public class MainViewModel extends AndroidViewModel {
     private LiveData<List<SubCategory>> allSubcategories;
     private LiveData<List<ListItem>> allListItems;
 
-    private Integer currentReportId;
-
-
-    List<SiteDetails> allSiteDetails;
     private FoundationsRepository foundationsRepository;
 
     public MainViewModel(Application application) {
@@ -39,25 +35,17 @@ public class MainViewModel extends AndroidViewModel {
 
     // INSERT
     public void insertProfile(Profile profile) {foundationsRepository.insertProfile(profile);}
-    public void insertBuyer(Buyer buyer) {foundationsRepository.insertBuyer(buyer);}
-    public void insertSeller(Seller seller) {foundationsRepository.insertSeller(seller);}
     public void insertReport(Report report) {foundationsRepository.insertReport(report);}
     public void insertSiteDetails(SiteDetails siteDetails) {foundationsRepository.insertSiteDetails(siteDetails);}
     public void insertListItem(ListItem listItem) {foundationsRepository.insertListItem(listItem);}
     public void insertCategory(Category category) {foundationsRepository.insertCategory(category);}
     public void insertSubCategory(SubCategory subCategory) {foundationsRepository.insertSubCategory(subCategory);}
-    public void insertPhoto(Photo photo) {foundationsRepository.insertPhoto(photo);}
-    public void insertNote(Note note) {foundationsRepository.insertNote(note);}
 
 
     // UPDATE
-//    public void updateReportBuyer(Integer buyerId, Integer reportId) {foundationsRepository.updateReportBuyer(buyerId, reportId);}
-//    public void updateReportSeller(Integer sellerId, Integer reportId) {foundationsRepository.updateReportSeller(sellerId, reportId);}
     public void updateReport(Integer reportId, String buyerFirstName, String buyerLastName, String sellerFirstName, String sellerLastName, @NonNull String street, @NonNull String city, @NonNull String state, @NonNull String zip) {foundationsRepository.updateReport(reportId, buyerFirstName, buyerLastName, sellerFirstName, sellerLastName, street, city, state, zip);}
     public void updateSiteDetails(Integer reportId, double bathrooms, int bedrooms, int stories, double inspectionFee, int yearBuilt, String furnished, String presentAtInspection, String orientation) {foundationsRepository.updateSiteDetails(reportId, bathrooms, bedrooms, stories, inspectionFee, yearBuilt, furnished, presentAtInspection, orientation);}
-    public void updateListItem(Integer listItemId, String notes, Boolean photos) {foundationsRepository.updateListItem(listItemId, notes, photos);}
-    public void updateBuyerInfo(Integer buyerId, String firstName, String lastName, String email, String phone) {foundationsRepository.updateBuyerInfo(buyerId, firstName, lastName, email, phone);}
-    public void updateSellerInfo(Integer sellerId, String firstName, String lastName, String email, String phone) {foundationsRepository.updateSellerInfo(sellerId, firstName, lastName, email, phone);}
+    public void updateListItem(Integer listItemId, String notes, String photos) {foundationsRepository.updateListItem(listItemId, notes, photos);}
     public void updateProfileInfo(Integer profileId, String firstName, String lastName, String email, String phone, String companyName, String licenseNumber, String photo) {foundationsRepository.updateProfileInfo(profileId, firstName, lastName, email, phone, companyName, licenseNumber, photo);}
 
     public LiveData<List<Profile>> getAllProfiles() {

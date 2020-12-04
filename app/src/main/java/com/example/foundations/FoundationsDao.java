@@ -16,12 +16,6 @@ public interface FoundationsDao {
     @Query("DELETE FROM profile_table")
     void deleteAllProfiles();
 
-    @Query("DELETE FROM buyer_table")
-    void deleteBuyers();
-
-    @Query("DELETE FROM seller_table")
-    void deleteSellers();
-
     @Query("DELETE FROM sitedetails_table")
     void deleteSiteDetails();
 
@@ -30,9 +24,6 @@ public interface FoundationsDao {
 
     @Query("DELETE FROM listitem_table")
     void deleteListItems();
-
-    @Query("DELETE FROM note_table")
-    void deleteNotes();
 
     @Query("DELETE FROM category_table")
     void deleteCategory();
@@ -45,12 +36,6 @@ public interface FoundationsDao {
     //INSERT CREATE QUERIES
     @Insert
     void insertProfile(Profile profile);
-
-    @Insert
-    void insertBuyer(Buyer buyer);
-
-    @Insert
-    void insertSeller(Seller seller);
 
     @Insert
     void insertReport(Report report);
@@ -67,20 +52,6 @@ public interface FoundationsDao {
     @Insert
     void insertSubCategory(SubCategory subCategory);
 
-    @Insert
-    void insertPhoto(Photo photo);
-
-    @Insert
-    void insertNote(Note note);
-
-
-    //UPDATE QUERIES
-//    @Query("UPDATE report_table SET buyerId = :buyerId WHERE reportId = :reportId")
-//    void updateReportBuyer(Integer buyerId, Integer reportId);
-//
-//    @Query("UPDATE report_table SET sellerId = :sellerId WHERE reportId  = :reportId")
-//    void updateReportSeller(Integer sellerId, Integer reportId);
-
     @Query("UPDATE report_table SET buyerFirstName = :buyerFirstName, buyerLastName = :buyerLastName, sellerFirstName = :sellerFirstName, sellerLastName = :sellerLastName, street = :street, city = :city, state = :state, zip = :zip WHERE reportId = :reportId")
     void updateReport(Integer reportId, String buyerFirstName, String buyerLastName, String sellerFirstName, String sellerLastName, @NonNull String street, @NonNull String city, @NonNull String state, @NonNull String zip);
 
@@ -88,13 +59,7 @@ public interface FoundationsDao {
     void updateSiteDetails(Integer reportId, double bathrooms, int bedrooms, int stories, double inspectionFee, int yearBuilt, String furnished, String presentAtInspection, String orientation);
 
     @Query("UPDATE listitem_table SET notes = :notes, photos = :photos WHERE listItemId = :listItemId")
-    void updateListItem(Integer listItemId, String notes, Boolean photos);
-
-    @Query("UPDATE buyer_table SET firstName = :firstName, lastName  = :lastName, email = :email, phone = :phone WHERE buyerId = :buyerId")
-    void updateBuyerInfo(Integer buyerId, String firstName, String lastName, String email, String phone);
-
-    @Query("UPDATE seller_table SET firstName = :firstName, lastName  = :lastName, email = :email, phone = :phone WHERE sellerId = :sellerId")
-    void updateSellerInfo(Integer sellerId, String firstName, String lastName, String email, String phone);
+    void updateListItem(Integer listItemId, String notes, String photos);
 
     @Query("UPDATE profile_table SET firstName = :firstName, lastName  = :lastName, email = :email, phone = :phone, companyName = :companyName, licenseNumber = :licenseNumber, photo = :photo WHERE profileId = :profileId")
     void updateProfileInfo(Integer profileId, String firstName, String lastName, String email, String phone, String companyName, String licenseNumber, String photo);
@@ -104,12 +69,6 @@ public interface FoundationsDao {
     @Query("DELETE FROM profile_table WHERE profileId = :profileId")
     void deleteProfile(Integer profileId);
 
-    @Query("DELETE FROM buyer_table WHERE buyerId = :buyerId")
-    void deleteBuyer(Integer buyerId);
-
-    @Query("DELETE FROM seller_table WHERE sellerId = :sellerId")
-    void deleteSeller(Integer sellerId);
-
     @Query("DELETE FROM report_table WHERE reportId = :reportId")
     void deleteReport(Integer reportId);
 
@@ -118,12 +77,6 @@ public interface FoundationsDao {
 
     @Query("DELETE FROM listitem_table WHERE listItemId = :listItemId")
     void deleteListItem(Integer listItemId);
-
-    @Query("DELETE FROM photo_table WHERE photoId = :photoId")
-    void deletePhoto(Integer photoId);
-
-    @Query("DELETE FROM note_table WHERE noteId = :noteId")
-    void deleteNote(Integer noteId);
 
     @Query("DELETE FROM category_table WHERE categoryId = :categoryId")
     void deleteCategory(Integer categoryId);
@@ -135,12 +88,6 @@ public interface FoundationsDao {
     // FETCH ALL QUERIES
     @Query("SELECT * from profile_table ORDER BY profileId ASC")
     LiveData<List<Profile>> getAllProfiles();
-
-    @Query("SELECT * from buyer_table ORDER BY buyerId ASC")
-    LiveData<List<Buyer>> getAllBuyers();
-
-    @Query("SELECT * from seller_table ORDER BY sellerId ASC")
-    LiveData<List<Seller>> getAllSellers();
 
     @Query("SELECT * from report_table ORDER BY reportId ASC")
     LiveData<List<Report>> getAllReports();
@@ -163,12 +110,6 @@ public interface FoundationsDao {
     // FETCH REPORT DATA QUERIES
     @Query("SELECT * from sitedetails_table where reportId = :reportId")
     List<SiteDetails> getSiteDetails(Integer reportId);
-
-    @Query("SELECT * from photo_table WHERE reportId = :reportId")
-    LiveData<List<Photo>> getPhotos(Integer reportId);
-
-    @Query("SELECT * from note_table WHERE reportId = :reportId")
-    LiveData<List<Note>> getNotes(Integer reportId);
 
     @Query("SELECT * from report_table order by reportId DESC limit 1")
     Report getNewReport();
