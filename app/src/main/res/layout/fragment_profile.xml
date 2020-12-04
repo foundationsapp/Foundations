@@ -26,13 +26,15 @@
             android:id="@+id/ecamera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/negative20"
-            android:layout_marginLeft="@dimen/_200"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/_30"
+            android:layout_marginTop="@dimen/_10"
             android:src="@drawable/ic_baseline_edit_24"
-            app:tint="@color/colorPrimary"/>
+            app:tint="@color/colorPrimary" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_30"
+            android:layout_width="@dimen/_380"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="vertical">
@@ -131,9 +133,14 @@
                 android:textColor="@color/white" />
 
             <Button
+                android:layout_marginTop="@dimen/_30"
+                android:layout_marginBottom="@dimen/_30"
                 android:id="@+id/Profile_edit"
+                android:backgroundTint="@color/colorPrimary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/_20"
+                android:textColor="@color/white"
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:text="@string/save_and_continue" />

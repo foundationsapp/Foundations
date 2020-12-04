@@ -9,4 +9,6 @@
     <color name="profilefragbackfround">#cce7e8</color>
     <color name="profilefragletter">#042f66</color>
     <color name="headerColor">#E2E6EA</color>
+    <color name="pdfColor">#BF0D00</color>
+    <color name="dialogueText">#FF756D6C</color>
 </resources>

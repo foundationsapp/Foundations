@@ -5,7 +5,9 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -13,7 +15,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import com.itextpdf.text.Anchor;
 import com.itextpdf.text.BadElementException;
@@ -36,22 +39,7 @@ import java.util.Date;
 import com.itextpdf.text.List;
 import com.itextpdf.text.ListItem;
 import java.util.Locale;
-
-    public class SummaryActivity extends AppCompatActivity {
-    Button save;
-    EditText buyerFirstName;
-    EditText buyerLastName;
-    EditText sellerFirstName;
-    EditText sellerLastName;
-    EditText address;
-    EditText city;
-    EditText state;
-    EditText zipCode;
-    TextView buyerInformation;
-    TextView siteInformation;
-    TextView sellerInformation;
-
-
+public class SummaryFragment extends Fragment {
 
     private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
             Font.BOLD);
@@ -61,35 +49,36 @@ import java.util.Locale;
             Font.BOLD);
     private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
             Font.BOLD);
+    public SummaryFragment(){
 
+    }
 
-
+    @Nullable
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.summary);
 
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.summary, container,false);
 
-        buyerFirstName = findViewById(R.id.pdf_buyer_first_name);
-        buyerLastName = findViewById(R.id.pdf_buyer_last_name);
-        sellerFirstName = findViewById(R.id.pdf_seller_first_name);
-        sellerLastName = findViewById(R.id.pdf_seller_last_name);
-        address = findViewById(R.id.pdf_site_address);
-        state = findViewById(R.id.pdf_site_state);
-        city = findViewById(R.id.pdf_site_city);
-        zipCode = findViewById(R.id.pdf_site_zip);
+        EditText buyerFirstName = view.findViewById(R.id.pdf_buyer_first_name);
+        EditText buyerLastName = view.findViewById(R.id.pdf_buyer_last_name);
+        EditText sellerFirstName = view.findViewById(R.id.pdf_seller_first_name);
+        EditText sellerLastName = view.findViewById(R.id.pdf_seller_last_name);
+        EditText address = view.findViewById(R.id.pdf_site_address);
+        EditText state = view.findViewById(R.id.pdf_site_state);
+        EditText city = view.findViewById(R.id.pdf_site_city);
+        EditText zipCode = view.findViewById(R.id.pdf_site_zip);
 
-        buyerInformation = findViewById(R.id.pdf_buyer_information);
-        sellerInformation = findViewById(R.id.pdf_seller_information);
-        siteInformation = findViewById(R.id.pdf_site_information);
+        TextView buyerInformation = view.findViewById(R.id.pdf_buyer_information);
+        TextView sellerInformation = view.findViewById(R.id.pdf_seller_information);
+        TextView siteInformation = view.findViewById(R.id.pdf_site_information);
 
-        save=(Button) findViewById(R.id.save_pdf);
+        Button save=(Button) view.findViewById(R.id.save_pdf);
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(Build.VERSION.SDK_INT> Build.VERSION_CODES.M){
-                    if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED){
+                        if(ContextCompat.checkSelfPermission(getActivity(),Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED){
                         String[] permission = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
                         requestPermissions(permission, 1000);
                     } else{
@@ -99,8 +88,13 @@ import java.util.Locale;
                     savepdf();
                 }
             }
+
         });
+
+        return view;
+
     }
+
     private void savepdf(){
         // Document document = new Document();
         String file = "Foundations Report " + new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(System.currentTimeMillis());
@@ -115,7 +109,7 @@ import java.util.Locale;
             addTitlePage(document);
             addContent(document);
             document.close();
-            Toast.makeText(this, ""+ file + ".pdf" + "is saved to " + filePath , Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), ""+ file + ".pdf" + "is saved to " + filePath , Toast.LENGTH_SHORT).show();
 
         }
         catch(Exception e){
@@ -123,6 +117,8 @@ import java.util.Locale;
         }
 
     }
+
+
     private static void addMetaData(Document document) {
         document.addTitle("Home Inspection By Foundations");
         document.addSubject("Using iText");
@@ -241,8 +237,8 @@ import java.util.Locale;
 
     private static void createList(Section subCatPart) {
         com.itextpdf.text.List list = new List(true, false, 10);
-        list.add(new ListItem("First point"));
-        list.add(new ListItem("Second point"));
+        list.add(new com.itextpdf.text.ListItem("First point"));
+        list.add(new com.itextpdf.text.ListItem("Second point"));
         list.add(new ListItem("Third point"));
         subCatPart.add(list);
     }

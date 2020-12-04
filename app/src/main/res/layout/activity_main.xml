@@ -20,7 +20,6 @@
             android:background="@drawable/logo" />
 
         <TextView
-            android:layout_marginTop="@dimen/negative20"
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -28,8 +27,7 @@
             android:fontFamily="sans-serif-black"
             android:text="@string/foundations"
             android:textColor="@color/white"
-            android:textSize="@dimen/_50"
-            android:textStyle="bold" />
+            android:textSize="@dimen/_40" />
 
         <TextView
             android:id="@+id/subtitle"

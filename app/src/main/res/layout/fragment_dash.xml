@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".DashFragment">
+    tools:context=".DashFragment"
+    android:background="@color/background">
 
     <LinearLayout
         android:id="@+id/appDash"
@@ -19,7 +20,7 @@
             android:layout_marginTop="@dimen/_10"
             android:text="@string/recent_inspections"
             android:textAlignment="center"
-            android:textColor="@color/background"
+            android:textColor="@color/headerColor"
             android:textSize="@dimen/_30"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
