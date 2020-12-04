@@ -116,5 +116,6 @@
     <string name="seller_first_name">Seller First Name</string>
     <string name="seller_last_name">Seller Last Name</string>
     <string name="select_insp">Please select an inspection</string>
+    <string name="done">DONE</string>
 
 </resources>

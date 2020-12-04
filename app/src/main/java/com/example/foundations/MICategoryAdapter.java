@@ -26,7 +26,7 @@ public class MICategoryAdapter extends RecyclerView.Adapter<MICategoryAdapter.MI
     private List<ListItem> miListItems;
     MISubcategoryAdapter miSubcategoryAdapter;
     private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
-    SubcategoryHandler subcategoryHandler;
+    InspectionHandler inspectionHandler;
     MainViewModel mainViewModel;
 
 
@@ -60,16 +60,19 @@ public class MICategoryAdapter extends RecyclerView.Adapter<MICategoryAdapter.MI
                 if (miSubcategories.get(i).getCategoryId() == categoryId) {
                     filteredSubcatList.add(miSubcategories.get(i));
                     int subCategoryId = miSubcategories.get(i).getSubCategoryId();
-                    for (int y = 0; y < miListItems.size(); y++) {
-                        if (miListItems.get(y).getCategoryId() == categoryId && subCategoryId == miListItems.get(y).getSubCategoryId() &&
-                                currentReportId == miListItems.get(y).getReportId()) {
-                            filteredListItemList.add(miListItems.get(y));
+                    if (miListItems != null) {
+                        for (int y = 0; y < miListItems.size(); y++) {
+                            if (miListItems.get(y).getCategoryId() == categoryId && subCategoryId == miListItems.get(y).getSubCategoryId() &&
+                                    currentReportId == miListItems.get(y).getReportId()) {
+                                filteredListItemList.add(miListItems.get(y));
+                            }
                         }
                     }
+
                 }
             }
             holder.addItem.setOnClickListener(v -> {
-                subcategoryHandler.showListItemDialog(mainViewModel, filteredSubcatList);
+                inspectionHandler.showListItemDialog(mainViewModel, filteredSubcatList);
             });
             if (filteredSubcatList.size() == 0) {
                 holder.addItem.setVisibility(View.GONE);
@@ -97,17 +100,19 @@ public class MICategoryAdapter extends RecyclerView.Adapter<MICategoryAdapter.MI
 
     void setMiCategories(List<Category> categories) {
         this.miCategories = categories;
-        subcategoryHandler.setAllCategories(categories);
+        inspectionHandler.setAllCategories(categories);
         notifyDataSetChanged();
     }
 
     void setMiListItems(List<ListItem> listItems) {
         this.miListItems = listItems;
+        inspectionHandler.setAllListItems(listItems);
         notifyDataSetChanged();
     }
 
     void setMiSubcategories(List<SubCategory> subcategories) {
         this.miSubcategories = subcategories;
+        inspectionHandler.setAllSubcategories(subcategories);
         notifyDataSetChanged();
     }
 
@@ -127,10 +132,10 @@ public class MICategoryAdapter extends RecyclerView.Adapter<MICategoryAdapter.MI
         }
     }
 
-    public MICategoryAdapter(Context context, SubcategoryHandler subcategoryHandler, MainViewModel mainViewModel, int currentReportId) {
+    public MICategoryAdapter(Context context, InspectionHandler inspectionHandler, MainViewModel mainViewModel, int currentReportId) {
         inflater = LayoutInflater.from(context);
         this.mainViewModel = mainViewModel;
-        this.subcategoryHandler = subcategoryHandler;
+        this.inspectionHandler = inspectionHandler;
         this.currentReportId = currentReportId;
     }
 }
