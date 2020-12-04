@@ -50,17 +50,19 @@ public class ChecklistCategoryAdapter extends RecyclerView.Adapter<ChecklistCate
             Category current = categories.get(position);
             categoryId = current.getCategoryId();
             holder.checklistCategoryItemView.setText(current.getTitle());
-            List<SubCategory> filteredList = new ArrayList<>();
-            for (int i = 0; i < subcategories.size(); i++) {
-                if (subcategories.get(i).getCategoryId() == categoryId) {
-                    filteredList.add(subcategories.get(i));
+            if (subcategories != null) {
+                List<SubCategory> filteredList = new ArrayList<>();
+                for (int i = 0; i < subcategories.size(); i++) {
+                    if (subcategories.get(i).getCategoryId() == categoryId) {
+                        filteredList.add(subcategories.get(i));
+                    }
                 }
+                LinearLayoutManager layoutManager = new LinearLayoutManager(holder.subcategoryRecyclerView.getContext());
+                ChecklistSubcategoryAdapter checklistSubcategoryAdapter = new ChecklistSubcategoryAdapter(filteredList);
+                holder.subcategoryRecyclerView.setLayoutManager(layoutManager);
+                holder.subcategoryRecyclerView.setAdapter(checklistSubcategoryAdapter);
+                holder.subcategoryRecyclerView.setRecycledViewPool(viewPool);
             }
-            LinearLayoutManager layoutManager = new LinearLayoutManager(holder.subcategoryRecyclerView.getContext());
-            ChecklistSubcategoryAdapter checklistSubcategoryAdapter = new ChecklistSubcategoryAdapter(filteredList);
-            holder.subcategoryRecyclerView.setLayoutManager(layoutManager);
-            holder.subcategoryRecyclerView.setAdapter(checklistSubcategoryAdapter);
-            holder.subcategoryRecyclerView.setRecycledViewPool(viewPool);
         }
     }
 
@@ -86,7 +88,7 @@ public class ChecklistCategoryAdapter extends RecyclerView.Adapter<ChecklistCate
     static class ChecklistCategoryViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView checklistCategoryItemView;
-        private RecyclerView subcategoryRecyclerView;
+        private final RecyclerView subcategoryRecyclerView;
 
         public ChecklistCategoryViewHolder(View itemView) {
             super(itemView);
