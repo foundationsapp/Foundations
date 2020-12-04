@@ -114,8 +114,4 @@ public interface FoundationsDao {
     @Query("SELECT * from report_table order by reportId DESC limit 1")
     Report getNewReport();
 
-    // GET LIST ITEM QUERY THAT RETURNS BOTH CATEGORY ID AND CATEGORY TITLE, SUBCAT TOO
-    @Query("SELECT listitem_table.listItemId AS listItemId, listitem_table.categoryId AS categoryId, listitem_table.subCategoryId AS subCategoryId, listitem_table.notes AS notes, listitem_table.photos AS photos, category_table.title AS categoryTitle, subcategory_table.title AS subCategoryTitle from listitem_table, category_table, subcategory_table WHERE reportId = :reportId")
-    LiveData<List<ListItemDetails>> getListItems(Integer reportId);
-
 }

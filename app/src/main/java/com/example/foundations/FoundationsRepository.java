@@ -15,7 +15,6 @@ public class FoundationsRepository {
     private LiveData<List<Report>> allReports;
     private LiveData<List<Category>> allCategories;
     private LiveData<List<SubCategory>> allSubcategories;
-    private LiveData<List<ListItemDetails>> allListItemDetails;
     private LiveData<List<ListItem>> allListItems;
     private List<SiteDetails> allSiteDetails;
     private List<SiteDetails> currentSiteDetails;
@@ -142,7 +141,6 @@ public class FoundationsRepository {
     }
     List<SiteDetails> getAllSiteDetails() { return allSiteDetails; }
     List<SiteDetails> getCurrentSiteDetails() { return currentSiteDetails; }
-    LiveData<List<ListItemDetails>> getCurrentListItemDetails() { return allListItemDetails; }
     LiveData<List<Category>> getAllCategories() { return allCategories; }
     LiveData<List<SubCategory>> getAllSubcategories() { return allSubcategories; }
     LiveData<List<ListItem>> getAllListItems() { return allListItems; }
