@@ -1,6 +1,7 @@
 package com.example.foundations;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements SetProfileHandler
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowTitleEnabled(false);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             requestPermissions(permission_list,0);
         } else {

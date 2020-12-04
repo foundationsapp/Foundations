@@ -57,7 +57,6 @@ public class SignUp extends AppCompatActivity {
         mainViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(MainViewModel.class);
 
         profileimage = (ImageView)findViewById(R.id.signupimage);
-
         editFirstName = findViewById(R.id.edit_first_name);
         editLastName = findViewById(R.id.edit_last_name);
         editLicenseNumber = findViewById(R.id.edit_license_number);
