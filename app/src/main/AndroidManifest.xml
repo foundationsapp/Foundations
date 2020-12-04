@@ -25,6 +25,7 @@
         </activity>
         <activity android:name=".SignUp"/>
         <activity android:name=".AppActivity"/>
+        <activity android:name=".SummaryActivity"/>
         <provider
             android:authorities="com.example.Foundations.file_provider"
             android:name="androidx.core.content.FileProvider"
