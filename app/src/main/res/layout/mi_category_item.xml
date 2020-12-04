@@ -3,22 +3,25 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/mi_category_item_title"
         android:text="@string/category_title"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="@dimen/_30"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/_350"
+        android:layout_marginLeft="@dimen/_30"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
         android:id="@+id/mi_subcategory_recyclerview"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mi_category_item_title"
@@ -33,10 +36,13 @@
         app:layout_constraintTop_toBottomOf="@id/mi_subcategory_recyclerview"/>
 
     <Button
+        android:layout_marginRight="@dimen/_30"
+        android:backgroundTint="@color/colorPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/mi_add_item"
         android:text="@string/add_item"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mi_subcategory_recyclerview"
         />

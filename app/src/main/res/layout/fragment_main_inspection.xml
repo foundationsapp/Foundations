@@ -4,9 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".MainInspectionFragment">
+    tools:context=".MainInspectionFragment"
+    android:background="@color/background">
 
     <TextView
+        android:textColor="@color/white"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/main_inspection_title"
@@ -24,7 +27,8 @@
         app:layout_constraintBottom_toTopOf="@+id/mi_add_category"
         >
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/_350"
+            android:layout_marginLeft="@dimen/_30"
             android:layout_height="wrap_content"
             android:id="@+id/mi_category_recyclerview"
             tools:listitem="@layout/mi_category_item"
@@ -33,15 +37,21 @@
     </androidx.core.widget.NestedScrollView>
 
     <Button
+        android:layout_marginBottom="@dimen/_30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/mi_add_category"
+        android:layout_marginLeft="@dimen/_30"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:text="@string/add_category"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/colorPrimary"
         />
 
     <Button
+        android:layout_marginBottom="@dimen/_30"
+        android:layout_marginRight="@dimen/_30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/mi_add_subcategory"
