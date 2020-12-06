@@ -32,8 +32,9 @@
 
     <Spinner
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_40"
         android:id="@+id/subcategory_spinner"
+        android:theme="@style/SpinnerTheme"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/list_item_subcat"
         />

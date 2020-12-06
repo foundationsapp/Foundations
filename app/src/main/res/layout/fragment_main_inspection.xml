@@ -39,6 +39,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_30"
         android:id="@+id/mi_add_category"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,13 +49,14 @@
         />
 
     <Button
-        android:layout_width="wrap_content"
+        android:background="@drawable/ic_baseline_check_24"
+        android:layout_width="@dimen/_60"
         android:layout_height="wrap_content"
         android:id="@+id/mi_done_button"
+        android:backgroundTint="@color/white"
         app:layout_constraintStart_toEndOf="@id/mi_add_category"
         app:layout_constraintEnd_toStartOf="@id/mi_add_subcategory"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="@string/done"
         />
 
     <Button
@@ -64,6 +66,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:text="@string/add_subcategory"
+        android:layout_marginRight="@dimen/_30"
         />
 
 

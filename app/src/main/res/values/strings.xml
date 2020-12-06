@@ -98,10 +98,10 @@
     <string name="add_category_dialog_btn">Add Category</string>
     <string name="cancel_addcat_dialog">Cancel</string>
     <string name="category_name">Category Name</string>
-    <string name="ac_cat_hint">enter category name</string>
+    <string name="ac_cat_hint">Enter category name</string>
     <string name="add_subcategory">Add Subcategory</string>
     <string name="asc_sc_name">Add subcategory name</string>
-    <string name="enter_subcategory_name">enter subcategory name</string>
+    <string name="enter_subcategory_name">Enter subcategory name</string>
     <string name="current_insp">Current Inspection</string>
     <string name="add_item">Add Item</string>
     <string name="edit">Edit Item</string>

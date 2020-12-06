@@ -34,4 +34,5 @@
     <dimen name="_275">275sp</dimen>
     <dimen name="_240">240sp</dimen>
     <dimen name="_380">380sp</dimen>
+    <dimen name="_25sp">25sp</dimen>
 </resources>

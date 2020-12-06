@@ -187,15 +187,14 @@
                     android:hint="@string/_98133" />
                 <Button
                     android:id="@+id/ni_create_report"
-                    android:background="@drawable/save_shape"
                     android:layout_marginTop="@dimen/_25"
+                    android:background="@drawable/form"
                     android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:textColor="@color/white"
-                    android:text="@string/save_and_continue"
-                    android:textStyle="bold"
+                    android:text="@string/submit_and_continue"
                     android:backgroundTint="@color/colorPrimary"
                     android:layout_marginBottom="@dimen/_25"
                     android:textSize="@dimen/_20" />
