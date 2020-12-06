@@ -65,6 +65,7 @@ public class MainActivityTest {
         onView(withId(R.id.edit_company_name)).perform(ViewActions.scrollTo(), typeText("Inspect The Deck"));
         onView(withId(R.id.edit_email)).perform(ViewActions.scrollTo(), typeText("kevin@deck.com"));
         onView(withId(R.id.edit_phone)).perform(ViewActions.scrollTo(), typeText("2062023434"));
+        Espresso.closeSoftKeyboard();
         onView(withId(R.id.get_started_button)).perform(ViewActions.scrollTo(), click());
         Thread.sleep(500);
         onView(withId(R.id.users)).check(matches(withText("USERS")));
