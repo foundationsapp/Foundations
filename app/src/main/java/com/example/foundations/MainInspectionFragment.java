@@ -79,6 +79,11 @@ public class MainInspectionFragment extends Fragment implements InspectionHandle
         dialog.show(getParentFragmentManager(), "addSubcategory");
     }
 
+    public void showDeleteItemDialog(MainViewModel mainViewModel, int listId) {
+        DialogFragment dialog = new DeleteDialogFragment(mainViewModel, listId);
+        dialog.show(getParentFragmentManager(), "deleteItem");
+    }
+
     public void setAllCategories(List<Category> allCategories) {
         this.allCategories = allCategories;
     }
@@ -128,8 +133,8 @@ public class MainInspectionFragment extends Fragment implements InspectionHandle
         return filterListItems;
     }
 
-    public void showListItemDialog(MainViewModel mainViewModel, List<SubCategory> allSubcategories) {
-        DialogFragment dialog = new ListItemDialogFragment(mainViewModel, allSubcategories, currentReportId);
+    public void showListItemDialog(MainViewModel mainViewModel, List<SubCategory> allSubcategories, ListItem item) {
+        DialogFragment dialog = new ListItemDialogFragment(mainViewModel, allSubcategories, currentReportId, item);
         dialog.show(getParentFragmentManager(), "listItem");
     }
 

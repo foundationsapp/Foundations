@@ -18,7 +18,7 @@
         />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="@dimen/_350"
+        android:layout_width="match_parent"
         android:layout_marginLeft="@dimen/_30"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
@@ -30,13 +30,22 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/delete_item"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mi_subcategory_recyclerview"
+        android:text="@string/delete_item"
+        android:backgroundTint="@color/red"/>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/mi_edit_item"
         android:text="@string/edit"
         app:layout_constraintEnd_toStartOf="@id/mi_add_item"
         app:layout_constraintTop_toBottomOf="@id/mi_subcategory_recyclerview"/>
 
     <Button
-        android:layout_marginRight="@dimen/_30"
         android:backgroundTint="@color/colorPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

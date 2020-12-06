@@ -117,5 +117,10 @@
     <string name="seller_last_name">Seller Last Name</string>
     <string name="select_insp">Please select an inspection</string>
     <string name="done">DONE</string>
+    <string name="unable_camera">Unable to launch camera</string>
+    <string name="item_photo">Item Photo</string>
+    <string name="delete_item">Delete Item</string>
+    <string name="are_you_sure_you_want_to_delete_this_item">Are you sure you want to delete this item?</string>
+    <string name="are_you_sure">Are you sure?</string>
 
 </resources>
