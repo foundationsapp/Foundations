@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
-public class CheckListsFragment extends Fragment implements SubcategoryHandler{
+public class CheckListsFragment extends Fragment implements ChecklistHandler{
 
     private List<Category> allCategories;
 
@@ -66,11 +66,6 @@ public class CheckListsFragment extends Fragment implements SubcategoryHandler{
     @Override
     public void setAllCategories(List<Category> allCategories) {
         this.allCategories = allCategories;
-    }
-
-    @Override
-    public void showListItemDialog(MainViewModel mainViewModel, List<SubCategory> allSubcategories) {
-
     }
 
 }

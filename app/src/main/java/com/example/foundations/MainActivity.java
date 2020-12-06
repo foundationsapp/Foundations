@@ -1,5 +1,6 @@
 package com.example.foundations;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements SetProfileHandler
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private Profile currentProfile;
+    private long pressedTime;
 
     String [] permission_list = new String[]{
             Manifest.permission.CAMERA,
@@ -59,7 +61,18 @@ public class MainActivity extends AppCompatActivity implements SetProfileHandler
             }
         });
 
+    }
 
+    @Override
+    public void onBackPressed() {
+
+        if (pressedTime + 2000 > System.currentTimeMillis()) {
+            super.onBackPressed();
+            finish();
+        } else {
+            Toast.makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_SHORT).show();
+        }
+        pressedTime = System.currentTimeMillis();
     }
     public void init(){
         String temp_path = getExternalFilesDir(null).getAbsolutePath();
@@ -89,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements SetProfileHandler
         if (currentProfile != null) {
             Intent intent = new Intent(MainActivity.this, AppActivity.class);
             intent.putExtra(String.valueOf(R.string.userProfile), this.currentProfile);
+            finish();
             startActivity(intent);
         } else {
             Toast.makeText(MainActivity.this, getString(R.string.please_select_insp), Toast.LENGTH_LONG).show();

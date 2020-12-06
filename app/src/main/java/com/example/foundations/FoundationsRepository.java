@@ -12,14 +12,9 @@ public class FoundationsRepository {
     private static final String TAG = FoundationsRepository.class.getSimpleName();
     private FoundationsDao foundationsDao;
     private LiveData<List<Profile>> allProfiles;
-    private LiveData<List<Buyer>> allBuyers;
-    private LiveData<List<Seller>> allSellers;
     private LiveData<List<Report>> allReports;
-    private LiveData<List<Note>> currentReportNotes;
-    private LiveData<List<Photo>> currentReportPhotos;
     private LiveData<List<Category>> allCategories;
     private LiveData<List<SubCategory>> allSubcategories;
-    private LiveData<List<ListItemDetails>> allListItemDetails;
     private LiveData<List<ListItem>> allListItems;
     private List<SiteDetails> allSiteDetails;
     private List<SiteDetails> currentSiteDetails;
@@ -28,8 +23,6 @@ public class FoundationsRepository {
         FoundationsRoomDatabase db = FoundationsRoomDatabase.getDatabase(application);
         foundationsDao = db.foundationsDao();
         allProfiles = foundationsDao.getAllProfiles();
-        allBuyers = foundationsDao.getAllBuyers();
-        allSellers = foundationsDao.getAllSellers();
         allReports = foundationsDao.getAllReports();
         allCategories = foundationsDao.getAllCategories();
         allSubcategories = foundationsDao.getAllSubcategories();
@@ -37,25 +30,12 @@ public class FoundationsRepository {
         FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
             allSiteDetails = foundationsDao.getAllSiteDetails();
         });
-        loadReportData(1);
     }
 
     // INSERT QUERIES
     void insertProfile(final Profile profile) {
         FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
             foundationsDao.insertProfile(profile);
-        });
-    }
-
-    void insertBuyer(final Buyer buyer) {
-        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            foundationsDao.insertBuyer(buyer);
-        });
-    }
-
-    void insertSeller(final Seller seller) {
-        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            foundationsDao.insertSeller(seller);
         });
     }
 
@@ -89,32 +69,6 @@ public class FoundationsRepository {
         });
     }
 
-    void insertPhoto(final Photo photo) {
-        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            foundationsDao.insertPhoto(photo);
-        });
-    }
-
-    void insertNote(final Note note) {
-        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            foundationsDao.insertNote(note);
-        });
-    }
-
-
-    // UPDATE QUERIES
-//    void updateReportBuyer(Integer buyerId, Integer reportId) {
-//        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-//            foundationsDao.updateReportBuyer(buyerId, reportId);
-//        });
-//    }
-//
-//    void updateReportSeller(Integer sellerId, Integer reportId) {
-//        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-//            foundationsDao.updateReportSeller(sellerId, reportId);
-//        });
-//    }
-
     void updateReport(Integer reportId, String buyerFirstName, String buyerLastName, String sellerFirstName, String sellerLastName, @NonNull String street, @NonNull String city, @NonNull String state, @NonNull String zip) {
         FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
             foundationsDao.updateReport(reportId, buyerFirstName, buyerLastName, sellerFirstName, sellerLastName, street, city, state, zip);
@@ -127,21 +81,9 @@ public class FoundationsRepository {
         });
     }
 
-    void updateListItem(Integer listItemId, String notes, Boolean photos) {
+    void updateListItem(Integer listItemId, String notes, String photos) {
         FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
             foundationsDao.updateListItem(listItemId, notes, photos);
-        });
-    }
-
-    void updateBuyerInfo(Integer buyerId, String firstName, String lastName, String email, String phone) {
-        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            foundationsDao.updateBuyerInfo(buyerId, firstName, lastName, email, phone);
-        });
-    }
-
-    void updateSellerInfo(Integer sellerId, String firstName, String lastName, String email, String phone) {
-        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            foundationsDao.updateSellerInfo(sellerId, firstName, lastName, email, phone);
         });
     }
 
@@ -156,18 +98,6 @@ public class FoundationsRepository {
     void deleteProfile(Integer profileId) {
         FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
             foundationsDao.deleteProfile(profileId);
-        });
-    }
-
-    void deleteBuyer(Integer buyerId) {
-        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            foundationsDao.deleteBuyer(buyerId);
-        });
-    }
-
-    void deleteSeller(Integer sellerId) {
-        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            foundationsDao.deleteSeller(sellerId);
         });
     }
 
@@ -189,18 +119,6 @@ public class FoundationsRepository {
         });
     }
 
-    void deletePhoto(Integer photoId) {
-        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            foundationsDao.deletePhoto(photoId);
-        });
-    }
-
-    void deleteNote(Integer noteId) {
-        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            foundationsDao.deleteNote(noteId);
-        });
-    }
-
     void deleteCategory(Integer categoryId) {
         FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
             foundationsDao.deleteCategory(categoryId);
@@ -218,32 +136,14 @@ public class FoundationsRepository {
     LiveData<List<Profile>> getAllProfiles() {
         return allProfiles;
     }
-    LiveData<List<Buyer>> getAllBuyers() {
-        return allBuyers;
-    }
-    LiveData<List<Seller>> getAllSellers() {
-        return allSellers;
-    }
     LiveData<List<Report>> getAllReports() {
         return allReports;
     }
     List<SiteDetails> getAllSiteDetails() { return allSiteDetails; }
     List<SiteDetails> getCurrentSiteDetails() { return currentSiteDetails; }
-    LiveData<List<Photo>> getCurrentReportPhotos() { return currentReportPhotos; }
-    LiveData<List<Note>> getCurrentReportNotes() { return currentReportNotes; }
-    LiveData<List<ListItemDetails>> getCurrentListItemDetails() { return allListItemDetails; }
     LiveData<List<Category>> getAllCategories() { return allCategories; }
     LiveData<List<SubCategory>> getAllSubcategories() { return allSubcategories; }
     LiveData<List<ListItem>> getAllListItems() { return allListItems; }
-
-
-    // FETCH REPORT DATA QUERIES
-    void loadReportData(Integer reportId) {
-       // currentSiteDetails = foundationsDao.getSiteDetails(reportId);
-        currentReportNotes = foundationsDao.getNotes(reportId);
-        currentReportPhotos = foundationsDao.getPhotos(reportId);
-        allListItemDetails = foundationsDao.getListItems(reportId);
-    }
 
     Report getNewReport() {
         return foundationsDao.getNewReport();

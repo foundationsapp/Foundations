@@ -11,7 +11,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Profile.class, Buyer.class, Category.class, ListItem.class, Note.class, Photo.class, Report.class, Seller.class, SiteDetails.class, SubCategory.class}, version = 1, exportSchema = false)
+@Database(entities = {Profile.class, Category.class, ListItem.class, Report.class, SiteDetails.class, SubCategory.class}, version = 1, exportSchema = false)
 public abstract class FoundationsRoomDatabase extends RoomDatabase{
 
     public abstract FoundationsDao foundationsDao();
@@ -37,7 +37,7 @@ public abstract class FoundationsRoomDatabase extends RoomDatabase{
         return INSTANCE;
     }
 
-    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
+    private static final RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
 
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {

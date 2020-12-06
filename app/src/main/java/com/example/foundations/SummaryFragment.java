@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,9 +36,10 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import com.itextpdf.text.List;
-import com.itextpdf.text.ListItem;
+
+import java.util.List;
 import java.util.Locale;
 public class SummaryFragment extends Fragment {
 
@@ -49,8 +51,22 @@ public class SummaryFragment extends Fragment {
             Font.BOLD);
     private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
             Font.BOLD);
-    public SummaryFragment(){
 
+    private static final String TAG = "SummaryFragment";
+    private FragmentSwitcher fragmentSwitcher;
+    private InspectionHandler inspectionHandler;
+    private List<ListItem> allListItems;
+    private List<Category> allCategories;
+    private List<SubCategory> allSubcategories;
+    private Report currentReport;
+
+    public SummaryFragment(FragmentSwitcher fragmentSwitcher, InspectionHandler inspectionHandler){
+        this.fragmentSwitcher = fragmentSwitcher;
+        this.inspectionHandler = inspectionHandler;
+        allListItems = inspectionHandler.getAllListItems();
+        allCategories = inspectionHandler.getAllCategories();
+        allSubcategories = inspectionHandler.getAllSubcategories();
+        currentReport = fragmentSwitcher.getCurrentReport();
     }
 
     @Nullable
@@ -236,10 +252,10 @@ public class SummaryFragment extends Fragment {
     }
 
     private static void createList(Section subCatPart) {
-        com.itextpdf.text.List list = new List(true, false, 10);
+        com.itextpdf.text.List list = new com.itextpdf.text.List(true, false, 10);
         list.add(new com.itextpdf.text.ListItem("First point"));
         list.add(new com.itextpdf.text.ListItem("Second point"));
-        list.add(new ListItem("Third point"));
+        list.add(new com.itextpdf.text.ListItem("Third point"));
         subCatPart.add(list);
     }
 

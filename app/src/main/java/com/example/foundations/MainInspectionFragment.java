@@ -1,5 +1,6 @@
 package com.example.foundations;
 
+import android.app.Person;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,14 +14,23 @@ import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.ToDoubleFunction;
+import java.util.function.ToIntFunction;
+import java.util.function.ToLongFunction;
 
-public class MainInspectionFragment extends Fragment implements SubcategoryHandler {
+public class MainInspectionFragment extends Fragment implements InspectionHandler {
 
     private FragmentSwitcher fragmentSwitcher;
     private MainViewModel mainViewModel;
     private int currentReportId;
     private List<Category> allCategories;
+    private List<SubCategory> allSubcategories;
+    private List<ListItem> allListItems;
 
     public MainInspectionFragment(FragmentSwitcher fragmentSwitcher, int currentReportId) {
         this.fragmentSwitcher = fragmentSwitcher;
@@ -51,6 +61,11 @@ public class MainInspectionFragment extends Fragment implements SubcategoryHandl
         addSubcategory.setOnClickListener(v -> {
             showAddSubcategoryDialog(mainViewModel);
         });
+        Button done = view.findViewById(R.id.mi_done_button);
+        done.setOnClickListener(v -> {
+            Fragment fragment = new SummaryFragment(fragmentSwitcher, this);
+            fragmentSwitcher.loadFragment(fragment);
+        });
         return view;
     }
 
@@ -66,6 +81,51 @@ public class MainInspectionFragment extends Fragment implements SubcategoryHandl
 
     public void setAllCategories(List<Category> allCategories) {
         this.allCategories = allCategories;
+    }
+
+    public void setAllSubcategories(List<SubCategory> allSubcategories) {
+        this.allSubcategories = allSubcategories;
+    }
+    public void setAllListItems(List<ListItem> allListItems) {
+        this.allListItems = allListItems;
+    }
+
+    @Override
+    public List<Category> getAllCategories() {
+        return allCategories;
+    }
+
+    @Override
+    public List<SubCategory> getAllSubcategories() {
+        return allSubcategories;
+    }
+
+    @Override
+    public List<ListItem> getAllListItems() {
+        List<ListItem> filterListItems = new ArrayList<>();
+        for (int i = 0; i < allListItems.size(); i++) {
+            if (allListItems.get(i).getReportId() == currentReportId) {
+                filterListItems.add(allListItems.get(i));
+            }
+        }
+        filterListItems.sort(new Comparator() {
+
+            public int compare(Object item1, Object item2) {
+
+                Integer cat1 = ((ListItem) item1).getCategoryId();
+                Integer cat2 = ((ListItem) item2).getCategoryId();
+                int sComp = cat1.compareTo(cat2);
+
+                if (sComp != 0) {
+                    return sComp;
+                }
+
+                Integer sub1 = ((ListItem) item1).getSubCategoryId();
+                Integer sub2 = ((ListItem) item2).getSubCategoryId();
+                return sub1.compareTo(sub2);
+            }
+        });
+        return filterListItems;
     }
 
     public void showListItemDialog(MainViewModel mainViewModel, List<SubCategory> allSubcategories) {

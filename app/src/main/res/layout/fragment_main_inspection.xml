@@ -37,11 +37,9 @@
     </androidx.core.widget.NestedScrollView>
 
     <Button
-        android:layout_marginBottom="@dimen/_30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/mi_add_category"
-        android:layout_marginLeft="@dimen/_30"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:text="@string/add_category"
@@ -50,8 +48,16 @@
         />
 
     <Button
-        android:layout_marginBottom="@dimen/_30"
-        android:layout_marginRight="@dimen/_30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mi_done_button"
+        app:layout_constraintStart_toEndOf="@id/mi_add_category"
+        app:layout_constraintEnd_toStartOf="@id/mi_add_subcategory"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/done"
+        />
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/mi_add_subcategory"
