@@ -169,8 +169,9 @@ public class MainActivityTest {
         onView(withId(R.id.sd_orientation_amt)).check(matches(withHint("North")));
         onView(withId(R.id.sd_orientation_amt)).perform(scrollTo(), typeText("South"));
         Espresso.closeSoftKeyboard();
+        Thread.sleep(500);
         onView(withId(R.id.sd_submit)).check(matches(withText("SUBMIT AND CONTINUE")));
-        onView(withId(R.id.sd_submit)).perform(click());
+        onView(withId(R.id.sd_submit)).perform(scrollTo(), click());
         Thread.sleep(500);
         onView(withId(R.id.main_inspection_title)).check(matches(withText("Current Inspection")));
         onView(withText("Appliances")).check(matches(isDisplayed()));
@@ -185,6 +186,23 @@ public class MainActivityTest {
                 .atPositionOnView(0, R.id.mi_add_item)).check(matches(withText("Add Item")));
         onView(withRecyclerView(R.id.mi_category_recyclerview)
                 .atPositionOnView(0, R.id.mi_add_item)).perform(click());
+        onView(withId(R.id.list_item_title)).check(matches(withText("List Item")));
+        onView(withId(R.id.list_item_subcat)).check(matches(withText("Select Subcategory for Item")));
+        onView(withId(R.id.list_item_notes)).check(matches(withHint("Enter Notes")));
+        onView(withId(R.id.list_item_notes)).perform(typeText("OMG AWESOME"));
+        Espresso.closeSoftKeyboard();
+        onView(withId(R.id.list_item_notes)).check(matches(isDisplayed()));
+        onView(withText("Cancel")).check(matches(isDisplayed()));
+        onView(withText("Submit Item")).check(matches(isDisplayed()));
+        onView(withText("Submit Item")).perform(click());
+        Thread.sleep(500);
+        onView(withText("OMG AWESOME")).check(matches(isDisplayed()));
+        onView(withText("OMG AWESOME")).perform(click());
+        onView(withRecyclerView(R.id.mi_category_recyclerview)
+                .atPositionOnView(0, R.id.mi_edit_item)).perform(click());
+        onView(withText("Cancel")).perform(click());
+
+
 
 
 
