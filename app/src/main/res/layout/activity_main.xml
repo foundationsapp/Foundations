@@ -18,8 +18,9 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/_50"
             android:background="@drawable/logo"
-            android:id="@+id/main_logo
-"       />
+            android:id="@+id/main_logo"
+            android:contentDescription="@string/main_logo" />
+
 
         <TextView
             android:id="@+id/title"
