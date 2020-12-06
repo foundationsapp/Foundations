@@ -21,6 +21,7 @@ public class MISubcategoryAdapter extends RecyclerView.Adapter<MISubcategoryAdap
     private List<SubCategory> miSubcategories;
     private List<ListItem> miListItems;
     private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
+    ListItemHandler listItemHandler;
 
     @NonNull
     @Override
@@ -42,7 +43,7 @@ public class MISubcategoryAdapter extends RecyclerView.Adapter<MISubcategoryAdap
                 }
             }
             LinearLayoutManager layoutManager = new LinearLayoutManager(holder.miListItemRecyclerView.getContext());
-            MIListItemAdapter miListItemAdapter = new MIListItemAdapter(filteredListItemList);
+            MIListItemAdapter miListItemAdapter = new MIListItemAdapter(filteredListItemList, listItemHandler);
             holder.miListItemRecyclerView.setLayoutManager(layoutManager);
             holder.miListItemRecyclerView.setAdapter(miListItemAdapter);
             holder.miListItemRecyclerView.setRecycledViewPool(viewPool);
@@ -73,10 +74,11 @@ public class MISubcategoryAdapter extends RecyclerView.Adapter<MISubcategoryAdap
         }
     }
 
-    public MISubcategoryAdapter(List<SubCategory> miSubcategories, List<ListItem> miListItems
+    public MISubcategoryAdapter(List<SubCategory> miSubcategories, List<ListItem> miListItems, ListItemHandler listItemHandler
     ) {
         this.miSubcategories = miSubcategories;
         this.miListItems = miListItems;
+        this.listItemHandler = listItemHandler;
     }
 
 //    @Override

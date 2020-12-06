@@ -21,6 +21,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.util.Patterns;
@@ -93,10 +94,8 @@ public class ProfileFragment extends DialogFragment{
             public void onClick(View v) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 String file_name = System.currentTimeMillis() +".jpg";
-
-
-                pic_path = "/sdcard/DCIM/Camera" + file_name;
-
+                File storageDir = getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+                pic_path = storageDir.getAbsolutePath() + file_name;
                 File file = new File(pic_path);
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
                     contentUri = FileProvider.getUriForFile(activity, "com.example.Foundations.file_provider",file);
