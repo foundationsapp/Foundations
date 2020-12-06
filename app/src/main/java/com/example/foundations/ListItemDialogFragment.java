@@ -42,7 +42,7 @@ public class ListItemDialogFragment extends DialogFragment implements AdapterVie
                     public void onClick(DialogInterface dialog, int id) {
                         EditText editText = view.findViewById(R.id.list_item_notes);
                         String notes = editText.getText().toString();
-                        ListItem item = new ListItem(reportId, categoryId, subcategoryId, notes, false);
+                        ListItem item = new ListItem(reportId, categoryId, subcategoryId, notes, null);
                         mainViewModel.insertListItem(item);
                     }
                 })

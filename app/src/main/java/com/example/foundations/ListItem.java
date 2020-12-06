@@ -27,7 +27,7 @@ public class ListItem {
     private String notes;
 
     @ColumnInfo(name = "photos")
-    private Boolean photos = false;
+    private String photos = null;
 
     public Integer getListItemId() {
         return listItemId;
@@ -51,7 +51,7 @@ public class ListItem {
         return notes;
     }
 
-    public Boolean getPhotos() {
+    public String getPhotos() {
         return photos;
     }
 
@@ -59,7 +59,7 @@ public class ListItem {
         this.notes = notes;
     }
 
-    public void setPhotos(Boolean photos) {
+    public void setPhotos(String photos) {
         this.photos = photos;
     }
 
@@ -67,7 +67,9 @@ public class ListItem {
         this.listItemId = listItemId;
     }
 
-    public ListItem(@NonNull Integer reportId, @NonNull Integer categoryId, Integer subCategoryId, String notes, Boolean photos) {
+    public String toString() { return getCategoryId() + " " + getSubCategoryId() + " " + getNotes();}
+
+    public ListItem(@NonNull Integer reportId, @NonNull Integer categoryId, Integer subCategoryId, String notes, String photos) {
         this.reportId = reportId;
         this.categoryId = categoryId;
         this.subCategoryId = subCategoryId;

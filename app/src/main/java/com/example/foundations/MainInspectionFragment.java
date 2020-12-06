@@ -1,5 +1,6 @@
 package com.example.foundations;
 
+import android.app.Person;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.ToDoubleFunction;
+import java.util.function.ToIntFunction;
+import java.util.function.ToLongFunction;
 
 public class MainInspectionFragment extends Fragment implements InspectionHandler {
 
@@ -101,6 +108,23 @@ public class MainInspectionFragment extends Fragment implements InspectionHandle
                 filterListItems.add(allListItems.get(i));
             }
         }
+        filterListItems.sort(new Comparator() {
+
+            public int compare(Object item1, Object item2) {
+
+                Integer cat1 = ((ListItem) item1).getCategoryId();
+                Integer cat2 = ((ListItem) item2).getCategoryId();
+                int sComp = cat1.compareTo(cat2);
+
+                if (sComp != 0) {
+                    return sComp;
+                }
+
+                Integer sub1 = ((ListItem) item1).getSubCategoryId();
+                Integer sub2 = ((ListItem) item2).getSubCategoryId();
+                return sub1.compareTo(sub2);
+            }
+        });
         return filterListItems;
     }
 

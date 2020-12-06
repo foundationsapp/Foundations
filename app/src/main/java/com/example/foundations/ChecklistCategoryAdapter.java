@@ -29,12 +29,12 @@ public class ChecklistCategoryAdapter extends RecyclerView.Adapter<ChecklistCate
     private List<SubCategory> subcategories;
     private int categoryId;
     private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
-    SubcategoryHandler subcategoryHandler;
+    ChecklistHandler checklistHandler;
     MainViewModel mainViewModel;
 
-    public ChecklistCategoryAdapter(Context context, SubcategoryHandler subcategoryHandler, MainViewModel mainViewModel) {
+    public ChecklistCategoryAdapter(Context context, ChecklistHandler checklistHandler, MainViewModel mainViewModel) {
         inflater = LayoutInflater.from(context);
-        this.subcategoryHandler = subcategoryHandler;
+        this.checklistHandler = checklistHandler;
         this.mainViewModel = mainViewModel;
     }
     @NonNull
@@ -75,7 +75,7 @@ public class ChecklistCategoryAdapter extends RecyclerView.Adapter<ChecklistCate
 
     void setCategories(List<Category> categories) {
         this.categories = categories;
-        subcategoryHandler.setAllCategories(categories);
+        checklistHandler.setAllCategories(categories);
         notifyDataSetChanged();
     }
 
