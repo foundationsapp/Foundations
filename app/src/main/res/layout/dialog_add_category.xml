@@ -24,7 +24,6 @@
         android:hint="@string/ac_cat_hint"
         android:textColorHint="@color/dialogueText"
         android:textSize="25sp"
-        android:backgroundTint="@color/colorPrimary"
         android:autofillHints="@string/ac_cat_hint"
         android:id="@+id/ac_dialog_title_edit"
         android:inputType="text" />

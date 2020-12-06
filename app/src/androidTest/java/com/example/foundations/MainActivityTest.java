@@ -208,6 +208,7 @@ public class MainActivityTest {
         onView(withText("Submit Item")).perform(click());
         onView(withRecyclerView(R.id.mi_category_recyclerview)
                 .atPositionOnView(0, R.id.mi_edit_item)).perform(click());
+        Thread.sleep(500);
         onView(withText("Cancel")).perform(click());
         onView(withText("ADD CATEGORY")).check(matches(isDisplayed()));
         onView(withText("ADD SUBCATEGORY")).check(matches(isDisplayed()));
