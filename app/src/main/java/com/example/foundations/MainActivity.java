@@ -15,6 +15,8 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements SetProfileHandler
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private Profile currentProfile;
+
     String [] permission_list = new String[]{
             Manifest.permission.CAMERA,
             Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -96,5 +99,18 @@ public class MainActivity extends AppCompatActivity implements SetProfileHandler
     @Override
     public void setCurrentProfile(Profile currentProfile) {
         this.currentProfile = currentProfile;
+    }
+
+    @Override
+    public void noProfileCheck(boolean profileCheck) {
+        TextView userTitle = findViewById(R.id.users);
+        Button button = findViewById(R.id.get_started_button);
+        if (profileCheck) {
+            userTitle.setVisibility(View.GONE);
+            button.setVisibility(View.GONE);
+        } else {
+            userTitle.setVisibility(View.VISIBLE);
+            button.setVisibility(View.VISIBLE);
+        }
     }
 }

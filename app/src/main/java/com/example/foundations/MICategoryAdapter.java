@@ -71,6 +71,13 @@ public class MICategoryAdapter extends RecyclerView.Adapter<MICategoryAdapter.MI
             holder.addItem.setOnClickListener(v -> {
                 subcategoryHandler.showListItemDialog(mainViewModel, filteredSubcatList);
             });
+            if (filteredSubcatList.size() == 0) {
+                holder.addItem.setVisibility(View.GONE);
+                holder.editItem.setVisibility(View.GONE);
+            } else {
+                holder.addItem.setVisibility(View.VISIBLE);
+                holder.editItem.setVisibility(View.VISIBLE);
+            }
             LinearLayoutManager layoutManager = new LinearLayoutManager(holder.miSubcategoryRecyclerView.getContext());
             miSubcategoryAdapter = new MISubcategoryAdapter(filteredSubcatList, filteredListItemList);
             holder.miSubcategoryRecyclerView.setLayoutManager(layoutManager);
