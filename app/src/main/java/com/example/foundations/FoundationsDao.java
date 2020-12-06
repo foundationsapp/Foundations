@@ -58,8 +58,8 @@ public interface FoundationsDao {
     @Query("UPDATE sitedetails_table SET bathrooms = :bathrooms, bedrooms = :bedrooms, stories = :stories, inspectionFee = :inspectionFee, yearBuilt = :yearBuilt, furnished = :furnished, presentAtInspection = :presentAtInspection, orientation = :orientation WHERE reportId =:reportId")
     void updateSiteDetails(Integer reportId, double bathrooms, int bedrooms, int stories, double inspectionFee, int yearBuilt, String furnished, String presentAtInspection, String orientation);
 
-    @Query("UPDATE listitem_table SET notes = :notes, photos = :photos WHERE listItemId = :listItemId")
-    void updateListItem(Integer listItemId, String notes, String photos);
+    @Query("UPDATE listitem_table SET notes = :notes, photos = :photos, subCategoryId = :subCat WHERE listItemId = :listItemId")
+    void updateListItem(Integer listItemId, String notes, String photos, Integer subCat);
 
     @Query("UPDATE profile_table SET firstName = :firstName, lastName  = :lastName, email = :email, phone = :phone, companyName = :companyName, licenseNumber = :licenseNumber, photo = :photo WHERE profileId = :profileId")
     void updateProfileInfo(Integer profileId, String firstName, String lastName, String email, String phone, String companyName, String licenseNumber, String photo);

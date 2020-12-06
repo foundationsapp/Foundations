@@ -41,11 +41,13 @@ public class MainViewModel extends AndroidViewModel {
     public void insertCategory(Category category) {foundationsRepository.insertCategory(category);}
     public void insertSubCategory(SubCategory subCategory) {foundationsRepository.insertSubCategory(subCategory);}
 
+    // DELETE
+    public void deleteListItem(int id) {foundationsRepository.deleteListItem(id);}
 
     // UPDATE
     public void updateReport(Integer reportId, String buyerFirstName, String buyerLastName, String sellerFirstName, String sellerLastName, @NonNull String street, @NonNull String city, @NonNull String state, @NonNull String zip) {foundationsRepository.updateReport(reportId, buyerFirstName, buyerLastName, sellerFirstName, sellerLastName, street, city, state, zip);}
     public void updateSiteDetails(Integer reportId, double bathrooms, int bedrooms, int stories, double inspectionFee, int yearBuilt, String furnished, String presentAtInspection, String orientation) {foundationsRepository.updateSiteDetails(reportId, bathrooms, bedrooms, stories, inspectionFee, yearBuilt, furnished, presentAtInspection, orientation);}
-    public void updateListItem(Integer listItemId, String notes, String photos) {foundationsRepository.updateListItem(listItemId, notes, photos);}
+    public void updateListItem(Integer listItemId, String notes, String photos, Integer subCat) {foundationsRepository.updateListItem(listItemId, notes, photos, subCat);}
     public void updateProfileInfo(Integer profileId, String firstName, String lastName, String email, String phone, String companyName, String licenseNumber, String photo) {foundationsRepository.updateProfileInfo(profileId, firstName, lastName, email, phone, companyName, licenseNumber, photo);}
 
     public LiveData<List<Profile>> getAllProfiles() {
