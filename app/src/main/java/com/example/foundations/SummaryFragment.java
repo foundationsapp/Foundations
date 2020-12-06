@@ -27,6 +27,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Section;
@@ -34,13 +35,19 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import java.util.List;
 import java.util.Locale;
+
+import static com.itextpdf.text.Section.NUMBERSTYLE_DOTTED_WITHOUT_FINAL_DOT;
+
 public class SummaryFragment extends Fragment {
 
     private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
@@ -69,9 +76,74 @@ public class SummaryFragment extends Fragment {
         currentReport = fragmentSwitcher.getCurrentReport();
     }
 
+
+    private void testPDFStructure() throws IOException, DocumentException {
+
+        String currentCategoryName = null;
+        int currentCategoryId = -1;
+        String currentSubcategoryName = null;
+        int currentSubcategoryId = -1;
+        int categorySectionCounter = 0;
+        int subcategorySectionCounter = 0;
+        int itemSectionCounter = 0;
+        Chapter currentCategory = null;
+        Section currentSubcategory = null;
+
+        String file_name = "Foundations Report " + new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(System.currentTimeMillis()) + ".pdf";
+        File storageDir = getContext().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+        String file_path = storageDir.getAbsolutePath() + file_name;
+        Document document = new Document();
+        PdfWriter.getInstance(document, new FileOutputStream(file_path));
+        document.open();
+
+        if (allListItems != null && allListItems.size() > 0) {
+            while (allListItems.size() > 0) {
+                ListItem current = allListItems.remove(0);
+                if (current.getCategoryId() != currentCategoryId) {
+                    if (currentCategory != null) {
+                        currentSubcategory.add(new Paragraph(" "));
+                        document.add(currentCategory);
+                        currentCategory = null;
+                        currentSubcategory = null;
+                    }
+                    currentCategoryId = current.getCategoryId();
+                    categorySectionCounter += 1;
+                    subcategorySectionCounter = 0;
+                    for (int i = 0; i < allCategories.size(); i++) {
+                        if (currentCategoryId == allCategories.get(i).getCategoryId()) {
+                            currentCategoryName = allCategories.get(i).getTitle();
+                            break;
+                        }
+                    }
+                    currentCategory = createNewCategory(currentCategoryName, categorySectionCounter);
+                    System.out.println(categorySectionCounter + " " + currentCategoryName);
+                }
+                if (current.getSubCategoryId() != currentSubcategoryId) {
+                    currentSubcategoryId = current.getSubCategoryId();
+                    subcategorySectionCounter += 1;
+                    itemSectionCounter = 0;
+                    for (int i = 0; i < allSubcategories.size(); i++) {
+                        if (currentSubcategoryId == allSubcategories.get(i).getSubCategoryId()) {
+                            currentSubcategoryName = allSubcategories.get(i).getTitle();
+                            break;
+                        }
+                    }
+                    currentSubcategory = createNewSubcategory(currentCategory, currentSubcategoryName);
+                    System.out.println("     " + categorySectionCounter + "." + subcategorySectionCounter + " " + currentSubcategoryName);
+                }
+                itemSectionCounter += 1;
+                addItemsToSection(currentSubcategory, current);
+                System.out.println("         " + categorySectionCounter + "." + subcategorySectionCounter + "." + itemSectionCounter);
+                System.out.println("                    " + current.getNotes() + current.getPhotos());
+            }
+            document.close();
+            Toast.makeText(getContext(), "PDF Report has been generated.", Toast.LENGTH_LONG).show();
+        }
+
+    }
+
     @Nullable
     @Override
-
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.summary, container,false);
 
@@ -98,14 +170,26 @@ public class SummaryFragment extends Fragment {
                         String[] permission = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
                         requestPermissions(permission, 1000);
                     } else{
-                        savepdf();
-                    }                }
+                            try {
+                                testPDFStructure();
+                            } catch (DocumentException | IOException e) {
+                                e.printStackTrace();
+                            }
+                        }                }
                 else {
-                    savepdf();
+                    try {
+                        testPDFStructure();
+                    } catch (DocumentException | IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
         });
+//
+//        save.setOnClickListener(v -> {
+//            testPDFStructure();
+//        });
 
         return view;
 
@@ -218,6 +302,36 @@ public class SummaryFragment extends Fragment {
 
     }
 
+    private Chapter createNewCategory(String categoryName, int sectionNumber) {
+        Anchor anchor = new Anchor(categoryName, catFont);
+        anchor.setName("Category #" + sectionNumber);
+        Chapter chapter = new Chapter(new Paragraph(anchor), sectionNumber);
+        chapter.setNumberStyle(NUMBERSTYLE_DOTTED_WITHOUT_FINAL_DOT);
+        chapter.setTriggerNewPage(false);
+        return chapter;
+    }
+
+    private Section createNewSubcategory(Chapter categoryChapter, String subCategoryName) {
+        Paragraph subcategoryParagraph = new Paragraph(subCategoryName, subFont);
+        Section section = categoryChapter.addSection(subcategoryParagraph);
+        section.setIndentationLeft(10);
+        section.setNumberStyle(NUMBERSTYLE_DOTTED_WITHOUT_FINAL_DOT);
+        return section;
+    }
+
+    private void addItemsToSection(Section currentSubcategory, ListItem item) throws IOException, BadElementException {
+        Section section = currentSubcategory.addSection(new Paragraph(item.getNotes()));
+        section.setIndentationLeft(20);
+        if (item.getPhotos() != null) {
+            Image img = Image.getInstance(item.getPhotos());
+            img.setSpacingAfter(5);
+            img.setSpacingBefore(5);
+            img.scaleToFit(400, 200);
+            section.add(img);
+        }
+        section.setNumberStyle(NUMBERSTYLE_DOTTED_WITHOUT_FINAL_DOT);
+    }
+
     private static void createTable(Section subCatPart)
             throws BadElementException {
         PdfPTable table = new PdfPTable(3);
@@ -264,4 +378,5 @@ public class SummaryFragment extends Fragment {
             paragraph.add(new Paragraph(" "));
         }
     }
+
 }
