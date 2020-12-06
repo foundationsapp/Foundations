@@ -80,6 +80,7 @@ public class MICategoryAdapter extends RecyclerView.Adapter<MICategoryAdapter.MI
             holder.editItem.setOnClickListener(v -> {
                 if (currentListItem != null) {
                     inspectionHandler.showListItemDialog(mainViewModel, filteredSubcatList, currentListItem);
+                    currentListItem = null;
                 } else {
                     Toast.makeText(mContext,"Please select an item", Toast.LENGTH_SHORT).show();
                 }

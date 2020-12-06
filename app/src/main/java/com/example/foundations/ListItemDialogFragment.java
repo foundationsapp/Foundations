@@ -74,6 +74,7 @@ public class ListItemDialogFragment extends DialogFragment implements AdapterVie
             }
             int spinnerPosition = adapter.getPosition(listItemSubcategory);
             spinner.setSelection(spinnerPosition);
+            subcategoryId = listItemSubcategory.getSubCategoryId();
             if (listItem.getPhotos() != null) {
                 photoPath = listItem.getPhotos();
                 File photoFile = new File(photoPath);
@@ -94,7 +95,7 @@ public class ListItemDialogFragment extends DialogFragment implements AdapterVie
                     public void onClick(DialogInterface dialog, int id) {
                         String notes = editText.getText().toString();
                         if (listItem != null) {
-                            mainViewModel.updateListItem(listItem.getListItemId(), notes, photoPath);
+                            mainViewModel.updateListItem(listItem.getListItemId(), notes, photoPath, subcategoryId);
                         } else {
                             ListItem item = new ListItem(reportId, categoryId, subcategoryId, notes, photoPath);
                             mainViewModel.insertListItem(item);
