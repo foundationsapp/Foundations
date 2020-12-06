@@ -26,6 +26,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.DialogFragment;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -52,6 +54,7 @@ public class ListItemDialogFragment extends DialogFragment implements AdapterVie
         this.listItem = item;
     }
 
+    @NotNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.DialogTheme);
         LayoutInflater inflater = requireActivity().getLayoutInflater();
@@ -79,7 +82,7 @@ public class ListItemDialogFragment extends DialogFragment implements AdapterVie
                 photoPath = listItem.getPhotos();
                 File photoFile = new File(photoPath);
                 photoUri = FileProvider.getUriForFile(getActivity(), "com.example.Foundations.file_provider", photoFile);
-                bitmapSetup();
+                bitmapSetup(itemPhoto, photoUri);
             }
         }
         addPhoto.setOnClickListener(v -> {
@@ -141,17 +144,17 @@ public class ListItemDialogFragment extends DialogFragment implements AdapterVie
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            bitmapSetup();
+            bitmapSetup(itemPhoto, photoUri);
         }
     }
 
-    private void bitmapSetup() {
-        Bitmap imageBitmap = BitmapFactory.decodeFile(photoUri.getPath());
+    static void bitmapSetup(ImageView image, Uri uri) {
+        Bitmap imageBitmap = BitmapFactory.decodeFile(uri.getPath());
         imageBitmap = resizeBitmap(200, imageBitmap);
-        itemPhoto.setImageBitmap(imageBitmap);
+        image.setImageBitmap(imageBitmap);
     }
 
-    public Bitmap resizeBitmap(int targetWidth, Bitmap source){
+    public static Bitmap resizeBitmap(int targetWidth, Bitmap source){
         double ratio = (double)targetWidth/(double)source.getWidth();
         int targetHeight = (int)(source.getHeight()*ratio);
         Bitmap result = Bitmap.createScaledBitmap(source, targetWidth, targetHeight, false);

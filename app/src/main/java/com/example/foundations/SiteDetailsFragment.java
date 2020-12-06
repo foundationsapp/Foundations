@@ -51,6 +51,7 @@ public class SiteDetailsFragment extends Fragment {
         orientation = (EditText) view.findViewById(R.id.sd_orientation_amt);
         submit = (Button) view.findViewById(R.id.sd_submit);
         submit.setOnClickListener(v -> {
+            checkInputs();
             mainViewModel.updateSiteDetails(currentReportId,
                     Double.parseDouble(bathrooms.getText().toString()),
                     Integer.parseInt(bedrooms.getText().toString()),
@@ -86,7 +87,21 @@ public class SiteDetailsFragment extends Fragment {
         return view;
     };
 
-    void goToMainInspection() {
-
+    void checkInputs() {
+        if (bathrooms.getText().toString().equals("")) {
+            bathrooms.setText("0");
+        }
+        if (bedrooms.getText().toString().equals("")) {
+            bedrooms.setText("0");
+        }
+        if (stories.getText().toString().equals("")) {
+            stories.setText("0");
+        }
+        if (inspectionFee.getText().toString().equals("")) {
+            inspectionFee.setText("0");
+        }
+        if (yearBuilt.getText().toString().equals("")) {
+            yearBuilt.setText("0");
+        }
     }
 };

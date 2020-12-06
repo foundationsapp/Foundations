@@ -77,7 +77,7 @@ public class SummaryFragment extends Fragment {
     }
 
 
-    private void testPDFStructure() throws IOException, DocumentException {
+    private void createPDF() throws IOException, DocumentException {
 
         String currentCategoryName = null;
         int currentCategoryId = -1;
@@ -171,14 +171,14 @@ public class SummaryFragment extends Fragment {
                         requestPermissions(permission, 1000);
                     } else{
                             try {
-                                testPDFStructure();
+                                createPDF();
                             } catch (DocumentException | IOException e) {
                                 e.printStackTrace();
                             }
                         }                }
                 else {
                     try {
-                        testPDFStructure();
+                        createPDF();
                     } catch (DocumentException | IOException e) {
                         e.printStackTrace();
                     }
@@ -186,10 +186,6 @@ public class SummaryFragment extends Fragment {
             }
 
         });
-//
-//        save.setOnClickListener(v -> {
-//            testPDFStructure();
-//        });
 
         return view;
 
