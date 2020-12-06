@@ -73,7 +73,7 @@ public class MainActivityTest {
         onView(withId(R.id.profileItem)).check(matches(withText("Tommy Deckman")));
         onView(withId(R.id.profileItem)).perform(click());
         onView(withId(R.id.get_started_button)).check(matches(withText("SELECT USER")));
-        onView(withId(R.id.get_started_button)).perform(click());
+        onView(withId(R.id.get_started_button)).perform(ViewActions.scrollTo(), click());
         onView(withId(R.id.dash_frag_recent)).check(matches(withText("Recent Inspections")));
         onView(withId(R.id.dash_frag_select_inspection)).check(matches(withText("SELECT INSPECTION")));
         onView(withId(R.id.dash_frag_new_inspection)).check(matches(withText("NEW INSPECTION")));
@@ -150,6 +150,15 @@ public class MainActivityTest {
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.sd_submit)).check(matches(withText("SUBMIT AND CONTINUE")));
         onView(withId(R.id.sd_submit)).perform(click());
+        Thread.sleep(500);
+        onView(withId(R.id.main_inspection_title)).check(matches(withText("Current Inspection")));
+        onView(withText("Appliances")).check(matches(isDisplayed()));
+        onView(withText("Dishwasher")).check(matches(isDisplayed()));
+        onView(withText("Oven")).check(matches(isDisplayed()));
+        onView(withText("Microwave")).check(matches(isDisplayed()));
+        onView(withText("Range Hood")).check(matches(isDisplayed()));
+        onView(withText("Range/Stove")).check(matches(isDisplayed()));
+
 
 
 
