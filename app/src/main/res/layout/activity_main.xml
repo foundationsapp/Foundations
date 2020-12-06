@@ -17,7 +17,9 @@
             android:layout_height="@dimen/_100"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/_50"
-            android:background="@drawable/logo" />
+            android:background="@drawable/logo"
+            android:id="@+id/main_logo
+"       />
 
         <TextView
             android:id="@+id/title"

@@ -63,12 +63,6 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
         profileId = currentProfile.getProfileId();
         mainViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(MainViewModel.class);
 
-//        RecyclerView reportRecyclerView = findViewById(R.id.report_recyclerview);
-//        final ReportAdapter reportAdapter = new ReportAdapter(this);
-//        reportRecyclerView.setAdapter(reportAdapter);
-//        reportRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        mainViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(MainViewModel.class);
-//        mainViewModel.getAllReports().observe(this, reportAdapter::setReports);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
         toggle = new ActionBarDrawerToggle( this,drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
@@ -178,48 +172,5 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public Bitmap rotateBitmap(Bitmap bitmap, float degree){
-        try{
-            int width = bitmap.getWidth();
-            int height = bitmap.getHeight();
-
-            Matrix matrix = new Matrix();
-
-            matrix.postRotate(degree);
-            Bitmap resizeBitmap = Bitmap.createBitmap(bitmap, 0, 0,width, height, matrix, true);
-
-            bitmap.recycle();
-            return resizeBitmap;
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public float getDegree(){
-        try{
-            ExifInterface exif = new ExifInterface(contentUri.getPath());
-            int degree = 0;
-
-            int ori = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, -1);
-            switch (ori){
-                case ExifInterface.ORIENTATION_ROTATE_90:
-                    degree = 90;
-                    break;
-                case ExifInterface.ORIENTATION_ROTATE_180:
-                    degree = 180;
-                    break;
-                case ExifInterface.ORIENTATION_ROTATE_270:
-                    degree = 270;
-                    break;
-
-            }
-            return (float)degree;
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return 0;
     }
 }
