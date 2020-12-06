@@ -15,11 +15,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.clearText;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withHint;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
@@ -200,7 +202,47 @@ public class MainActivityTest {
         onView(withText("OMG AWESOME")).perform(click());
         onView(withRecyclerView(R.id.mi_category_recyclerview)
                 .atPositionOnView(0, R.id.mi_edit_item)).perform(click());
+        onView(withId(R.id.list_item_notes)).perform(clearText());
+        onView(withId(R.id.list_item_notes)).perform(typeText("OMG AWESOME AGAIN"));
+        Espresso.closeSoftKeyboard();
+        onView(withText("Submit Item")).perform(click());
+        onView(withRecyclerView(R.id.mi_category_recyclerview)
+                .atPositionOnView(0, R.id.mi_edit_item)).perform(click());
         onView(withText("Cancel")).perform(click());
+        onView(withText("ADD CATEGORY")).check(matches(isDisplayed()));
+        onView(withText("ADD SUBCATEGORY")).check(matches(isDisplayed()));
+        onView(withText("DONE")).check(matches(isDisplayed()));
+        onView(withText("ADD SUBCATEGORY")).perform(click());
+        onView(withId(R.id.asc_dialog_title)).check(matches(withText("Add Subcategory")));
+        onView(withId(R.id.asc_dialog_category)).check(matches(withText("Select Category")));
+        onView(withId(R.id.asc_dialog_title_edit)).check(matches(withHint("enter subcategory name")));
+        onView(withId(R.id.asc_dialog_title_edit)).perform(typeText("WOW WOW WOW"));
+        onView(withText("ADD SUBCATEGORY")).perform(click());
+        onView(withText("ADD CATEGORY")).perform(click());
+        onView(withId(R.id.ac_dialog_title)).check(matches(withText("Add Category")));
+        onView(withId(R.id.ac_dialog_title_edit)).check(matches(withHint("enter category name")));
+        onView(withId(R.id.ac_dialog_title_edit)).perform(typeText("NO NO NO"));
+        onView(withText("ADD CATEGORY")).perform(click());
+        onView(withText("DONE")).perform(click());
+        onView(withText("Ready To Generate PDF?")).check(matches(isDisplayed()));
+        onView(withContentDescription("pdfimage")).check(matches(isDisplayed()));
+        onView(withText("Basic Information")).check(matches(isDisplayed()));
+        onView(withId(R.id.pdf_buyer_information)).check(matches(withText("Buyer Information")));
+        onView(withText("Buyer First Name")).check(matches(isDisplayed()));
+        onView(withText("Buyer Last Name")).check(matches(isDisplayed()));
+        // enter first name here
+        onView(withId(R.id.pdf_buyer_information)).check(matches(withText("Seller Information")));
+        onView(withText("Seller First Name")).check(matches(isDisplayed()));
+        onView(withText("Seller Last Name")).check(matches(isDisplayed()));
+
+
+
+
+
+
+
+
+
 
 
 

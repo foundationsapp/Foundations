@@ -81,6 +81,7 @@ public class MICategoryAdapter extends RecyclerView.Adapter<MICategoryAdapter.MI
                 if (currentListItem != null) {
                     inspectionHandler.showListItemDialog(mainViewModel, filteredSubcatList, currentListItem);
                     currentListItem = null;
+                    notifyDataSetChanged();
                 } else {
                     Toast.makeText(mContext,"Please select an item", Toast.LENGTH_SHORT).show();
                 }
