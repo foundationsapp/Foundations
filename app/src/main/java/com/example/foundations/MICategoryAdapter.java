@@ -85,7 +85,7 @@ public class MICategoryAdapter extends RecyclerView.Adapter<MICategoryAdapter.MI
                 }
             });
             holder.deleteItem.setOnClickListener(v -> {
-                inspectionHandler.showDeleteItemDialog(mainViewModel, currentListItem.getListItemId());
+                inspectionHandler.showDeleteItemDialog(mainViewModel, currentListItem);
                 currentListItem = null;
             });
             if (filteredSubcatList.size() == 0) {

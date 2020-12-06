@@ -44,7 +44,6 @@ public class MainViewModel extends AndroidViewModel {
     // DELETE
     public void deleteListItem(int id) {foundationsRepository.deleteListItem(id);}
 
-
     // UPDATE
     public void updateReport(Integer reportId, String buyerFirstName, String buyerLastName, String sellerFirstName, String sellerLastName, @NonNull String street, @NonNull String city, @NonNull String state, @NonNull String zip) {foundationsRepository.updateReport(reportId, buyerFirstName, buyerLastName, sellerFirstName, sellerLastName, street, city, state, zip);}
     public void updateSiteDetails(Integer reportId, double bathrooms, int bedrooms, int stories, double inspectionFee, int yearBuilt, String furnished, String presentAtInspection, String orientation) {foundationsRepository.updateSiteDetails(reportId, bathrooms, bedrooms, stories, inspectionFee, yearBuilt, furnished, presentAtInspection, orientation);}

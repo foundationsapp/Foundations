@@ -11,5 +11,5 @@ public interface InspectionHandler {
     List<Category> getAllCategories();
     List<SubCategory> getAllSubcategories();
     List<ListItem> getAllListItems();
-    void showDeleteItemDialog(MainViewModel mainViewModel, int listId);
+    void showDeleteItemDialog(MainViewModel mainViewModel, ListItem item);
 }

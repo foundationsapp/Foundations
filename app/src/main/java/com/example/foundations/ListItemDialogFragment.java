@@ -84,6 +84,9 @@ public class ListItemDialogFragment extends DialogFragment implements AdapterVie
         addPhoto.setOnClickListener(v -> {
             takePicture();
         });
+        itemPhoto.setOnClickListener(v -> {
+            showFullPhoto(photoPath);
+        });
 
         builder.setView(view)
                 .setPositiveButton("Submit Item", new DialogInterface.OnClickListener() {
@@ -116,6 +119,11 @@ public class ListItemDialogFragment extends DialogFragment implements AdapterVie
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    private void showFullPhoto(String path) {
+        DialogFragment dialog = new ItemPhotoDialogFragment(path);
+        dialog.show(getParentFragmentManager(), "fullPhoto");
     }
 
     private void takePicture() {

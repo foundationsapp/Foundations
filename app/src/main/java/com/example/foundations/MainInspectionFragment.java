@@ -79,8 +79,8 @@ public class MainInspectionFragment extends Fragment implements InspectionHandle
         dialog.show(getParentFragmentManager(), "addSubcategory");
     }
 
-    public void showDeleteItemDialog(MainViewModel mainViewModel, int listId) {
-        DialogFragment dialog = new DeleteDialogFragment(mainViewModel, listId);
+    public void showDeleteItemDialog(MainViewModel mainViewModel, ListItem item) {
+        DialogFragment dialog = new DeleteDialogFragment(mainViewModel, item);
         dialog.show(getParentFragmentManager(), "deleteItem");
     }
 
