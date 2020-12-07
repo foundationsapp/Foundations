@@ -53,22 +53,12 @@ public class MainActivityTest {
     }
 
     @Test
-    public void hasTitle() {
-        onView(withId(R.id.title)).check(matches(withText(R.string.foundations)));
-    }
-
-    @Test
-    public void hasLogo() {
-        onView(withId(R.id.main_logo)).check(matches(withId(R.id.main_logo)));
-    }
-
-    @Test
-    public void hasSubtitle() {
-        onView(withId(R.id.subtitle)).check(matches(withText(R.string.home_inspection_made_easy)));
-    }
-
-    @Test
     public void signUp() throws InterruptedException {
+        onView(withId(R.id.newUser)).check(matches(withText(R.string.new_user)));
+        onView(withId(R.id.subtitle)).check(matches(withText(R.string.home_inspection_made_easy)));
+        onView(withId(R.id.main_logo)).check(matches(withId(R.id.main_logo)));
+        onView(withId(R.id.title)).check(matches(withText(R.string.foundations)));
+
         onView(withId(R.id.newUser)).perform(click());
         Thread.sleep(500);
         onView(withId(R.id.edit_first_name)).perform(scrollTo(), typeText("Tommy"));
@@ -88,6 +78,21 @@ public class MainActivityTest {
         onView(withId(R.id.get_started_button)).perform(scrollTo(), click());
         onView(withId(R.id.dash_frag_recent)).check(matches(withText("Recent Inspections")));
         onView(withId(R.id.dash_frag_select_inspection)).check(matches(withText("SELECT INSPECTION")));
+        onView(withId(R.id.dash_frag_select_inspection)).perform(click());
+        onView(withId(R.id.drawer)).check(matches(isClosed(Gravity.START)))
+                .perform(DrawerActions.open());
+        onView(withId(R.id.inspections)).perform(click());
+        onView(withId(R.id.select_inspection)).check(matches(withText("SELECT INSPECTION")));
+        onView(withId(R.id.select_inspection)).perform(click());
+        onView(withId(R.id.drawer)).check(matches(isClosed(Gravity.START)))
+                .perform(DrawerActions.open());
+        onView(withId(R.id.pdfs)).perform(click());
+        onView(withId(R.id.send_pdf)).perform(click());
+        onView(withId(R.id.drawer)).check(matches(isClosed(Gravity.START)))
+                .perform(DrawerActions.open());
+        onView(withId(R.id.logout)).perform(click());
+        onView(withId(R.id.profileItem)).perform(click());
+        onView(withId(R.id.get_started_button)).perform(scrollTo(), click());
         onView(withId(R.id.dash_frag_new_inspection)).check(matches(withText("NEW INSPECTION")));
         onView(withId(R.id.dash_frag_new_inspection)).perform(click());
         onView(withId(R.id.basic_info_start)).check(matches(withText("Basic Information")));
@@ -224,6 +229,13 @@ public class MainActivityTest {
         onView(withRecyclerView(R.id.mi_category_recyclerview)
                 .atPositionOnView(0, R.id.delete_item)).perform(click());
         onView(withText("YES, DELETE")).perform(click());
+        onView(withRecyclerView(R.id.mi_category_recyclerview)
+                .atPositionOnView(0, R.id.mi_add_item)).check(matches(withText("Add Item")));
+        onView(withRecyclerView(R.id.mi_category_recyclerview)
+                .atPositionOnView(0, R.id.mi_add_item)).perform(click());
+        onView(withId(R.id.list_item_notes)).perform(typeText("OMG AWESOME"));
+        Espresso.closeSoftKeyboard();
+        onView(withText("SUBMIT ITEM")).perform(click());
         onView(withText("ADD CATEGORY")).check(matches(isDisplayed()));
         onView(withText("ADD SUBCATEGORY")).check(matches(isDisplayed()));
         onView(withId(R.id.mi_done_button)).check(matches(isDisplayed()));
@@ -253,6 +265,7 @@ public class MainActivityTest {
         onView(withText("Seller Last Name")).check(matches(isDisplayed()));
         onView(withId(R.id.pdf_seller_first_name)).check(matches(withText("Steven")));
         onView(withId(R.id.pdf_seller_last_name)).check(matches(withText("Fields")));
+        onView(withId(R.id.save_pdf)).perform(scrollTo(), click());
         onView(withId(R.id.drawer)).check(matches(isClosed(Gravity.START)))
                 .perform(DrawerActions.open());
         onView(withId(R.id.drawer)).perform(DrawerActions.close());
@@ -284,6 +297,10 @@ public class MainActivityTest {
         onView(withRecyclerView(R.id.all_inspections_recyclerview)
                 .atPositionOnView(0, R.id.reportItem)).perform(click());
         onView(withText("SELECT INSPECTION")).perform(click());
+        onView(withId(R.id.ni_buyer_first_name)).perform(typeText("addingmore"));
+        onView(withId(R.id.ni_create_report)).perform(scrollTo(), click());
+        onView(withId(R.id.sd_bedrooms_amt)).perform(typeText("00"));
+        onView(withId(R.id.sd_submit)).perform(scrollTo(), click());
         onView(withId(R.id.drawer)).check(matches(isClosed(Gravity.START)))
                 .perform(DrawerActions.open());
         onView(withId(R.id.inspections)).perform(click());
@@ -310,11 +327,8 @@ public class MainActivityTest {
         onView(withId(R.id.drawer)).check(matches(isClosed(Gravity.START)))
                 .perform(DrawerActions.open());
         onView(withId(R.id.pdfs)).perform(click());
-    }
-
-    @Test
-    public void hasNewUserOption() {
-        onView(withId(R.id.newUser)).check(matches(withText(R.string.new_user)));
+        onView(withId(R.id.pdfItem)).perform(click());
+        onView(withId(R.id.send_pdf)).perform(click());
     }
 
     @After
