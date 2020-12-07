@@ -80,9 +80,11 @@ public class SiteDetailsFragment extends Fragment {
             present.setText(siteDetails.getPresentAtInspection(), TextView.BufferType.EDITABLE);
             orientation.setText(siteDetails.getOrientation(), TextView.BufferType.EDITABLE);
         } else {
-            currentReportId = mainViewModel.getNewReport().getReportId();
+            Report report = mainViewModel.getNewReport();
+            currentReportId = report.getReportId();
             siteDetails = new SiteDetails(currentReportId, 0, 0.0, 0, 0, 0.0, 0, "N/A", "N/A", "N/A");
             mainViewModel.insertSiteDetails(siteDetails);
+            fragmentSwitcher.setCurrentReport(report);
         }
         return view;
     };

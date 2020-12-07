@@ -3,12 +3,14 @@ package com.example.foundations;
 import android.Manifest;
 import android.view.Gravity;
 
+import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.rule.GrantPermissionRule;
 import androidx.test.espresso.contrib.DrawerActions;
+import androidx.test.espresso.contrib.DrawerMatchers;
 
 import org.junit.After;
 import org.junit.Before;
@@ -22,6 +24,7 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.contrib.DrawerMatchers.isClosed;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withHint;
@@ -196,9 +199,9 @@ public class MainActivityTest {
         onView(withId(R.id.list_item_notes)).perform(typeText("OMG AWESOME"));
         Espresso.closeSoftKeyboard();
         onView(withId(R.id.list_item_notes)).check(matches(isDisplayed()));
-        onView(withText("Cancel")).check(matches(isDisplayed()));
-        onView(withText("Submit Item")).check(matches(isDisplayed()));
-        onView(withText("Submit Item")).perform(click());
+        onView(withText("CANCEL")).check(matches(isDisplayed()));
+        onView(withText("SUBMIT ITEM")).check(matches(isDisplayed()));
+        onView(withText("SUBMIT ITEM")).perform(click());
         Thread.sleep(500);
         onView(withText("OMG AWESOME")).check(matches(isDisplayed()));
         onView(withText("OMG AWESOME")).perform(click());
@@ -208,44 +211,59 @@ public class MainActivityTest {
         onView(withId(R.id.list_item_notes)).perform(typeText("OMG AWESOME AGAIN"));
         Espresso.closeSoftKeyboard();
         onView(withText("Submit Item")).perform(click());
+        onView(withText("OMG AWESOME AGAIN")).perform(click());
         onView(withRecyclerView(R.id.mi_category_recyclerview)
                 .atPositionOnView(0, R.id.mi_edit_item)).perform(click());
         Thread.sleep(500);
-        onView(withText("Cancel")).perform(click());
+        onView(withText("CANCEL")).perform(click());
+        onView(withText("OMG AWESOME AGAIN")).perform(click());
+        onView(withRecyclerView(R.id.mi_category_recyclerview)
+                .atPositionOnView(0, R.id.delete_item)).perform(click());
+        onView(withText("CANCEL")).perform(click());
+        onView(withText("OMG AWESOME AGAIN")).perform(click());
+        onView(withRecyclerView(R.id.mi_category_recyclerview)
+                .atPositionOnView(0, R.id.delete_item)).perform(click());
+        onView(withText("YES, DELETE")).perform(click());
         onView(withText("ADD CATEGORY")).check(matches(isDisplayed()));
         onView(withText("ADD SUBCATEGORY")).check(matches(isDisplayed()));
-        onView(withText("DONE")).check(matches(isDisplayed()));
+        onView(withId(R.id.mi_done_button)).check(matches(isDisplayed()));
         onView(withText("ADD SUBCATEGORY")).perform(click());
         onView(withId(R.id.asc_dialog_title)).check(matches(withText("Add Subcategory")));
         onView(withId(R.id.asc_dialog_category)).check(matches(withText("Select Category")));
-        onView(withId(R.id.asc_dialog_title_edit)).check(matches(withHint("enter subcategory name")));
+        onView(withId(R.id.asc_dialog_title_edit)).check(matches(withHint("Enter subcategory name")));
         onView(withId(R.id.asc_dialog_title_edit)).perform(typeText("WOW WOW WOW"));
         onView(withText("ADD SUBCATEGORY")).perform(click());
         onView(withText("ADD CATEGORY")).perform(click());
         onView(withId(R.id.ac_dialog_title)).check(matches(withText("Add Category")));
-        onView(withId(R.id.ac_dialog_title_edit)).check(matches(withHint("enter category name")));
+        onView(withId(R.id.ac_dialog_title_edit)).check(matches(withHint("Enter category name")));
         onView(withId(R.id.ac_dialog_title_edit)).perform(typeText("NO NO NO"));
+        Espresso.closeSoftKeyboard();;
         onView(withText("ADD CATEGORY")).perform(click());
-        onView(withText("DONE")).perform(click());
+        onView(withId(R.id.mi_done_button)).perform(click());
         onView(withText("Ready To Generate PDF?")).check(matches(isDisplayed()));
         onView(withContentDescription("pdfimage")).check(matches(isDisplayed()));
         onView(withText("Basic Information")).check(matches(isDisplayed()));
         onView(withId(R.id.pdf_buyer_information)).check(matches(withText("Buyer Information")));
         onView(withText("Buyer First Name")).check(matches(isDisplayed()));
         onView(withText("Buyer Last Name")).check(matches(isDisplayed()));
-        // enter first name here
-        onView(withId(R.id.pdf_buyer_information)).check(matches(withText("Seller Information")));
+        onView(withId(R.id.pdf_buyer_first_name)).check(matches(withText("Mike")));
+        onView(withId(R.id.pdf_buyer_last_name)).check(matches(withText("Buyers")));
+        onView(withId(R.id.pdf_seller_information)).check(matches(withText("Seller Information")));
         onView(withText("Seller First Name")).check(matches(isDisplayed()));
         onView(withText("Seller Last Name")).check(matches(isDisplayed()));
+        onView(withId(R.id.pdf_seller_first_name)).check(matches(withText("Steven")));
+        onView(withId(R.id.pdf_seller_last_name)).check(matches(withText("Fields")));
+
 
 
     }
-
+//
 //    @Test
-//    public void navigate() {
+//    public void navigate() throws InterruptedException {
 //        onView(withId(R.id.profileItem)).check(matches(withText("Tommy Deckman")));
 //        onView(withId(R.id.profileItem)).perform(click());
-//        onView(withId(R.id.drawer)).check(matches(isClosed(Gravity.LEFT)))
+//        Thread.sleep(1000);
+//        onView(withId(R.id.drawer)).check(matches(isClosed(Gravity.START)))
 //                .perform(DrawerActions.open());
 //    }
 

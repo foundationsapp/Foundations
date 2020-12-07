@@ -148,13 +148,21 @@ public class SummaryFragment extends Fragment {
         View view = inflater.inflate(R.layout.summary, container,false);
 
         EditText buyerFirstName = view.findViewById(R.id.pdf_buyer_first_name);
+        buyerFirstName.setText(currentReport.getBuyerFirstName());
         EditText buyerLastName = view.findViewById(R.id.pdf_buyer_last_name);
+        buyerLastName.setText(currentReport.getBuyerLastName());
         EditText sellerFirstName = view.findViewById(R.id.pdf_seller_first_name);
+        sellerFirstName.setText(currentReport.getSellerFirstName());
         EditText sellerLastName = view.findViewById(R.id.pdf_seller_last_name);
+        sellerLastName.setText(currentReport.getSellerLastName());
         EditText address = view.findViewById(R.id.pdf_site_address);
+        address.setText(currentReport.getStreet());
         EditText state = view.findViewById(R.id.pdf_site_state);
+        state.setText(currentReport.getState());
         EditText city = view.findViewById(R.id.pdf_site_city);
+        city.setText(currentReport.getCity());
         EditText zipCode = view.findViewById(R.id.pdf_site_zip);
+        zipCode.setText(currentReport.getZip());
 
         TextView buyerInformation = view.findViewById(R.id.pdf_buyer_information);
         TextView sellerInformation = view.findViewById(R.id.pdf_seller_information);
