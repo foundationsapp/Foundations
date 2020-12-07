@@ -11,6 +11,7 @@
     <color name="headerColor">#E2E6EA</color>
     <color name="pdfColor">#BF0D00</color>
     <color name="dialogueText">#FF756D6C</color>
+    <color name="yellow">#FFEB3B</color>
     <color name="red">#FF0000</color>
     <color name="silver">#C0C0C0</color>
 </resources>
