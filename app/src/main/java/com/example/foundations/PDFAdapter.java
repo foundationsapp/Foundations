@@ -19,13 +19,11 @@ public class PDFAdapter extends RecyclerView.Adapter<PDFAdapter.PDFViewHolder>{
     private static final String TAG = "PDFAdapter";
     private List<Report> reports;
     private final LayoutInflater inflater;
-    private final Context mContext;
     private PDFHandler pdfHandler;
     int selected = -1;
 
     public PDFAdapter(Context context, PDFHandler pdfHandler) {
         inflater = LayoutInflater.from(context);
-        mContext = context;
         this.pdfHandler = pdfHandler;
     }
 
@@ -38,7 +36,6 @@ public class PDFAdapter extends RecyclerView.Adapter<PDFAdapter.PDFViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull PDFViewHolder holder, int position) {
-        Log.d(TAG, "onBindViewHolder: " + reports.size());
         if (reports != null) {
             if (selected==position){
                 holder.pdfItemView.setBackgroundColor(Color.parseColor("#ffff00"));
@@ -64,13 +61,10 @@ public class PDFAdapter extends RecyclerView.Adapter<PDFAdapter.PDFViewHolder>{
     }
 
     void setPDFs(List<Report> reports) {
-        Log.d(TAG, "setPDFs: " + reports.size());
         List<Report> filtered = new ArrayList<>();
         for (int i = 0; i < reports.size(); i++) {
-            Log.d(TAG, "setPDFs: " + reports.get(i).getPdf());
             if (reports.get(i).getPdf() != null) {
                 filtered.add(reports.get(i));
-                Log.d(TAG, "setPDFs: " + reports.get(i).getStreetAddress());
             }
         }
         this.reports = filtered;

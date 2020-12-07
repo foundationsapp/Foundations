@@ -310,20 +310,6 @@ public class MainActivityTest {
         onView(withId(R.id.drawer)).check(matches(isClosed(Gravity.START)))
                 .perform(DrawerActions.open());
         onView(withId(R.id.pdfs)).perform(click());
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
     @Test

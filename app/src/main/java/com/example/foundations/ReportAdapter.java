@@ -18,7 +18,6 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
     private static final String TAG = ReportAdapter.class.getSimpleName();
     private List<Report> reports;
     private final LayoutInflater inflater;
-    private final Context mContext;
     private final SetReportHandler reportHandler;
     int selectedReport = -1;
 
@@ -35,7 +34,6 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
     public ReportAdapter(Context context, SetReportHandler reportHandler) {
         this.reportHandler = reportHandler;
         inflater = LayoutInflater.from(context);
-        mContext = context;
     }
 
     @NonNull
@@ -60,17 +58,9 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
             holder.reportItemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
                     selectedReport = position;
-
                     notifyDataSetChanged();
-
                     reportHandler.setCurrentReport(current);
-
-                    Log.d(TAG, "onClick: " + current.getBuyerFirstName() + " " + current.getSellerFirstName() + " " + current.getReportId());
-
-
-                    //Toast.makeText(mContext,"selected"+ current.getFullName(),Toast.LENGTH_LONG).show();
                 }
             });
         }
@@ -85,9 +75,6 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
 
     void setReports(List<Report> reports) {
         this.reports = reports;
-        reports.forEach(report -> {
-            Log.d(TAG, "setReports: " + report.getReportId());
-        });
         notifyDataSetChanged();
     }
 }

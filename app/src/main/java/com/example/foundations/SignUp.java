@@ -43,7 +43,6 @@ public class SignUp extends AppCompatActivity {
     MainViewModel mainViewModel;
     String firstName,lastName, license, email, phone, company;
     String photo = null;
-    String dir_path;
     String pic_path;
     Uri contentUri;
     ImageView profileimage;
@@ -98,13 +97,9 @@ public class SignUp extends AppCompatActivity {
      pic_path = storageDir.getAbsolutePath() + file_name;
 
      File file = new File(pic_path);
-     if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-         contentUri = FileProvider.getUriForFile(this, "com.example.Foundations.file_provider",file);
-     } else {
-         contentUri = Uri.fromFile(file);
-     }
+    contentUri = FileProvider.getUriForFile(this, "com.example.Foundations.file_provider",file);
 
-     intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
+    intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
      startActivityForResult(intent,1);
     }
 
@@ -113,12 +108,8 @@ public class SignUp extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK){
             Bitmap bitmap = BitmapFactory.decodeFile(contentUri.getPath());
-            float degree = getDegree();
-
             Bitmap bitmap2  = resizeBitmap(200,bitmap);
-
-            Bitmap bitmap3 = rotateBitmap(bitmap2, degree);
-            profileimage.setImageBitmap(bitmap3);
+            profileimage.setImageBitmap(bitmap2);
 
         }
     }
@@ -154,23 +145,23 @@ public class SignUp extends AppCompatActivity {
         return f;
     }
 
-    public Bitmap rotateBitmap(Bitmap bitmap, float degree){
-        try{
-            int width = bitmap.getWidth();
-            int height = bitmap.getHeight();
-
-            Matrix matrix = new Matrix();
-
-            matrix.postRotate(degree);
-            Bitmap resizeBitmap = Bitmap.createBitmap(bitmap, 0, 0,width, height, matrix, true);
-
-            bitmap.recycle();
-            return resizeBitmap;
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public Bitmap rotateBitmap(Bitmap bitmap, float degree){
+//        try{
+//            int width = bitmap.getWidth();
+//            int height = bitmap.getHeight();
+//
+//            Matrix matrix = new Matrix();
+//
+//            matrix.postRotate(degree);
+//            Bitmap resizeBitmap = Bitmap.createBitmap(bitmap, 0, 0,width, height, matrix, true);
+//
+//            bitmap.recycle();
+//            return resizeBitmap;
+//        }catch(Exception e){
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
     public Bitmap resizeBitmap(int targetWidth, Bitmap source){
         double ratio = (double)targetWidth/(double)source.getWidth();
@@ -183,30 +174,30 @@ public class SignUp extends AppCompatActivity {
         return result;
     }
 
-    public float getDegree(){
-        try{
-            ExifInterface exif = new ExifInterface(contentUri.getPath());
-            int degree = 0;
-
-            int ori = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, -1);
-            switch (ori){
-                case ExifInterface.ORIENTATION_ROTATE_90:
-                    degree = 90;
-                    break;
-                case ExifInterface.ORIENTATION_ROTATE_180:
-                    degree = 180;
-                    break;
-                case ExifInterface.ORIENTATION_ROTATE_270:
-                    degree = 270;
-                    break;
-
-            }
-            return (float)degree;
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return 0;
-    }
+//    public float getDegree(){
+//        try{
+//            ExifInterface exif = new ExifInterface(contentUri.getPath());
+//            int degree = 0;
+//
+//            int ori = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, -1);
+//            switch (ori){
+//                case ExifInterface.ORIENTATION_ROTATE_90:
+//                    degree = 90;
+//                    break;
+//                case ExifInterface.ORIENTATION_ROTATE_180:
+//                    degree = 180;
+//                    break;
+//                case ExifInterface.ORIENTATION_ROTATE_270:
+//                    degree = 270;
+//                    break;
+//
+//            }
+//            return (float)degree;
+//        }catch(Exception e){
+//            e.printStackTrace();
+//        }
+//        return 0;
+//    }
 
 
 }
