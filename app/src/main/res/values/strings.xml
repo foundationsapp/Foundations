@@ -124,5 +124,13 @@
     <string name="are_you_sure">Are you sure?</string>
     <string name="photo_for_list_item">Photo for list item</string>
     <string name="close_photo">CLOSE</string>
+    <string name="property_photo">Property Photo</string>
+    <string name="photo_of_property">Photo of property</string>
+    <string name="no_items">No items to generate PDF</string>
+    <string name="main_logo">main logo</string>
+    <string name="tom">Tom</string>
+    <string name="smtih">Smith</string>
+    <string name="_1256_marline_ct">1256 Marline CT</string>
+    <string name="pdfimage">pdfimage</string>
 
 </resources>

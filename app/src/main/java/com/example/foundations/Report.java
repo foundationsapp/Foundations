@@ -48,6 +48,9 @@ public class Report {
     @ColumnInfo(name = "zip")
     private String zip;
 
+    @ColumnInfo(name = "propertyPhoto")
+    private String propertyPhoto = null;
+
     @NonNull
     public Integer getProfileId() {
         return profileId;
@@ -55,6 +58,10 @@ public class Report {
 
     public void setProfileId(@NonNull Integer profileId) {
         this.profileId = profileId;
+    }
+
+    public String getPropertyPhoto() {
+        return propertyPhoto;
     }
 
     public String getBuyerFirstName() {
@@ -140,7 +147,7 @@ public class Report {
         return addr.toString();
     }
 
-    public Report(@NonNull Integer profileId, String buyerFirstName, String buyerLastName, String sellerFirstName, String sellerLastName, @NonNull String street, @NonNull String city, @NonNull String state, @NonNull String zip) {
+    public Report(@NonNull Integer profileId, String buyerFirstName, String buyerLastName, String sellerFirstName, String sellerLastName, @NonNull String street, @NonNull String city, @NonNull String state, @NonNull String zip, String propertyPhoto) {
         this.reportId  = null;
         this.profileId = profileId;
         this.buyerFirstName = buyerFirstName;
@@ -151,5 +158,6 @@ public class Report {
         this.city = city;
         this.state = state;
         this.zip = zip;
+        this.propertyPhoto = propertyPhoto;
     }
 }

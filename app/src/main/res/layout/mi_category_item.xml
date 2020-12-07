@@ -19,7 +19,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_marginLeft="@dimen/_30"
+        android:layout_marginStart="@dimen/_30"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
         android:id="@+id/mi_subcategory_recyclerview"

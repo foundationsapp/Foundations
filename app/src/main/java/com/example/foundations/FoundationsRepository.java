@@ -69,9 +69,9 @@ public class FoundationsRepository {
         });
     }
 
-    void updateReport(Integer reportId, String buyerFirstName, String buyerLastName, String sellerFirstName, String sellerLastName, @NonNull String street, @NonNull String city, @NonNull String state, @NonNull String zip) {
+    void updateReport(Integer reportId, String buyerFirstName, String buyerLastName, String sellerFirstName, String sellerLastName, @NonNull String street, @NonNull String city, @NonNull String state, @NonNull String zip, String photo) {
         FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            foundationsDao.updateReport(reportId, buyerFirstName, buyerLastName, sellerFirstName, sellerLastName, street, city, state, zip);
+            foundationsDao.updateReport(reportId, buyerFirstName, buyerLastName, sellerFirstName, sellerLastName, street, city, state, zip, photo);
         });
     }
 

@@ -88,25 +88,4 @@ public class MIListItemAdapter extends RecyclerView.Adapter<MIListItemAdapter.MI
         this.listItemHandler = listItemHandler;
     }
 
-//    @Override
-//    public void onBindViewHolder(@NonNull ChecklistCategoryViewHolder holder, int position) {
-//        if (categories != null) {
-//            Category current = categories.get(position);
-//            categoryId = current.getCategoryId();
-//            Log.d(TAG, "onBindViewHolder: " + categoryId);
-//            holder.checklistCategoryItemView.setText(current.getTitle());
-//            List<ListItem> filteredList = new ArrayList<>();
-//            for (int i = 0; i < subcategories.size(); i++) {
-//                Log.d(TAG, "setSubcategories categoryid: " + subcategories.get(i).getCategoryId() + " " + categoryId);
-//                if (subcategories.get(i).getCategoryId() == categoryId) {
-//                    filteredList.add(subcategories.get(i));
-//                }
-//            }
-//            LinearLayoutManager layoutManager = new LinearLayoutManager(holder.list_itemRecyclerView.getContext());
-//            ChecklistSubcategoryAdapter checklistSubcategoryAdapter = new ChecklistSubcategoryAdapter(filteredList);
-//            holder.list_itemRecyclerView.setLayoutManager(layoutManager);
-//            holder.list_itemRecyclerView.setAdapter(checklistSubcategoryAdapter);
-//            holder.list_itemRecyclerView.setRecycledViewPool(viewPool);
-//        }
-//    }
 }

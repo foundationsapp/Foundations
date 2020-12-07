@@ -22,7 +22,7 @@
         android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_10"
+        android:layout_marginStart="@dimen/_10"
         android:id="@+id/list_item_subcat"
         android:textSize="@dimen/_20"
         app:layout_constraintStart_toStartOf="parent"

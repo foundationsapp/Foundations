@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
@@ -63,8 +64,13 @@ public class MainInspectionFragment extends Fragment implements InspectionHandle
         });
         Button done = view.findViewById(R.id.mi_done_button);
         done.setOnClickListener(v -> {
-            Fragment fragment = new SummaryFragment(fragmentSwitcher, this);
-            fragmentSwitcher.loadFragment(fragment);
+            if (allListItems != null || allListItems.size() > 0) {
+                Fragment fragment = new SummaryFragment(fragmentSwitcher, this);
+                fragmentSwitcher.loadFragment(fragment);
+            } else {
+                Toast.makeText(getContext(), getString(R.string.no_items), Toast.LENGTH_LONG).show();
+            }
+
         });
         return view;
     }
