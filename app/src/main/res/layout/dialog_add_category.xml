@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
@@ -10,21 +11,21 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/background"
+        android:textColor="@color/white"
         android:id="@+id/ac_dialog_title"
         android:text="@string/add_category"
-        android:textSize="@dimen/_30"
+        android:textSize="@dimen/_25sp"
         android:textAlignment="center"
         />
 
     <EditText
         android:layout_width="match_parent"
-        android:textColor="@color/background"
+        android:textColor="@color/white"
         android:layout_height="wrap_content"
         android:hint="@string/ac_cat_hint"
         android:textColorHint="@color/dialogueText"
-        android:textSize="25sp"
-        android:backgroundTint="@color/colorPrimary"
+        android:textSize="@dimen/_25sp"
+        android:backgroundTint="@color/white"
         android:autofillHints="@string/ac_cat_hint"
         android:id="@+id/ac_dialog_title_edit"
         android:inputType="text" />
