@@ -41,7 +41,7 @@ public class NewInspection extends Fragment {
     private MainViewModel mainViewModel;
     private Report currentReport;
     private boolean updateReport;
-    private FragmentSwitcher fragmentSwitcher;
+    private final FragmentSwitcher fragmentSwitcher;
     private String photoPath = null;
     private Uri photoUri;
     static final int REQUEST_IMAGE_CAPTURE = 1;

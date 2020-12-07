@@ -14,14 +14,14 @@ public class ListItem {
 
     @NonNull
     @ColumnInfo(name = "reportId")
-    private Integer reportId;
+    private final Integer reportId;
 
     @NonNull
     @ColumnInfo(name = "categoryId")
-    private Integer categoryId;
+    private final Integer categoryId;
 
     @ColumnInfo(name = "subCategoryId")
-    private Integer subCategoryId;
+    private final Integer subCategoryId;
 
     @ColumnInfo(name = "notes")
     private String notes;

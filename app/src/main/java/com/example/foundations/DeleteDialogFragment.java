@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.File;
 
 public class DeleteDialogFragment extends DialogFragment {
-    private MainViewModel mainViewModel;
+    private final MainViewModel mainViewModel;
     ListItem listItem;
 
     public DeleteDialogFragment(MainViewModel mainViewModel, ListItem listItem) {

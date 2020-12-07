@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class AddCategoryDialogFragment extends DialogFragment {
 
-    private MainViewModel mainViewModel;
+    private final MainViewModel mainViewModel;
 
     public AddCategoryDialogFragment(MainViewModel mainViewModel) {
         this.mainViewModel = mainViewModel;

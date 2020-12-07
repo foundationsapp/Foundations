@@ -16,7 +16,7 @@ import androidx.lifecycle.ViewModelStoreOwner;
 
 public class SiteDetailsFragment extends Fragment {
 
-    private FragmentSwitcher fragmentSwitcher;
+    private final FragmentSwitcher fragmentSwitcher;
     private int currentReportId;
     private EditText bedrooms;
     private EditText bathrooms;
@@ -87,7 +87,7 @@ public class SiteDetailsFragment extends Fragment {
             fragmentSwitcher.setCurrentReport(report);
         }
         return view;
-    };
+    }
 
     void checkInputs() {
         if (bathrooms.getText().toString().equals("")) {
@@ -106,4 +106,4 @@ public class SiteDetailsFragment extends Fragment {
             yearBuilt.setText("0");
         }
     }
-};
+}

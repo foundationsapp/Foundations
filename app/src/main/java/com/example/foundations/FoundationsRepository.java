@@ -10,12 +10,12 @@ import java.util.List;
 public class FoundationsRepository {
 
     private static final String TAG = FoundationsRepository.class.getSimpleName();
-    private FoundationsDao foundationsDao;
-    private LiveData<List<Profile>> allProfiles;
-    private LiveData<List<Report>> allReports;
-    private LiveData<List<Category>> allCategories;
-    private LiveData<List<SubCategory>> allSubcategories;
-    private LiveData<List<ListItem>> allListItems;
+    private final FoundationsDao foundationsDao;
+    private final LiveData<List<Profile>> allProfiles;
+    private final LiveData<List<Report>> allReports;
+    private final LiveData<List<Category>> allCategories;
+    private final LiveData<List<SubCategory>> allSubcategories;
+    private final LiveData<List<ListItem>> allListItems;
     private List<SiteDetails> allSiteDetails;
     private List<SiteDetails> currentSiteDetails;
 
@@ -69,7 +69,8 @@ public class FoundationsRepository {
         });
     }
 
-    void updateReport(Integer reportId, String buyerFirstName, String buyerLastName, String sellerFirstName, String sellerLastName, @NonNull String street, @NonNull String city, @NonNull String state, @NonNull String zip, String photo) {
+    void updateReport(Integer reportId, String buyerFirstName, String buyerLastName, String sellerFirstName,
+                      String sellerLastName, @NonNull String street, @NonNull String city, @NonNull String state, @NonNull String zip, String photo) {
         FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
             foundationsDao.updateReport(reportId, buyerFirstName, buyerLastName, sellerFirstName, sellerLastName, street, city, state, zip, photo);
         });
@@ -94,24 +95,24 @@ public class FoundationsRepository {
     }
 
 
-    // DELETE QUERIES
-    void deleteProfile(Integer profileId) {
-        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            foundationsDao.deleteProfile(profileId);
-        });
-    }
-
-    void deleteReport(Integer reportId) {
-        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            foundationsDao.deleteReport(reportId);
-        });
-    }
-
-    void deleteSiteDetails(Integer siteDetailsId) {
-        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            foundationsDao.deleteSiteDetails(siteDetailsId);
-        });
-    }
+//    // DELETE QUERIES
+//    void deleteProfile(Integer profileId) {
+//        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
+//            foundationsDao.deleteProfile(profileId);
+//        });
+//    }
+//
+//    void deleteReport(Integer reportId) {
+//        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
+//            foundationsDao.deleteReport(reportId);
+//        });
+//    }
+//
+//    void deleteSiteDetails(Integer siteDetailsId) {
+//        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
+//            foundationsDao.deleteSiteDetails(siteDetailsId);
+//        });
+//    }
 
     void deleteListItem(Integer listItemId) {
         FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
@@ -119,17 +120,17 @@ public class FoundationsRepository {
         });
     }
 
-    void deleteCategory(Integer categoryId) {
-        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            foundationsDao.deleteCategory(categoryId);
-        });
-    }
-
-    void deleteSubCategory(Integer subCategoryId) {
-        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            foundationsDao.deleteSubCategory(subCategoryId);
-        });
-    }
+//    void deleteCategory(Integer categoryId) {
+//        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
+//            foundationsDao.deleteCategory(categoryId);
+//        });
+//    }
+//
+//    void deleteSubCategory(Integer subCategoryId) {
+//        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
+//            foundationsDao.deleteSubCategory(subCategoryId);
+//        });
+//    }
 
 
     // FETCH ALL QUERIES
@@ -139,8 +140,8 @@ public class FoundationsRepository {
     LiveData<List<Report>> getAllReports() {
         return allReports;
     }
-    List<SiteDetails> getAllSiteDetails() { return allSiteDetails; }
-    List<SiteDetails> getCurrentSiteDetails() { return currentSiteDetails; }
+//    List<SiteDetails> getAllSiteDetails() { return allSiteDetails; }
+//    List<SiteDetails> getCurrentSiteDetails() { return currentSiteDetails; }
     LiveData<List<Category>> getAllCategories() { return allCategories; }
     LiveData<List<SubCategory>> getAllSubcategories() { return allSubcategories; }
     LiveData<List<ListItem>> getAllListItems() { return allListItems; }

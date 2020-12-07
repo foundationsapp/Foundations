@@ -22,7 +22,7 @@ import java.util.List;
 public class AddSubcategoryDialogFragment extends DialogFragment implements AdapterView.OnItemSelectedListener {
 
     private static final String TAG = "AddSubcategoryDialogFra";
-    private MainViewModel mainViewModel;
+    private final MainViewModel mainViewModel;
     private int categoryId;
     List<Category> allCategories;
 

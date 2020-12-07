@@ -35,7 +35,7 @@ import java.util.List;
 import static android.app.Activity.RESULT_OK;
 
 public class ListItemDialogFragment extends DialogFragment implements AdapterView.OnItemSelectedListener {
-    private MainViewModel mainViewModel;
+    private final MainViewModel mainViewModel;
     List<SubCategory> allSubcategories;
     int reportId;
     int categoryId;

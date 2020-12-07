@@ -26,9 +26,9 @@ import java.util.function.ToLongFunction;
 
 public class MainInspectionFragment extends Fragment implements InspectionHandler {
 
-    private FragmentSwitcher fragmentSwitcher;
+    private final FragmentSwitcher fragmentSwitcher;
     private MainViewModel mainViewModel;
-    private int currentReportId;
+    private final int currentReportId;
     private List<Category> allCategories;
     private List<SubCategory> allSubcategories;
     private List<ListItem> allListItems;

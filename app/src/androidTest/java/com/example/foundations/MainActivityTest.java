@@ -276,7 +276,7 @@ public class MainActivityTest {
         onView(withText("Email")).check(matches(isDisplayed()));
         onView(withId(R.id.phoneFrag)).perform(scrollTo()).check(matches(isDisplayed()));
         onView(withText("Phone")).check(matches(isDisplayed()));
-        onView(withText("SAVE AND CONTINUE")).check(matches(isDisplayed())).perform(click());
+        onView(withText("SAVE AND CONTINUE")).perform(scrollTo(), click());
         onView(withId(R.id.drawer)).check(matches(isClosed(Gravity.START)))
                 .perform(DrawerActions.open());
         onView(withId(R.id.inspections)).perform(click());

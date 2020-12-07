@@ -18,8 +18,8 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
     private static final String TAG = ReportAdapter.class.getSimpleName();
     private List<Report> reports;
     private final LayoutInflater inflater;
-    private Context mContext;
-    private SetReportHandler reportHandler;
+    private final Context mContext;
+    private final SetReportHandler reportHandler;
     int selectedReport = -1;
 
     static class ReportViewHolder extends RecyclerView.ViewHolder {

@@ -47,9 +47,7 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
     private MainViewModel mainViewModel;
     private Profile currentProfile;
     private Report currentReport;
-    private Integer profileId;
     String lName, fName, License, Company, email, phone, photo;
-    Uri contentUri;
 
     private final static String TAG = AppActivity.class.getSimpleName();
 
@@ -60,7 +58,6 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
         setContentView(R.layout.app_page);
         Intent intent = getIntent();
         currentProfile = intent.getParcelableExtra(String.valueOf(R.string.userProfile));
-        profileId = currentProfile.getProfileId();
         mainViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(MainViewModel.class);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer);

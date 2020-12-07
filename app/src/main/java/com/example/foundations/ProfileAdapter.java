@@ -29,8 +29,8 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
 
     private List<Profile> profiles;
     private final LayoutInflater inflater;
-    private SetProfileHandler profileHandler;
-    private Context mContext;
+    private final SetProfileHandler profileHandler;
+    private final Context mContext;
     int selectedProfile = -1;
     int item;
 

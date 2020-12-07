@@ -50,22 +50,22 @@ import static com.itextpdf.text.Section.NUMBERSTYLE_DOTTED_WITHOUT_FINAL_DOT;
 
 public class SummaryFragment extends Fragment {
 
-    private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
+    private static final Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
             Font.BOLD);
-    private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,
+    private static final Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,
             Font.NORMAL, BaseColor.RED);
-    private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16,
+    private static final Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16,
             Font.BOLD);
-    private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
+    private static final Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
             Font.BOLD);
 
     private static final String TAG = "SummaryFragment";
-    private FragmentSwitcher fragmentSwitcher;
-    private InspectionHandler inspectionHandler;
-    private List<ListItem> allListItems;
-    private List<Category> allCategories;
-    private List<SubCategory> allSubcategories;
-    private Report currentReport;
+    private final FragmentSwitcher fragmentSwitcher;
+    private final InspectionHandler inspectionHandler;
+    private final List<ListItem> allListItems;
+    private final List<Category> allCategories;
+    private final List<SubCategory> allSubcategories;
+    private final Report currentReport;
 
     public SummaryFragment(FragmentSwitcher fragmentSwitcher, InspectionHandler inspectionHandler){
         this.fragmentSwitcher = fragmentSwitcher;
