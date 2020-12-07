@@ -64,6 +64,8 @@ public interface FoundationsDao {
     @Query("UPDATE profile_table SET firstName = :firstName, lastName  = :lastName, email = :email, phone = :phone, companyName = :companyName, licenseNumber = :licenseNumber, photo = :photo WHERE profileId = :profileId")
     void updateProfileInfo(Integer profileId, String firstName, String lastName, String email, String phone, String companyName, String licenseNumber, String photo);
 
+    @Query("UPDATE report_table SET pdf = :pdf WHERE reportId = :reportId")
+    void addPDF(Integer reportId, String pdf);
 
 //    // DELETE QUERIES
 //    @Query("DELETE FROM profile_table WHERE profileId = :profileId")

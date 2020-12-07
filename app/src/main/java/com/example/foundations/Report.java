@@ -51,6 +51,13 @@ public class Report {
     @ColumnInfo(name = "propertyPhoto")
     private String propertyPhoto = null;
 
+    @ColumnInfo(name = "pdf")
+    private String pdf = null;
+
+    public String getPdf() {
+        return pdf;
+    }
+
     @NonNull
     public Integer getProfileId() {
         return profileId;
@@ -147,7 +154,8 @@ public class Report {
         return addr.toString();
     }
 
-    public Report(@NonNull Integer profileId, String buyerFirstName, String buyerLastName, String sellerFirstName, String sellerLastName, @NonNull String street, @NonNull String city, @NonNull String state, @NonNull String zip, String propertyPhoto) {
+    public Report(@NonNull Integer profileId, String buyerFirstName, String buyerLastName, String sellerFirstName, String sellerLastName,
+                  @NonNull String street, @NonNull String city, @NonNull String state, @NonNull String zip, String propertyPhoto, String pdf) {
         this.reportId  = null;
         this.profileId = profileId;
         this.buyerFirstName = buyerFirstName;
@@ -159,5 +167,6 @@ public class Report {
         this.state = state;
         this.zip = zip;
         this.propertyPhoto = propertyPhoto;
+        this.pdf = pdf;
     }
 }

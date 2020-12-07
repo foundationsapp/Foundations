@@ -12,4 +12,5 @@ public interface InspectionHandler {
     List<SubCategory> getAllSubcategories();
     List<ListItem> getAllListItems();
     void showDeleteItemDialog(MainViewModel mainViewModel, ListItem item);
+    void addPDF(String pdf);
 }

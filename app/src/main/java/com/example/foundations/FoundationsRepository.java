@@ -94,6 +94,12 @@ public class FoundationsRepository {
         });
     }
 
+    void addPDF(Integer reportId, String pdf) {
+        FoundationsRoomDatabase.databaseWriteExecutor.execute(() -> {
+            foundationsDao.addPDF(reportId, pdf);
+        });
+    }
+
 
 //    // DELETE QUERIES
 //    void deleteProfile(Integer profileId) {

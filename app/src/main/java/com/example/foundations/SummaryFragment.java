@@ -137,6 +137,7 @@ public class SummaryFragment extends Fragment {
                 System.out.println("                    " + current.getNotes() + current.getPhotos());
             }
             document.close();
+            inspectionHandler.addPDF(file_path);
             Toast.makeText(getContext(), "PDF Report has been generated.", Toast.LENGTH_LONG).show();
         }
 

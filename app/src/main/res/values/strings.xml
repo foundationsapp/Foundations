@@ -133,5 +133,7 @@
     <string name="_1256_marline_ct">1256 Marline CT</string>
     <string name="pdfimage">pdfimage</string>
     <string name="profile_image_desc">profile image</string>
+    <string name="pdf_reports">PDF Reports</string>
+    <string name="send_pdf">SEND PDF</string>
 
 </resources>

@@ -125,7 +125,7 @@ public class NewInspection extends Fragment {
         String state = niState.getText().toString();
         String zip = niZip.getText().toString();
 
-        Report report = new Report(fragmentSwitcher.getProfile().getProfileId(), buyerFirstName, buyerLastName, sellerFirstName, sellerLastName, address, city, state, zip, photoPath);
+        Report report = new Report(fragmentSwitcher.getProfile().getProfileId(), buyerFirstName, buyerLastName, sellerFirstName, sellerLastName, address, city, state, zip, photoPath, null);
 
         if (updateReport) {
             mainViewModel.updateReport(currentReport.getReportId(), buyerFirstName, buyerLastName, sellerFirstName, sellerLastName, address, city, state, zip, photoPath);

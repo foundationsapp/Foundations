@@ -123,7 +123,7 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
                         loadFragment(fragment);
                         break;
                     case R.id.pdfs:
-                        fragment=new PDFsFragment();
+                        fragment=new PDFsFragment(mainViewModel);
                         loadFragment(fragment);
                         break;
                     case R.id.logout:
