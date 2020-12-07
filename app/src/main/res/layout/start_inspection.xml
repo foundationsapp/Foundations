@@ -198,6 +198,7 @@
                     android:backgroundTint="@color/white"
                     android:hint="@string/_98133" />
                 <TextView
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/property_photo_title"
