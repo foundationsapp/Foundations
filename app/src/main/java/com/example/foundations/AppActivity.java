@@ -129,10 +129,6 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
                         fragment=new PDFsFragment();
                         loadFragment(fragment);
                         break;
-                    case R.id.settings:
-                        fragment=new SettingsFragment();
-                        loadFragment(fragment);
-                        break;
                     case R.id.logout:
                         //startActivity(new Intent(AppActivity.this, MainActivity.class));
                         Intent intent = new Intent(AppActivity.this, MainActivity.class);
