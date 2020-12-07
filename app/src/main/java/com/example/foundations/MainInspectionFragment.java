@@ -90,6 +90,11 @@ public class MainInspectionFragment extends Fragment implements InspectionHandle
         dialog.show(getParentFragmentManager(), "deleteItem");
     }
 
+    @Override
+    public void addPDF(String pdf) {
+        mainViewModel.addPDF(currentReportId, pdf);
+    }
+
     public void setAllCategories(List<Category> allCategories) {
         this.allCategories = allCategories;
     }

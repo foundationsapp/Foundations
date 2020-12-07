@@ -39,8 +39,6 @@ public class InspectionFragment extends Fragment implements SetReportHandler {
         MainViewModel mainViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(MainViewModel.class);
         mainViewModel.getAllReports().observe(getViewLifecycleOwner(), reportAdapter::setReports);
 
-
-
         Button newInspection = view.findViewById(R.id.inspection_frag_new_inspection);
         newInspection.setOnClickListener(v -> {
             Fragment fragment = new NewInspection(fragmentSwitcher);

@@ -48,6 +48,7 @@ public class MainViewModel extends AndroidViewModel {
     public void updateSiteDetails(Integer reportId, double bathrooms, int bedrooms, int stories, double inspectionFee, int yearBuilt, String furnished, String presentAtInspection, String orientation) {foundationsRepository.updateSiteDetails(reportId, bathrooms, bedrooms, stories, inspectionFee, yearBuilt, furnished, presentAtInspection, orientation);}
     public void updateListItem(Integer listItemId, String notes, String photos, Integer subCat) {foundationsRepository.updateListItem(listItemId, notes, photos, subCat);}
     public void updateProfileInfo(Integer profileId, String firstName, String lastName, String email, String phone, String companyName, String licenseNumber, String photo) {foundationsRepository.updateProfileInfo(profileId, firstName, lastName, email, phone, companyName, licenseNumber, photo);}
+    public void addPDF(Integer reportId, String pdf) {foundationsRepository.addPDF(reportId, pdf);}
 
     public LiveData<List<Profile>> getAllProfiles() {
         return allProfiles;

@@ -17,8 +17,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/inspection_header"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/all_inspections_recyclerview"
             android:text="@string/all_inspections"
             android:textSize="@dimen/_30"
             android:textAlignment="center"
