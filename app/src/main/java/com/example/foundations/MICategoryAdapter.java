@@ -28,7 +28,7 @@ public class MICategoryAdapter extends RecyclerView.Adapter<MICategoryAdapter.MI
     private List<SubCategory> miSubcategories;
     private List<ListItem> miListItems;
     MISubcategoryAdapter miSubcategoryAdapter;
-    private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
+    private final RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
     InspectionHandler inspectionHandler;
     MainViewModel mainViewModel;
     ListItem currentListItem = null;

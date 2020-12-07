@@ -16,7 +16,7 @@ import java.util.List;
 public class ChecklistSubcategoryAdapter extends RecyclerView.Adapter<ChecklistSubcategoryAdapter.ChecklistSubcategoryViewHolder> {
 
     private static final String TAG = "ChecklistSubcategoryAda";
-    private List<SubCategory> subcategories;
+    private final List<SubCategory> subcategories;
 
     public ChecklistSubcategoryAdapter(List<SubCategory> subcategories) {
         this.subcategories = subcategories;

@@ -21,7 +21,7 @@ public class DashFragment extends Fragment implements SetReportHandler{
     private Report currentReport;
 
     private Profile currentProfile;
-    private FragmentSwitcher fragmentSwitcher;
+    private final FragmentSwitcher fragmentSwitcher;
 
     public DashFragment(FragmentSwitcher fragmentSwitcher) {
         this.fragmentSwitcher=fragmentSwitcher;

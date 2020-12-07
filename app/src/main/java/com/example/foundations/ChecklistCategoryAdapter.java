@@ -28,7 +28,7 @@ public class ChecklistCategoryAdapter extends RecyclerView.Adapter<ChecklistCate
     private List<Category> categories;
     private List<SubCategory> subcategories;
     private int categoryId;
-    private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
+    private final RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
     ChecklistHandler checklistHandler;
     MainViewModel mainViewModel;
 

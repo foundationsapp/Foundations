@@ -12,24 +12,24 @@ import java.util.List;
 public interface FoundationsDao {
 
 
-    //Mainly for testing
-    @Query("DELETE FROM profile_table")
-    void deleteAllProfiles();
-
-    @Query("DELETE FROM sitedetails_table")
-    void deleteSiteDetails();
-
-    @Query("DELETE FROM report_table")
-    void deleteReports();
-
-    @Query("DELETE FROM listitem_table")
-    void deleteListItems();
-
-    @Query("DELETE FROM category_table")
-    void deleteCategory();
-
-    @Query("DELETE FROM subcategory_table")
-    void deleteSubcategory();
+//    //Mainly for testing
+//    @Query("DELETE FROM profile_table")
+//    void deleteAllProfiles();
+//
+//    @Query("DELETE FROM sitedetails_table")
+//    void deleteSiteDetails();
+//
+//    @Query("DELETE FROM report_table")
+//    void deleteReports();
+//
+//    @Query("DELETE FROM listitem_table")
+//    void deleteListItems();
+//
+//    @Query("DELETE FROM category_table")
+//    void deleteCategory();
+//
+//    @Query("DELETE FROM subcategory_table")
+//    void deleteSubcategory();
 
 
 
@@ -65,24 +65,24 @@ public interface FoundationsDao {
     void updateProfileInfo(Integer profileId, String firstName, String lastName, String email, String phone, String companyName, String licenseNumber, String photo);
 
 
-    // DELETE QUERIES
-    @Query("DELETE FROM profile_table WHERE profileId = :profileId")
-    void deleteProfile(Integer profileId);
-
-    @Query("DELETE FROM report_table WHERE reportId = :reportId")
-    void deleteReport(Integer reportId);
-
-    @Query("DELETE FROM sitedetails_table WHERE siteDetailsId = :siteDetailsId")
-    void deleteSiteDetails(Integer siteDetailsId);
+//    // DELETE QUERIES
+//    @Query("DELETE FROM profile_table WHERE profileId = :profileId")
+//    void deleteProfile(Integer profileId);
+//
+//    @Query("DELETE FROM report_table WHERE reportId = :reportId")
+//    void deleteReport(Integer reportId);
+//
+//    @Query("DELETE FROM sitedetails_table WHERE siteDetailsId = :siteDetailsId")
+//    void deleteSiteDetails(Integer siteDetailsId);
 
     @Query("DELETE FROM listitem_table WHERE listItemId = :listItemId")
     void deleteListItem(Integer listItemId);
 
-    @Query("DELETE FROM category_table WHERE categoryId = :categoryId")
-    void deleteCategory(Integer categoryId);
-
-    @Query("DELETE FROM subcategory_table WHERE subCategoryId = :subCategoryId")
-    void deleteSubCategory(Integer subCategoryId);
+//    @Query("DELETE FROM category_table WHERE categoryId = :categoryId")
+//    void deleteCategory(Integer categoryId);
+//
+//    @Query("DELETE FROM subcategory_table WHERE subCategoryId = :subCategoryId")
+//    void deleteSubCategory(Integer subCategoryId);
 
 
     // FETCH ALL QUERIES
@@ -101,8 +101,8 @@ public interface FoundationsDao {
     @Query("SELECT * from sitedetails_table ORDER BY siteDetailsId ASC")
     List<SiteDetails> getAllSiteDetails();
 
-    @Query("SELECT * from listitem_table WHERE :reportId = reportId")
-    LiveData<List<ListItem>> getCurrentListItems(Integer reportId);
+//    @Query("SELECT * from listitem_table WHERE :reportId = reportId")
+//    LiveData<List<ListItem>> getCurrentListItems(Integer reportId);
 
     @Query("SELECT * from listitem_table ORDER BY listItemId ASC")
     LiveData<List<ListItem>> getAllListItems();

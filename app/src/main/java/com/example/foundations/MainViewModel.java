@@ -12,14 +12,13 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class MainViewModel extends AndroidViewModel {
 
-    private static final String TAG = MainViewModel.class.getSimpleName();
     LiveData<List<Profile>> allProfiles;
     LiveData<List<Report>> allReports;
-    private LiveData<List<Category>> allCategories;
-    private LiveData<List<SubCategory>> allSubcategories;
-    private LiveData<List<ListItem>> allListItems;
+    private final LiveData<List<Category>> allCategories;
+    private final LiveData<List<SubCategory>> allSubcategories;
+    private final LiveData<List<ListItem>> allListItems;
 
-    private FoundationsRepository foundationsRepository;
+    private final FoundationsRepository foundationsRepository;
 
     public MainViewModel(Application application) {
         super(application);

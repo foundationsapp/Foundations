@@ -18,11 +18,11 @@ public class SubCategory {
 
     @NonNull
     @ColumnInfo(name = "categoryId")
-    private Integer categoryId;
+    private final Integer categoryId;
 
     @NonNull
     @ColumnInfo(name = "title")
-    private String title;
+    private final String title;
 
     public Integer getSubCategoryId() {
         return subCategoryId;

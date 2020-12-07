@@ -19,8 +19,8 @@ public class MISubcategoryAdapter extends RecyclerView.Adapter<MISubcategoryAdap
 
     private static final String TAG = "MISubcategoryAdapter";
     private List<SubCategory> miSubcategories;
-    private List<ListItem> miListItems;
-    private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
+    private final List<ListItem> miListItems;
+    private final RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
     ListItemHandler listItemHandler;
 
     @NonNull
