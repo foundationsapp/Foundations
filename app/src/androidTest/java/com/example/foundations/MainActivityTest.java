@@ -1,12 +1,14 @@
 package com.example.foundations;
 
 import android.Manifest;
+import android.view.Gravity;
 
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.rule.GrantPermissionRule;
+import androidx.test.espresso.contrib.DrawerActions;
 
 import org.junit.After;
 import org.junit.Before;
@@ -130,7 +132,7 @@ public class MainActivityTest {
         onView(withId(R.id.ni_create_report)).perform(scrollTo());
         onView(withId(R.id.property_photo_title)).check(matches(withText("Property Photo")));
         onView(withId(R.id.add_property_photo)).check(matches(isDisplayed()));
-        onView(withId(R.id.ni_create_report)).check(matches(withText("SAVE AND CONTINUE")));
+        onView(withId(R.id.ni_create_report)).check(matches(withText("SUBMIT AND CONTINUE")));
         onView(withId(R.id.ni_create_report)).perform(click());
         onView(withId(R.id.sd_title)).check(matches(withText("Site Details")));
 
@@ -237,47 +239,15 @@ public class MainActivityTest {
         onView(withText("Seller Last Name")).check(matches(isDisplayed()));
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
+
+//    @Test
+//    public void navigate() {
+//        onView(withId(R.id.profileItem)).check(matches(withText("Tommy Deckman")));
+//        onView(withId(R.id.profileItem)).perform(click());
+//        onView(withId(R.id.drawer)).check(matches(isClosed(Gravity.LEFT)))
+//                .perform(DrawerActions.open());
+//    }
 
     @Test
     public void hasNewUserOption() {
