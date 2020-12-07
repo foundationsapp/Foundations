@@ -75,7 +75,7 @@ public class MainActivityTest {
         onView(withId(R.id.edit_last_name)).perform(scrollTo(), typeText("Deckman"));
         onView(withId(R.id.edit_license_number)).perform(scrollTo(), typeText("123123"));
         onView(withId(R.id.edit_company_name)).perform(scrollTo(), typeText("Inspect The Deck"));
-        onView(withId(R.id.edit_email)).perform(scrollTo(), typeText("kevin@deck.com"));
+        onView(withId(R.id.edit_email)).perform(scrollTo(), typeText("tommy@deck.com"));
         onView(withId(R.id.edit_phone)).perform(scrollTo(), typeText("2062023434"));
         Espresso.closeSoftKeyboard();
         Thread.sleep(500);
@@ -253,19 +253,78 @@ public class MainActivityTest {
         onView(withText("Seller Last Name")).check(matches(isDisplayed()));
         onView(withId(R.id.pdf_seller_first_name)).check(matches(withText("Steven")));
         onView(withId(R.id.pdf_seller_last_name)).check(matches(withText("Fields")));
+        onView(withId(R.id.drawer)).check(matches(isClosed(Gravity.START)))
+                .perform(DrawerActions.open());
+        onView(withId(R.id.drawer)).perform(DrawerActions.close());
+        onView(withId(R.id.drawer)).check(matches(isClosed(Gravity.START)))
+                .perform(DrawerActions.open());
+        onView(withId(R.id.user_name)).check(matches(withText("Tommy Deckman")));
+        onView(withId(R.id.user_email)).check(matches(withText("tommy@deck.com")));
+        onView(withId(R.id.profile_picture)).check(matches(isDisplayed()));
+        onView(withId(R.id.profile)).perform(click());
+        onView(withText("First Name")).check(matches(isDisplayed()));
+        onView(withId(R.id.firstnameFrag)).check(matches(withText("Tommy")));
+        onView(withText("Last Name")).check(matches(isDisplayed()));
+        onView(withId(R.id.lastnameFrag)).check(matches(withText("Deckman")));
+        onView(withText("License Number")).check(matches(isDisplayed()));
+        onView(withId(R.id.licenseNumberFrag)).perform(scrollTo()).check(matches(withText("123123")))
+                .perform(typeText("456556"));
+        onView(withId(R.id.companyFrag)).perform(scrollTo(), typeText("nice"));
+        Espresso.closeSoftKeyboard();
+        onView(withText("Company Name")).check(matches(isDisplayed()));
+        onView(withId(R.id.emailFrag)).perform(scrollTo());
+        onView(withText("Email")).check(matches(isDisplayed()));
+        onView(withId(R.id.phoneFrag)).perform(scrollTo()).check(matches(isDisplayed()));
+        onView(withText("Phone")).check(matches(isDisplayed()));
+        onView(withText("SAVE AND CONTINUE")).check(matches(isDisplayed())).perform(click());
+        onView(withId(R.id.drawer)).check(matches(isClosed(Gravity.START)))
+                .perform(DrawerActions.open());
+        onView(withId(R.id.inspections)).perform(click());
+        onView(withId(R.id.inspection_header)).check(matches(withText("Inspections")));
+        onView(withRecyclerView(R.id.all_inspections_recyclerview)
+                .atPositionOnView(0, R.id.reportItem)).perform(click());
+        onView(withText("SELECT INSPECTION")).perform(click());
+        onView(withId(R.id.drawer)).check(matches(isClosed(Gravity.START)))
+                .perform(DrawerActions.open());
+        onView(withId(R.id.inspections)).perform(click());
+        onView(withText("START NEW INSPECTION")).perform(click());
+        onView(withId(R.id.drawer)).check(matches(isClosed(Gravity.START)))
+                .perform(DrawerActions.open());
+        onView(withId(R.id.checklists)).perform(click());
+        onView(withText("Checklist Categories")).check(matches(isDisplayed()));
+        onView(withText("Appliances")).check(matches(isDisplayed()));
+        onView(withText("Dishwasher")).check(matches(isDisplayed()));
+        onView(withText("ADD CATEGORY")).perform(click());
+        onView(withId(R.id.ac_dialog_title)).check(matches(withText("Add Category")));
+        onView(withId(R.id.ac_dialog_title_edit)).check(matches(withHint("Enter category name")));
+        onView(withId(R.id.ac_dialog_title_edit)).perform(typeText("checking categories"));
+        Espresso.closeSoftKeyboard();;
+        onView(withText("ADD CATEGORY")).perform(click());
+        onView(withText("ADD CATEGORY")).perform(click());
+        onView(withText("CANCEL")).perform(click());
+        onView(withText("ADD SUBCATEGORY")).perform(click());
+        onView(withText("CANCEL")).perform(click());
+        onView(withText("ADD SUBCATEGORY")).perform(click());
+        onView(withId(R.id.asc_dialog_title_edit)).perform(typeText("testing subcat"));
+        onView(withText("ADD SUBCATEGORY")).perform(click());
+        onView(withId(R.id.drawer)).check(matches(isClosed(Gravity.START)))
+                .perform(DrawerActions.open());
+        onView(withId(R.id.pdfs)).perform(click());
+
+
+
+
+
+
+
+
+
+
+
 
 
 
     }
-//
-//    @Test
-//    public void navigate() throws InterruptedException {
-//        onView(withId(R.id.profileItem)).check(matches(withText("Tommy Deckman")));
-//        onView(withId(R.id.profileItem)).perform(click());
-//        Thread.sleep(1000);
-//        onView(withId(R.id.drawer)).check(matches(isClosed(Gravity.START)))
-//                .perform(DrawerActions.open());
-//    }
 
     @Test
     public void hasNewUserOption() {
