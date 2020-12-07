@@ -8,7 +8,7 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_60"
+        android:layout_height="wrap_content"
         android:id="@+id/list_item_title"
         android:text="@string/list_item"
         android:textColor="@color/white"
@@ -27,7 +27,6 @@
         android:textSize="@dimen/_20"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/list_item_title"
-        app:layout_constraintBottom_toTopOf="@id/list_item_notes"
         android:text="@string/select_subcategory_for_item" />
 
     <Spinner
@@ -42,7 +41,7 @@
     <EditText
         android:background="@drawable/form"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_200"
+        android:layout_height="@dimen/_100"
         android:hint="@string/enter_notes"
         android:gravity="center"
         android:textSize="25sp"
@@ -62,6 +61,14 @@
         android:id="@+id/add_photo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/list_item_notes"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/list_item_photo_dialog"
+        app:layout_constraintTop_toBottomOf="@id/list_item_notes"
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/item_photo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

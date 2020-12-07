@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
@@ -16,7 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MICategoryAdapter extends RecyclerView.Adapter<MICategoryAdapter.MICategoryAdapterViewHolder> {
+import static java.security.AccessController.getContext;
+
+public class MICategoryAdapter extends RecyclerView.Adapter<MICategoryAdapter.MICategoryAdapterViewHolder> implements ListItemHandler {
 
     private static final String TAG = "miCategoryAdapter";
     private final LayoutInflater inflater;
@@ -28,8 +31,8 @@ public class MICategoryAdapter extends RecyclerView.Adapter<MICategoryAdapter.MI
     private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
     InspectionHandler inspectionHandler;
     MainViewModel mainViewModel;
-
-
+    ListItem currentListItem = null;
+    Context mContext;
 
     @NonNull
     @Override
@@ -72,7 +75,19 @@ public class MICategoryAdapter extends RecyclerView.Adapter<MICategoryAdapter.MI
                 }
             }
             holder.addItem.setOnClickListener(v -> {
-                inspectionHandler.showListItemDialog(mainViewModel, filteredSubcatList);
+                inspectionHandler.showListItemDialog(mainViewModel, filteredSubcatList, null);
+            });
+            holder.editItem.setOnClickListener(v -> {
+                if (currentListItem != null) {
+                    inspectionHandler.showListItemDialog(mainViewModel, filteredSubcatList, currentListItem);
+                    currentListItem = null;
+                } else {
+                    Toast.makeText(mContext,"Please select an item", Toast.LENGTH_SHORT).show();
+                }
+            });
+            holder.deleteItem.setOnClickListener(v -> {
+                inspectionHandler.showDeleteItemDialog(mainViewModel, currentListItem);
+                currentListItem = null;
             });
             if (filteredSubcatList.size() == 0) {
                 holder.addItem.setVisibility(View.GONE);
@@ -81,8 +96,17 @@ public class MICategoryAdapter extends RecyclerView.Adapter<MICategoryAdapter.MI
                 holder.addItem.setVisibility(View.VISIBLE);
                 holder.editItem.setVisibility(View.VISIBLE);
             }
+            if (currentListItem != null) {
+                if (currentListItem.getCategoryId() == categoryId) {
+                    holder.deleteItem.setVisibility(View.VISIBLE);
+                } else {
+                    holder.deleteItem.setVisibility(View.GONE);
+                }
+            } else {
+                holder.deleteItem.setVisibility(View.GONE);
+            }
             LinearLayoutManager layoutManager = new LinearLayoutManager(holder.miSubcategoryRecyclerView.getContext());
-            miSubcategoryAdapter = new MISubcategoryAdapter(filteredSubcatList, filteredListItemList);
+            miSubcategoryAdapter = new MISubcategoryAdapter(filteredSubcatList, filteredListItemList, this);
             holder.miSubcategoryRecyclerView.setLayoutManager(layoutManager);
             holder.miSubcategoryRecyclerView.setAdapter(miSubcategoryAdapter);
             holder.miSubcategoryRecyclerView.setRecycledViewPool(viewPool);
@@ -116,12 +140,24 @@ public class MICategoryAdapter extends RecyclerView.Adapter<MICategoryAdapter.MI
         notifyDataSetChanged();
     }
 
+    @Override
+    public void setListItem(ListItem item) {
+        currentListItem = item;
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public ListItem getCurrentListItem() {
+        return currentListItem;
+    }
+
     static class MICategoryAdapterViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView miCategoryItemView;
         private final RecyclerView miSubcategoryRecyclerView;
         Button addItem;
         Button editItem;
+        Button deleteItem;
 
         public MICategoryAdapterViewHolder(View itemView) {
             super(itemView);
@@ -129,6 +165,8 @@ public class MICategoryAdapter extends RecyclerView.Adapter<MICategoryAdapter.MI
             miSubcategoryRecyclerView = itemView.findViewById(R.id.mi_subcategory_recyclerview);
             addItem = itemView.findViewById(R.id.mi_add_item);
             editItem = itemView.findViewById(R.id.mi_edit_item);
+            deleteItem = itemView.findViewById(R.id.delete_item);
+            deleteItem.setVisibility(View.GONE);
         }
     }
 
@@ -137,5 +175,6 @@ public class MICategoryAdapter extends RecyclerView.Adapter<MICategoryAdapter.MI
         this.mainViewModel = mainViewModel;
         this.inspectionHandler = inspectionHandler;
         this.currentReportId = currentReportId;
+        mContext = context;
     }
 }

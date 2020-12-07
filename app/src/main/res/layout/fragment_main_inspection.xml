@@ -27,9 +27,9 @@
         app:layout_constraintBottom_toTopOf="@+id/mi_add_category"
         >
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="@dimen/_350"
             android:layout_marginLeft="@dimen/_30"
             android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             android:id="@+id/mi_category_recyclerview"
             tools:listitem="@layout/mi_category_item"
             />
