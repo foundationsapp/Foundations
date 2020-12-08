@@ -112,6 +112,7 @@ public class MainActivityTest {
         Instrumentation.ActivityResult activityResult0 = new Instrumentation.ActivityResult(Activity.RESULT_OK, result0);
         intending(toPackage("com.android.camera2")).respondWith(activityResult0);
         onView(withId(R.id.signupcamera)).perform(click());
+        intended(toPackage("com.android.camera2"));
         onView(withId(R.id.edit_first_name)).perform(scrollTo(), typeText("steve"));
         onView(withId(R.id.edit_last_name)).perform(scrollTo(), typeText("stone"));
         onView(withId(R.id.edit_license_number)).perform(scrollTo(), typeText("123123"));
@@ -267,7 +268,6 @@ public class MainActivityTest {
         Instrumentation.ActivityResult activityResult = new Instrumentation.ActivityResult(Activity.RESULT_OK, result);
         intending(toPackage("com.android.camera2")).respondWith(activityResult);
         onView(withId(R.id.add_photo)).perform(click());
-        intended(toPackage("com.android.camera2"));
         Espresso.closeSoftKeyboard();
         onView(withText("CANCEL")).perform(click());
         onView(withRecyclerView(R.id.mi_category_recyclerview)
