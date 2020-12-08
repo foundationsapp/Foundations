@@ -43,7 +43,6 @@ public class PDFAdapter extends RecyclerView.Adapter<PDFAdapter.PDFViewHolder>{
                 holder.pdfItemView.setBackgroundColor(Color.parseColor("#44bcda"));
             }
             Report current = reports.get(position);
-            Log.d(TAG, "onBindViewHolder: " + current.getStreetAddress());
             holder.pdfItemView.setText(current.getStreetAddress());
             holder.pdfItemView.setOnClickListener(v -> {
                 selected = position;

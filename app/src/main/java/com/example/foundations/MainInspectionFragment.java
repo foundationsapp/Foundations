@@ -2,6 +2,7 @@ package com.example.foundations;
 
 import android.app.Person;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ import java.util.function.ToLongFunction;
 
 public class MainInspectionFragment extends Fragment implements InspectionHandler {
 
+    private static final String TAG = "MainInspectionFragment";
     private final FragmentSwitcher fragmentSwitcher;
     private MainViewModel mainViewModel;
     private final int currentReportId;
@@ -64,7 +66,7 @@ public class MainInspectionFragment extends Fragment implements InspectionHandle
         });
         Button done = view.findViewById(R.id.mi_done_button);
         done.setOnClickListener(v -> {
-            if (allListItems != null || allListItems.size() > 0) {
+            if (allListItems != null && getAllListItems().size() > 0) {
                 Fragment fragment = new SummaryFragment(fragmentSwitcher, this);
                 fragmentSwitcher.loadFragment(fragment);
             } else {

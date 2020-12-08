@@ -144,8 +144,14 @@ public class ListItemDialogFragment extends DialogFragment implements AdapterVie
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            bitmapSetup(itemPhoto, photoUri);
-        }
+            if (BitmapFactory.decodeFile(photoUri.getPath()) != null) {
+                bitmapSetup(itemPhoto, photoUri);
+            }
+            } else {
+                Bundle extras = data.getExtras();
+                itemPhoto.setImageBitmap((Bitmap) extras.get("data"));
+            }
+
     }
 
     static void bitmapSetup(ImageView image, Uri uri) {

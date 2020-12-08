@@ -1,6 +1,8 @@
 package com.example.foundations;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -111,7 +113,12 @@ public class NewInspection extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            ListItemDialogFragment.bitmapSetup(propertyPhoto, photoUri);
+            if (BitmapFactory.decodeFile(photoUri.getPath()) != null) {
+                ListItemDialogFragment.bitmapSetup(propertyPhoto, photoUri);
+            } else {
+            Bundle extras = data.getExtras();
+            propertyPhoto.setImageBitmap((Bitmap) extras.get("data"));
+            }
         }
     }
 
