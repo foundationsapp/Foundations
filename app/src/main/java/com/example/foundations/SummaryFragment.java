@@ -1,7 +1,10 @@
 package com.example.foundations;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,7 +36,9 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Section;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.codec.Base64;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -94,14 +99,13 @@ public class SummaryFragment extends Fragment {
         File storageDir = getContext().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
         String file_path = storageDir.getAbsolutePath() + file_name;
         Document document = new Document();
+        PdfWriter.getInstance(document, new FileOutputStream(file_path));
+        document.open();
         addMetaData(document);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             Log.d(TAG, "createPDF: title page creation");
             addTitlePage(document);
         }
-        PdfWriter.getInstance(document, new FileOutputStream(file_path));
-        document.open();
-
         if (allListItems != null && allListItems.size() > 0) {
             while (allListItems.size() > 0) {
                 ListItem current = allListItems.remove(0);
@@ -122,7 +126,6 @@ public class SummaryFragment extends Fragment {
                         }
                     }
                     currentCategory = createNewCategory(currentCategoryName, categorySectionCounter);
-                    System.out.println(categorySectionCounter + " " + currentCategoryName);
                 }
                 if (current.getSubCategoryId() != currentSubcategoryId) {
                     currentSubcategoryId = current.getSubCategoryId();
@@ -135,13 +138,10 @@ public class SummaryFragment extends Fragment {
                         }
                     }
                     currentSubcategory = createNewSubcategory(currentCategory, currentSubcategoryName);
-                    System.out.println("     " + categorySectionCounter + "." + subcategorySectionCounter + " " + currentSubcategoryName);
                 }
                 itemSectionCounter += 1;
                 addItemsToSection(currentSubcategory, current);
-                System.out.println("         " + categorySectionCounter + "." + subcategorySectionCounter + "." + itemSectionCounter);
-                System.out.println("                    " + current.getNotes() + current.getPhotos());
-                if (allListItems.size() == 0) {
+             if (allListItems.size() == 0) {
                     currentSubcategory.add(new Paragraph(" "));
                     document.add(currentCategory);
                     currentCategory = null;
@@ -151,6 +151,8 @@ public class SummaryFragment extends Fragment {
             document.close();
             inspectionHandler.addPDF(file_path);
             Toast.makeText(getContext(), "PDF Report has been generated.", Toast.LENGTH_LONG).show();
+            Fragment fragment = new PDFsFragment(fragmentSwitcher.getViewModel());
+            fragmentSwitcher.loadFragment(fragment);
         }
 
     }
@@ -204,45 +206,58 @@ public class SummaryFragment extends Fragment {
 
     }
 
-//    @RequiresApi(api = Build.VERSION_CODES.O)
-//    private void addTitlePage(Document document) throws IOException, DocumentException {
-//        Drawable res = getResources().getDrawable(R.drawable.logo);
-//        logo.scaleToFit(400, 200);
-//        logo.setAlignment(ALIGN_CENTER);
-//        logo.setSpacingAfter(5);
-//        logo.setSpacingBefore(5);
-//        document.add(logo);
-//        Paragraph title = new Paragraph(getString(R.string.title_page_title));
-//        title.setAlignment(ALIGN_CENTER);
-//        title.setSpacingAfter(10);
-//        document.add(title);
-//        Paragraph preparedFor = new Paragraph(getString(R.string.prepedfor));
-//        preparedFor.setAlignment(ALIGN_CENTER);
-//        document.add(preparedFor);
-//        Paragraph buyer = new Paragraph(currentReport.getBuyerFirstName() + " " + currentReport.getBuyerLastName());
-//        buyer.setAlignment(ALIGN_CENTER);
-//        buyer.setSpacingAfter(5);
-//        document.add(buyer);
-//        Image propertyPhoto = Image.getInstance(currentReport.getPropertyPhoto());
-//        propertyPhoto.scaleToFit(400, 200);
-//        propertyPhoto.setAlignment(ALIGN_CENTER);
-//        propertyPhoto.setSpacingAfter(5);
-//        document.add(propertyPhoto);
-//        Paragraph propertyInspected = new Paragraph("PROPERTY INSPECTED:");
-//        propertyInspected.setAlignment(ALIGN_CENTER);
-//        document.add(propertyInspected);
-//        Paragraph address = new Paragraph(currentReport.getStreet() + "\n" + currentReport.getCity() + ", " + currentReport.getState() + " " + currentReport.getZip(),
-//                FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20));
-//        address.setAlignment(ALIGN_CENTER);
-//        document.add(address);
-//        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-//        LocalDateTime now = LocalDateTime.now();
-//        Paragraph inspectionDate = new Paragraph("Date of Inspection: " + dtf.format(now));
-//        inspectionDate.setAlignment(ALIGN_CENTER);
-//        document.add(inspectionDate);
-//        document.newPage();
-//
-//    }
+
+    private void addTitlePage(Document document) throws IOException, DocumentException {
+        Paragraph foundationsTitle = new Paragraph("FOUNDATIONS\nHome Inspections Made Easy");
+        foundationsTitle.setSpacingBefore(10);
+        foundationsTitle.setSpacingAfter(5);
+        document.add(foundationsTitle);
+        Bitmap logoBitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.pdf_logo);
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        logoBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream); //compress to which format you want.
+        Image logo = Image.getInstance(stream.toByteArray());
+        logo.scaleToFit(100, 50);
+        logo.setAlignment(ALIGN_CENTER);
+        logo.setSpacingAfter(5);
+        logo.setSpacingBefore(5);
+        document.add(logo);
+        Paragraph title = new Paragraph(getString(R.string.title_page_title));
+        title.setAlignment(ALIGN_CENTER);
+        title.setSpacingAfter(10);
+        document.add(title);
+        Paragraph preparedFor = new Paragraph(getString(R.string.prepedfor));
+        preparedFor.setAlignment(ALIGN_CENTER);
+        document.add(preparedFor);
+        Paragraph buyer = new Paragraph(currentReport.getBuyerFirstName() + " " + currentReport.getBuyerLastName());
+        buyer.setAlignment(ALIGN_CENTER);
+        buyer.setSpacingAfter(5);
+        document.add(buyer);
+        if (currentReport.getPropertyPhoto() != null) {
+            Image propertyPhoto = Image.getInstance(currentReport.getPropertyPhoto());
+            propertyPhoto.scaleToFit(400, 200);
+            propertyPhoto.setAlignment(ALIGN_CENTER);
+            propertyPhoto.setSpacingAfter(5);
+            document.add(propertyPhoto);
+        }
+        Paragraph propertyInspected = new Paragraph("PROPERTY INSPECTED:");
+        propertyInspected.setAlignment(ALIGN_CENTER);
+        document.add(propertyInspected);
+        Paragraph address = new Paragraph(currentReport.getStreet() + "\n" + currentReport.getCity() + ", " + currentReport.getState() + " " + currentReport.getZip(),
+                FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20));
+        address.setAlignment(ALIGN_CENTER);
+        document.add(address);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDateTime now = LocalDateTime.now();
+        Paragraph inspectionDate = new Paragraph("Date of Inspection: " + dtf.format(now));
+        inspectionDate.setAlignment(ALIGN_CENTER);
+        document.add(inspectionDate);
+        Profile inspector = fragmentSwitcher.getProfile();
+        Paragraph inspectorInfo = new Paragraph("Inspected by:\n" + inspector.getFullName() + "\n" +
+                inspector.getCompanyName() + "\n" + inspector.getLicenseNumber() + "\n" + inspector.getPhone() + "\n" + inspector.getEmail());
+        document.add(inspectorInfo);
+        document.newPage();
+
+    }
 
     private static void addMetaData(Document document) {
         document.addTitle("Home Inspection By Foundations");

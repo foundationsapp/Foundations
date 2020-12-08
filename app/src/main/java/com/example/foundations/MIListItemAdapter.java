@@ -35,9 +35,6 @@ public class MIListItemAdapter extends RecyclerView.Adapter<MIListItemAdapter.MI
             ListItem currentListItem = miListItems.get(position);
             ListItem selectedItem = listItemHandler.getCurrentListItem();
             if (selectedItem != null) {
-                Log.d(TAG, "onBindViewHolder: " + selectedItem.getListItemId().equals(currentListItem.getListItemId()));
-                Log.d(TAG, "onBindViewHolder: " + selectedItem.getListItemId());
-                Log.d(TAG, "onBindViewHolder: " + currentListItem.getListItemId());
                 if (selectedItem.getListItemId().equals(currentListItem.getListItemId())) {
                     holder.MIListItemItemView.setBackgroundColor(Color.parseColor("#00BFFF"));
                 } else {

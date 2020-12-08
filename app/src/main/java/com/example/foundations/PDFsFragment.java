@@ -54,6 +54,16 @@ public class PDFsFragment extends Fragment implements PDFHandler {
                 Toast.makeText(getActivity(), "Please select a pdf", Toast.LENGTH_SHORT).show();
             }
         });
+        Button openPDF = view.findViewById(R.id.open_pdf);
+        openPDF.setOnClickListener(v -> {
+            File file = new File(pdf);
+            Uri contentUri = FileProvider.getUriForFile(getContext(), "com.example.Foundations.file_provider", file);
+            Intent openPDFFile = new Intent();
+            openPDFFile.setAction(Intent.ACTION_VIEW);
+            openPDFFile.setDataAndType(contentUri, getContext().getContentResolver().getType(contentUri));
+            openPDFFile.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+            startActivity(openPDFFile);
+        });
         return view;
     }
 

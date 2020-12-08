@@ -160,6 +160,11 @@ public class AppActivity extends AppCompatActivity implements FragmentSwitcher {
     public void setCurrentReport(Report report) { this.currentReport = report; }
 
     @Override
+    public MainViewModel getViewModel() {
+        return mainViewModel;
+    }
+
+    @Override
     public boolean onOptionsItemSelected( MenuItem item) {
         if(toggle.onOptionsItemSelected(item)){
             return true;

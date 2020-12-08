@@ -8,4 +8,5 @@ public interface FragmentSwitcher {
     void updateCurrentProfile(Profile profile);
     Report getCurrentReport();
     void setCurrentReport(Report report);
+    MainViewModel getViewModel();
 }

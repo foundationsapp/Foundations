@@ -30,17 +30,39 @@
             android:layout_marginTop="@dimen/_10"
             android:id="@+id/pdf_recyclerview"
             tools:listitem="@layout/pdf_recyclerview_item"/>
-
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_30"
+        >
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/send_pdf"
-            android:layout_marginTop="@dimen/_30"
-            android:layout_gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:text="@string/send_pdf"
             android:textSize="@dimen/_20"
+            app:layout_constraintEnd_toStartOf="@id/open_pdf"
             android:textColor="@color/white"
             android:backgroundTint="@color/colorPrimary"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/open_pdf"
+            android:layout_gravity="right"
+            app:layout_constraintStart_toEndOf="@id/send_pdf"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/open_pdf"
+            android:textSize="@dimen/_20"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:backgroundTint="@color/colorPrimary"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </LinearLayout>
     
