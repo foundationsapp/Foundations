@@ -68,6 +68,7 @@ public class PDFAdapter extends RecyclerView.Adapter<PDFAdapter.PDFViewHolder>{
             }
         }
         this.reports = filtered;
+        notifyDataSetChanged();
     }
 
     static class PDFViewHolder extends RecyclerView.ViewHolder {
