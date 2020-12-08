@@ -71,6 +71,8 @@ public class MainActivityTest {
         onView(withId(R.id.title)).check(matches(withText(R.string.foundations)));
 
         onView(withId(R.id.newUser)).perform(click());
+        onView(withText("SIGN UP")).perform(scrollTo(), click());
+
         Thread.sleep(500);
         onView(withId(R.id.edit_first_name)).perform(scrollTo(), typeText("Tommy"));
         onView(withId(R.id.edit_last_name)).perform(scrollTo(), typeText("Deckman"));
@@ -102,7 +104,22 @@ public class MainActivityTest {
         onView(withId(R.id.drawer)).check(matches(isClosed(Gravity.START)))
                 .perform(DrawerActions.open());
         onView(withId(R.id.logout)).perform(click());
-        onView(withId(R.id.profileItem)).perform(click());
+        onView(withId(R.id.newUser)).perform(scrollTo(), click());
+
+        Bitmap logo = BitmapFactory.decodeResource(InstrumentationRegistry.getTargetContext().getResources(), R.drawable.logo);
+        Intent result0 = new Intent();
+        result0.putExtra("data", logo);
+        Instrumentation.ActivityResult activityResult0 = new Instrumentation.ActivityResult(Activity.RESULT_OK, result0);
+        intending(toPackage("com.android.camera2")).respondWith(activityResult0);
+        onView(withId(R.id.signupcamera)).perform(click());
+        onView(withId(R.id.edit_first_name)).perform(scrollTo(), typeText("steve"));
+        onView(withId(R.id.edit_last_name)).perform(scrollTo(), typeText("stone"));
+        onView(withId(R.id.edit_license_number)).perform(scrollTo(), typeText("123123"));
+        onView(withId(R.id.edit_company_name)).perform(scrollTo(), typeText("Inspect The Deck"));
+        onView(withId(R.id.edit_email)).perform(scrollTo(), typeText("tommy@deck.com"));
+        onView(withId(R.id.edit_phone)).perform(scrollTo(), typeText("2062023434"));
+        onView(withText("SIGN UP")).perform(scrollTo(), click());
+        onView(withText("Tommy Deckman")).perform(click());
         onView(withId(R.id.get_started_button)).perform(scrollTo(), click());
         onView(withId(R.id.dash_frag_new_inspection)).check(matches(withText("NEW INSPECTION")));
         onView(withId(R.id.dash_frag_new_inspection)).perform(click());
@@ -245,7 +262,6 @@ public class MainActivityTest {
         onView(withRecyclerView(R.id.mi_category_recyclerview)
                 .atPositionOnView(0, R.id.mi_add_item)).perform(click());
         onView(withId(R.id.list_item_notes)).perform(typeText("OMG AWESOME"));
-        Bitmap logo = BitmapFactory.decodeResource(InstrumentationRegistry.getTargetContext().getResources(), R.drawable.logo);
         Intent result = new Intent();
         result.putExtra("data", logo);
         Instrumentation.ActivityResult activityResult = new Instrumentation.ActivityResult(Activity.RESULT_OK, result);
