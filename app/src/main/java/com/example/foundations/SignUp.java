@@ -27,6 +27,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.File;
 
 import static android.util.Patterns.EMAIL_ADDRESS;
@@ -107,13 +109,13 @@ public class SignUp extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK){
-            Bitmap bitmap;
             if (BitmapFactory.decodeFile(contentUri.getPath()) != null) {
-                bitmap = BitmapFactory.decodeFile(contentUri.getPath());
-                Bitmap bitmap2  = resizeBitmap(200,bitmap);
-                profileimage.setImageBitmap(bitmap2);
+                File file = new File(pic_path);
+                Picasso.get().load(file).into(profileimage);
             } else {
+                assert data != null;
                 Bundle extras = data.getExtras();
+                assert extras != null;
                 profileimage.setImageBitmap((Bitmap) extras.get("data"));
             }
         }
@@ -147,24 +149,6 @@ public class SignUp extends AppCompatActivity {
         return f;
     }
 
-//    public Bitmap rotateBitmap(Bitmap bitmap, float degree){
-//        try{
-//            int width = bitmap.getWidth();
-//            int height = bitmap.getHeight();
-//
-//            Matrix matrix = new Matrix();
-//
-//            matrix.postRotate(degree);
-//            Bitmap resizeBitmap = Bitmap.createBitmap(bitmap, 0, 0,width, height, matrix, true);
-//
-//            bitmap.recycle();
-//            return resizeBitmap;
-//        }catch(Exception e){
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
-
     public Bitmap resizeBitmap(int targetWidth, Bitmap source){
         double ratio = (double)targetWidth/(double)source.getWidth();
         int targetHeight = (int)(source.getHeight()*ratio);
@@ -175,31 +159,5 @@ public class SignUp extends AppCompatActivity {
         }
         return result;
     }
-
-//    public float getDegree(){
-//        try{
-//            ExifInterface exif = new ExifInterface(contentUri.getPath());
-//            int degree = 0;
-//
-//            int ori = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, -1);
-//            switch (ori){
-//                case ExifInterface.ORIENTATION_ROTATE_90:
-//                    degree = 90;
-//                    break;
-//                case ExifInterface.ORIENTATION_ROTATE_180:
-//                    degree = 180;
-//                    break;
-//                case ExifInterface.ORIENTATION_ROTATE_270:
-//                    degree = 270;
-//                    break;
-//
-//            }
-//            return (float)degree;
-//        }catch(Exception e){
-//            e.printStackTrace();
-//        }
-//        return 0;
-//    }
-
 
 }
