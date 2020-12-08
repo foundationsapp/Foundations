@@ -149,15 +149,4 @@ public class SignUp extends AppCompatActivity {
         return f;
     }
 
-    public Bitmap resizeBitmap(int targetWidth, Bitmap source){
-        double ratio = (double)targetWidth/(double)source.getWidth();
-        int targetHeight = (int)(source.getHeight()*ratio);
-        Bitmap result = Bitmap.createScaledBitmap(source, targetWidth, targetHeight, false);
-
-        if (result != source){
-            source.recycle();
-        }
-        return result;
-    }
-
 }
