@@ -2,9 +2,11 @@ package com.example.foundations;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,6 +95,10 @@ public class SummaryFragment extends Fragment {
         String file_path = storageDir.getAbsolutePath() + file_name;
         Document document = new Document();
         addMetaData(document);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Log.d(TAG, "createPDF: title page creation");
+            addTitlePage(document);
+        }
         PdfWriter.getInstance(document, new FileOutputStream(file_path));
         document.open();
 
@@ -198,45 +204,45 @@ public class SummaryFragment extends Fragment {
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private void addTitlePage(Document document) throws IOException, DocumentException {
-        Image logo = Image.getInstance("drawable/logo.png");
-        logo.scaleToFit(400, 200);
-        logo.setAlignment(ALIGN_CENTER);
-        logo.setSpacingAfter(5);
-        logo.setSpacingBefore(5);
-        document.add(logo);
-        Paragraph title = new Paragraph(getString(R.string.title_page_title));
-        title.setAlignment(ALIGN_CENTER);
-        title.setSpacingAfter(10);
-        document.add(title);
-        Paragraph preparedFor = new Paragraph(getString(R.string.prepedfor));
-        preparedFor.setAlignment(ALIGN_CENTER);
-        document.add(preparedFor);
-        Paragraph buyer = new Paragraph(currentReport.getBuyerFirstName() + " " + currentReport.getBuyerLastName());
-        buyer.setAlignment(ALIGN_CENTER);
-        buyer.setSpacingAfter(5);
-        document.add(buyer);
-        Image propertyPhoto = Image.getInstance(currentReport.getPropertyPhoto());
-        propertyPhoto.scaleToFit(400, 200);
-        propertyPhoto.setAlignment(ALIGN_CENTER);
-        propertyPhoto.setSpacingAfter(5);
-        document.add(propertyPhoto);
-        Paragraph propertyInspected = new Paragraph("PROPERTY INSPECTED:");
-        propertyInspected.setAlignment(ALIGN_CENTER);
-        document.add(propertyInspected);
-        Paragraph address = new Paragraph(currentReport.getStreet() + "\n" + currentReport.getCity() + ", " + currentReport.getState() + " " + currentReport.getZip(),
-                FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20));
-        address.setAlignment(ALIGN_CENTER);
-        document.add(address);
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        LocalDateTime now = LocalDateTime.now();
-        Paragraph inspectionDate = new Paragraph("Date of Inspection: " + dtf.format(now));
-        inspectionDate.setAlignment(ALIGN_CENTER);
-        document.add(inspectionDate);
-        document.newPage();
-
-    }
+//    @RequiresApi(api = Build.VERSION_CODES.O)
+//    private void addTitlePage(Document document) throws IOException, DocumentException {
+//        Drawable res = getResources().getDrawable(R.drawable.logo);
+//        logo.scaleToFit(400, 200);
+//        logo.setAlignment(ALIGN_CENTER);
+//        logo.setSpacingAfter(5);
+//        logo.setSpacingBefore(5);
+//        document.add(logo);
+//        Paragraph title = new Paragraph(getString(R.string.title_page_title));
+//        title.setAlignment(ALIGN_CENTER);
+//        title.setSpacingAfter(10);
+//        document.add(title);
+//        Paragraph preparedFor = new Paragraph(getString(R.string.prepedfor));
+//        preparedFor.setAlignment(ALIGN_CENTER);
+//        document.add(preparedFor);
+//        Paragraph buyer = new Paragraph(currentReport.getBuyerFirstName() + " " + currentReport.getBuyerLastName());
+//        buyer.setAlignment(ALIGN_CENTER);
+//        buyer.setSpacingAfter(5);
+//        document.add(buyer);
+//        Image propertyPhoto = Image.getInstance(currentReport.getPropertyPhoto());
+//        propertyPhoto.scaleToFit(400, 200);
+//        propertyPhoto.setAlignment(ALIGN_CENTER);
+//        propertyPhoto.setSpacingAfter(5);
+//        document.add(propertyPhoto);
+//        Paragraph propertyInspected = new Paragraph("PROPERTY INSPECTED:");
+//        propertyInspected.setAlignment(ALIGN_CENTER);
+//        document.add(propertyInspected);
+//        Paragraph address = new Paragraph(currentReport.getStreet() + "\n" + currentReport.getCity() + ", " + currentReport.getState() + " " + currentReport.getZip(),
+//                FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20));
+//        address.setAlignment(ALIGN_CENTER);
+//        document.add(address);
+//        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+//        LocalDateTime now = LocalDateTime.now();
+//        Paragraph inspectionDate = new Paragraph("Date of Inspection: " + dtf.format(now));
+//        inspectionDate.setAlignment(ALIGN_CENTER);
+//        document.add(inspectionDate);
+//        document.newPage();
+//
+//    }
 
     private static void addMetaData(Document document) {
         document.addTitle("Home Inspection By Foundations");
