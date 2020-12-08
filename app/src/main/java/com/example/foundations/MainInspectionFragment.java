@@ -123,7 +123,6 @@ public class MainInspectionFragment extends Fragment implements InspectionHandle
         List<ListItem> filterListItems = new ArrayList<>();
         for (int i = 0; i < allListItems.size(); i++) {
             if (allListItems.get(i).getReportId() == currentReportId) {
-                Log.d(TAG, "getAllListItems: " + allListItems.get(i).getNotes());
                 filterListItems.add(allListItems.get(i));
             }
         }

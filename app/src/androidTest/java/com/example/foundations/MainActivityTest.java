@@ -1,11 +1,19 @@
 package com.example.foundations;
 
 import android.Manifest;
+import android.app.Activity;
+import android.app.Instrumentation;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.Gravity;
 
+import androidx.test.InstrumentationRegistry;
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.action.ViewActions;
+import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.rule.GrantPermissionRule;
@@ -25,6 +33,9 @@ import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.contrib.DrawerMatchers.isClosed;
+import static androidx.test.espresso.intent.Intents.intended;
+import static androidx.test.espresso.intent.Intents.intending;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.toPackage;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withHint;
@@ -36,12 +47,12 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
     @Rule
-    public ActivityTestRule<MainActivity> mActivityTestRule
-            = new ActivityTestRule<MainActivity>(MainActivity.class);
+    public IntentsTestRule<MainActivity> mActivityTestRule
+            = new IntentsTestRule<MainActivity>(MainActivity.class);
     private MainActivity mActivity = null;
 
     @Rule
-    public GrantPermissionRule permissionRule = GrantPermissionRule.grant(Manifest.permission.INTERNET, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA);
+    public GrantPermissionRule permissionRule = GrantPermissionRule.grant(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA);
 
     public static RecyclerViewMatcherTestUtils withRecyclerView(final int recyclerViewId) {
         return new RecyclerViewMatcherTestUtils(recyclerViewId);
@@ -141,7 +152,7 @@ public class MainActivityTest {
         onView(withId(R.id.property_photo_title)).check(matches(withText("Property Photo")));
         onView(withId(R.id.add_property_photo)).check(matches(isDisplayed()));
         onView(withId(R.id.ni_create_report)).check(matches(withText("SUBMIT AND CONTINUE")));
-        onView(withId(R.id.ni_create_report)).perform(click());
+        onView(withId(R.id.ni_create_report)).perform(scrollTo(), click());
         onView(withId(R.id.sd_title)).check(matches(withText("Site Details")));
 
         onView(withId(R.id.sd_bedrooms)).check(matches(withText("Bedrooms")));
@@ -234,7 +245,18 @@ public class MainActivityTest {
         onView(withRecyclerView(R.id.mi_category_recyclerview)
                 .atPositionOnView(0, R.id.mi_add_item)).perform(click());
         onView(withId(R.id.list_item_notes)).perform(typeText("OMG AWESOME"));
+        Bitmap logo = BitmapFactory.decodeResource(InstrumentationRegistry.getTargetContext().getResources(), R.drawable.logo);
+        Intent result = new Intent();
+        result.putExtra("data", logo);
+        Instrumentation.ActivityResult activityResult = new Instrumentation.ActivityResult(Activity.RESULT_OK, result);
+        intending(toPackage("com.android.camera2")).respondWith(activityResult);
+        onView(withId(R.id.add_photo)).perform(click());
+        intended(toPackage("com.android.camera2"));
         Espresso.closeSoftKeyboard();
+        onView(withText("CANCEL")).perform(click());
+        onView(withRecyclerView(R.id.mi_category_recyclerview)
+                .atPositionOnView(0, R.id.mi_add_item)).perform(click());
+        onView(withId(R.id.list_item_notes)).perform(typeText("OMG AWESOME"));
         onView(withText("SUBMIT ITEM")).perform(click());
         onView(withText("ADD CATEGORY")).check(matches(isDisplayed()));
         onView(withText("ADD SUBCATEGORY")).check(matches(isDisplayed()));
@@ -298,13 +320,21 @@ public class MainActivityTest {
                 .atPositionOnView(0, R.id.reportItem)).perform(click());
         onView(withText("SELECT INSPECTION")).perform(click());
         onView(withId(R.id.ni_buyer_first_name)).perform(typeText("addingmore"));
+        Espresso.closeSoftKeyboard();
+        Thread.sleep(500);
+        Intent result2 = new Intent();
+        result2.putExtra("data", logo);
+        Instrumentation.ActivityResult activityResult2 = new Instrumentation.ActivityResult(Activity.RESULT_OK, result2);
+        intending(toPackage("com.android.camera2")).respondWith(activityResult2);
+        onView(withId(R.id.add_property_photo)).perform(scrollTo(), click());
         onView(withId(R.id.ni_create_report)).perform(scrollTo(), click());
         onView(withId(R.id.sd_bedrooms_amt)).perform(typeText("00"));
+        Espresso.closeSoftKeyboard();
         onView(withId(R.id.sd_submit)).perform(scrollTo(), click());
         onView(withId(R.id.drawer)).check(matches(isClosed(Gravity.START)))
                 .perform(DrawerActions.open());
         onView(withId(R.id.inspections)).perform(click());
-        onView(withText("START NEW INSPECTION")).perform(click());
+        onView(withId(R.id.inspection_frag_new_inspection)).perform(click());
         onView(withId(R.id.drawer)).check(matches(isClosed(Gravity.START)))
                 .perform(DrawerActions.open());
         onView(withId(R.id.checklists)).perform(click());
@@ -324,6 +354,14 @@ public class MainActivityTest {
         onView(withText("ADD SUBCATEGORY")).perform(click());
         onView(withId(R.id.asc_dialog_title_edit)).perform(typeText("testing subcat"));
         onView(withText("ADD SUBCATEGORY")).perform(click());
+        onView(withId(R.id.drawer)).check(matches(isClosed(Gravity.START)))
+                .perform(DrawerActions.open());
+        onView(withId(R.id.profile)).perform(click());
+        Intent result3 = new Intent();
+        result3.putExtra("data", logo);
+        Instrumentation.ActivityResult activityResult3 = new Instrumentation.ActivityResult(Activity.RESULT_OK, result3);
+        intending(toPackage("com.android.camera2")).respondWith(activityResult3);
+        onView(withId(R.id.ecamera)).perform(click());
         onView(withId(R.id.drawer)).check(matches(isClosed(Gravity.START)))
                 .perform(DrawerActions.open());
         onView(withId(R.id.pdfs)).perform(click());

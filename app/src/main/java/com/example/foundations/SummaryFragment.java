@@ -90,20 +90,17 @@ public class SummaryFragment extends Fragment {
         String currentSubcategoryName = null;
         int currentSubcategoryId = -1;
         int categorySectionCounter = 0;
-        int subcategorySectionCounter = 0;
-        int itemSectionCounter = 0;
         Chapter currentCategory = null;
         Section currentSubcategory = null;
 
-        String file_name = "Foundations Report " + new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(System.currentTimeMillis()) + ".pdf";
-        File storageDir = getContext().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
-        String file_path = storageDir.getAbsolutePath() + file_name;
+        String file_name = "/Foundations_Report " + new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(System.currentTimeMillis()) + ".pdf";
+        File storageDir = getContext().getExternalFilesDir(Environment.DIRECTORY_DCIM);
+        String file_path = "/" + storageDir.getAbsolutePath() + file_name;
         Document document = new Document();
         PdfWriter.getInstance(document, new FileOutputStream(file_path));
         document.open();
         addMetaData(document);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            Log.d(TAG, "createPDF: title page creation");
             addTitlePage(document);
         }
         if (allListItems != null && allListItems.size() > 0) {
@@ -118,7 +115,6 @@ public class SummaryFragment extends Fragment {
                     }
                     currentCategoryId = current.getCategoryId();
                     categorySectionCounter += 1;
-                    subcategorySectionCounter = 0;
                     for (int i = 0; i < allCategories.size(); i++) {
                         if (currentCategoryId == allCategories.get(i).getCategoryId()) {
                             currentCategoryName = allCategories.get(i).getTitle();
@@ -129,8 +125,6 @@ public class SummaryFragment extends Fragment {
                 }
                 if (current.getSubCategoryId() != currentSubcategoryId) {
                     currentSubcategoryId = current.getSubCategoryId();
-                    subcategorySectionCounter += 1;
-                    itemSectionCounter = 0;
                     for (int i = 0; i < allSubcategories.size(); i++) {
                         if (currentSubcategoryId == allSubcategories.get(i).getSubCategoryId()) {
                             currentSubcategoryName = allSubcategories.get(i).getTitle();
@@ -139,7 +133,6 @@ public class SummaryFragment extends Fragment {
                     }
                     currentSubcategory = createNewSubcategory(currentCategory, currentSubcategoryName);
                 }
-                itemSectionCounter += 1;
                 addItemsToSection(currentSubcategory, current);
              if (allListItems.size() == 0) {
                     currentSubcategory.add(new Paragraph(" "));
@@ -211,6 +204,7 @@ public class SummaryFragment extends Fragment {
         Paragraph foundationsTitle = new Paragraph("FOUNDATIONS\nHome Inspections Made Easy");
         foundationsTitle.setSpacingBefore(10);
         foundationsTitle.setSpacingAfter(5);
+        foundationsTitle.setAlignment(ALIGN_CENTER);
         document.add(foundationsTitle);
         Bitmap logoBitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.pdf_logo);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -245,6 +239,7 @@ public class SummaryFragment extends Fragment {
         Paragraph address = new Paragraph(currentReport.getStreet() + "\n" + currentReport.getCity() + ", " + currentReport.getState() + " " + currentReport.getZip(),
                 FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20));
         address.setAlignment(ALIGN_CENTER);
+        address.setSpacingAfter(10);
         document.add(address);
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         LocalDateTime now = LocalDateTime.now();
@@ -252,8 +247,14 @@ public class SummaryFragment extends Fragment {
         inspectionDate.setAlignment(ALIGN_CENTER);
         document.add(inspectionDate);
         Profile inspector = fragmentSwitcher.getProfile();
-        Paragraph inspectorInfo = new Paragraph("Inspected by:\n" + inspector.getFullName() + "\n" +
+        Paragraph inspectorTitle = new Paragraph("Inspected By:", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20));
+        inspectorTitle.setAlignment(ALIGN_CENTER);
+        inspectorTitle.setSpacingBefore(15);
+        inspectorTitle.setSpacingAfter(10);
+        document.add(inspectorTitle);
+        Paragraph inspectorInfo = new Paragraph(inspector.getFullName() + "\n" +
                 inspector.getCompanyName() + "\n" + inspector.getLicenseNumber() + "\n" + inspector.getPhone() + "\n" + inspector.getEmail());
+        inspectorInfo.setAlignment(ALIGN_CENTER);
         document.add(inspectorInfo);
         document.newPage();
 

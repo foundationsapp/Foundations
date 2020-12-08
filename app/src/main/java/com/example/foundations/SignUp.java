@@ -100,22 +100,27 @@ public class SignUp extends AppCompatActivity {
     contentUri = FileProvider.getUriForFile(this, "com.example.Foundations.file_provider",file);
 
     intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
-     startActivityForResult(intent,1);
+    startActivityForResult(intent,1);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK){
-            Bitmap bitmap = BitmapFactory.decodeFile(contentUri.getPath());
-            Bitmap bitmap2  = resizeBitmap(200,bitmap);
-            profileimage.setImageBitmap(bitmap2);
-
+            Bitmap bitmap;
+            if (BitmapFactory.decodeFile(contentUri.getPath()) != null) {
+                bitmap = BitmapFactory.decodeFile(contentUri.getPath());
+                Bitmap bitmap2  = resizeBitmap(200,bitmap);
+                profileimage.setImageBitmap(bitmap2);
+            } else {
+                Bundle extras = data.getExtras();
+                profileimage.setImageBitmap((Bitmap) extras.get("data"));
+            }
         }
     }
 
     public boolean check() {
-        boolean f;
+        boolean f = true;
         if (editFirstName.getText().toString().isEmpty() || editLastName.getText().toString().isEmpty() ||
                 editLicenseNumber.getText().toString().isEmpty() || editCompanyName.getText().toString().isEmpty() ||
                 editEmail.getText().toString().isEmpty() || editPhone.getText().toString().isEmpty()) {
@@ -138,9 +143,6 @@ public class SignUp extends AppCompatActivity {
         if (!editPhone.getText().toString().replaceAll(" ","").replaceAll("[-()]","").matches("[0-9]{10}")){
             editPhone.setError("Please Enter Only 10 Digit phone number");
             f = false;
-        }
-        else {
-            f = true;
         }
         return f;
     }

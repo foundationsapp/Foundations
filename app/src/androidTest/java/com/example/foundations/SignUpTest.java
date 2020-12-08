@@ -2,15 +2,19 @@ package com.example.foundations;
 
 import android.app.Activity;
 import android.app.Instrumentation;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Log;
 
 import androidx.test.InstrumentationRegistry;
 import androidx.test.espresso.intent.matcher.IntentMatchers;
+import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.intent.IntentCallback;
@@ -26,20 +30,26 @@ import org.junit.runner.RunWith;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import static androidx.test.InstrumentationRegistry.getContext;
 import static androidx.test.InstrumentationRegistry.getTargetContext;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.Intents.intending;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.toPackage;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 @RunWith(AndroidJUnit4.class)
 public class SignUpTest {
+
+    private static final String TAG = "SignUpTest";
     @Rule
-    public ActivityTestRule<SignUp> signUpActivityTestRule
-            = new ActivityTestRule<SignUp>(SignUp.class);
+    public IntentsTestRule<SignUp> signUpActivityTestRule
+            = new IntentsTestRule<SignUp>(SignUp.class);
     private SignUp signUpActivity = null;
 
 
@@ -48,7 +58,6 @@ public class SignUpTest {
     public void setUp() throws Exception {
         signUpActivity = signUpActivityTestRule.getActivity();
     }
-
     @Test
     public void hasTitle() {
         onView(withId(R.id.signup)).check(matches(withText(R.string.welcome)));
@@ -88,39 +97,22 @@ public class SignUpTest {
     public void failTests() {
         onView(withText("SIGN UP")).perform(scrollTo(), click());
     }
-//
-//    @Test
-//    public void takePhoto() {
-//        onView(withId(R.id.signupcamera)).perform(click());
-//
-//        intending(IntentMatchers.hasAction(MediaStore.ACTION_IMAGE_CAPTURE)).respondWith(
-//                new Instrumentation.ActivityResult(Activity.RESULT_OK, null));
-//
-//        IntentCallback intentCallback = new IntentCallback() {
-//            @Override
-//            public void onIntentSent(Intent intent) {
-//                if (intent.getAction().equals("android.media.action.IMAGE_CAPTURE")) {
-//                    try {
-//                        Uri imageUri = intent.getParcelableExtra(MediaStore.EXTRA_OUTPUT);
-//                        Context context = getTargetContext();
-//                        Bitmap icon = BitmapFactory.decodeResource(
-//                                context.getResources(),
-//                                R.mipmap.ic_launcher);
-//                        OutputStream out = getTargetContext().getContentResolver().openOutputStream(imageUri);
-//                        icon.compress(Bitmap.CompressFormat.JPEG, 100, out);
-//                        out.flush();
-//                        out.close();
-//                    } catch (IOException e) {
-//
-//                    }
-//                }
-//            }
-//        };
-//        IntentMonitorRegistry.getInstance().addIntentCallback(intentCallback);
-//
-//        //Perform action here
-//
-//    }
+
+    @Test
+    public void takePhoto() {
+        Bitmap logo = BitmapFactory.decodeResource(InstrumentationRegistry.getTargetContext().getResources(), R.drawable.logo);
+        Log.d(TAG, "takePhoto: " + logo);
+        Intent result = new Intent();
+        result.putExtra("data", logo);
+        Instrumentation.ActivityResult activityResult = new Instrumentation.ActivityResult(Activity.RESULT_OK, result);
+
+        intending(toPackage("com.android.camera2")).respondWith(activityResult);
+
+        onView(withId(R.id.signupcamera)).perform(click());
+
+        intended(toPackage("com.android.camera2"));
+
+    }
 
     @After
     public void tearDown() throws Exception {
